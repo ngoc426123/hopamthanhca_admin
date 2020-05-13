@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Hello, world!</title>
+    <title>Admin -> <?php echo $page_title; ?></title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="wrapper ">
+    <div class="wrapper">
         <div class="sidebar" data-color="azure" data-background-color="white">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a>
@@ -35,7 +35,7 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Thống kê toàn trang</a>
+                        <a class="navbar-brand" href="javascript:;"><?php echo $page_title; ?></a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
-                    
+                <?php $this->load->view($page_view); ?>
                 </div>
             </div>
             <footer class="footer">
