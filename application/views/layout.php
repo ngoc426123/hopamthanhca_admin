@@ -15,17 +15,27 @@
     <div class="wrapper">
         <div class="sidebar" data-color="azure" data-background-color="white">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a>
+                <a href="http://hopamthanhca.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item active"><a class="nav-link" href="#"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#menu1"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#0"><i class="material-icons">storage</i><p>Danh mục</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#0"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#0"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#0"><i class="material-icons">build</i><p>Cấu hình</p></a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('login/logout'); ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
+                    <li class='nav-item <?php echo ($page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index >= 30)?'active':'' ?>">
+                        <a class="nav-link" href="#category-toggle" data-toggle="collapse"><i class="material-icons">storage</i><p>Danh mục<b class="caret"></b></p></a>
+                        <div class="collapse <?php echo ($page_menu_index >= 30)?'show':'' ?>" id="category-toggle">
+                            <ul class="nav">
+                                <li class="nav-item <?php echo ($page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia") ?>" class="nav-link"><span>Tác giả</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 33)?'active':'' ?>"><a href="<?php echo base_url("category?slug=bang-chu-cai") ?>" class="nav-link"><span>Bảng chữ cái</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 34)?'active':'' ?>"><a href="<?php echo base_url("category?slug=dieu") ?>" class="nav-link"><span>Điệu</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item <?php echo ($page_menu_index == 4)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("user") ?>"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index == 5)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("database") ?>"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index == 6)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">build</i><p>Cấu hình</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index == 7)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("login/logout") ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
                 </ul>
             </div>
             <div class="sidebar-background"></div>
@@ -84,8 +94,9 @@
     <script src="<?php echo base_url("assets/js/core/jquery.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/core/popper.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
-    <script src="<?php echo base_url("assets/js/plugins/perfect-scrollbar.jquery.min.js"); ?>"></script>
+    <script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
+    <script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
+    <script> const base_url = '<?php echo base_url() ?>'</script>
 </body>
-
 </html>

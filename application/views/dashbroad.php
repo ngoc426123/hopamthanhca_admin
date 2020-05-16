@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="table-responsive table-sales">
-                            <table class="table">
+                            <table class="table text-nowrap">
                                 <tbody>
                                     <tr>
                                         <td>1</td>
@@ -1060,7 +1060,7 @@
                 <p class="card-category">Tình đến ngày 13/05/2020</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover text-nowrap">
                     <thead class="text-warning">
                         <tr>
                             <th>STT</th>
@@ -1118,7 +1118,7 @@
                 <p class="card-category">Tình đến ngày 13/05/2020</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover text-nowrap">
                     <thead class="text-warning">
                         <tr>
                             <th>STT</th>
@@ -1178,7 +1178,7 @@
                 <h4 class="card-title">Danh mục nhiều bài</h4>
             </div>
             <div class="card-body ">
-            <table class="table table-hover">
+                <table class="table table-hover text-nowrap">
                     <thead class="text-warning">
                         <tr>
                             <th>STT</th>

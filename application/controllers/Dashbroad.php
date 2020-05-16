@@ -8,6 +8,7 @@ class Dashbroad extends CI_Controller {
 	}
 
 	public function index(){
+		$data["page_menu_index"] = 1;
 		$data["page_title"] = "Thống kê toàn trang";
 		$data["page_view"] = "dashbroad";
 		$this->load->view("layout", $data);

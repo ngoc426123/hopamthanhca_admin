@@ -56,4 +56,26 @@ $(document).ready(() => {
             });
         });
     }
-}).bind($);
+
+    $("#changePass").change((element) => {
+        if ($(element.target).prop('checked')) {
+            $("#divChangePass").stop().slideDown(300);
+        } else {
+            $("#divChangePass").stop().slideUp(300);
+        }
+    });
+
+    $(".card-form-check").each((index, element) => {
+        let __self = $(element);
+        let itemCheck = null;
+
+        $(element).find(".form-check").each((idx, ele) => {
+            let isChecked = $(ele).find('.form-check-input').prop('checked');
+            if (isChecked) {
+                itemCheck = $(ele);
+            }
+        });
+
+        itemCheck.prependTo(__self);
+    });
+});

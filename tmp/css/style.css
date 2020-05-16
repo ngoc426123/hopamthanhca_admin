@@ -80,3 +80,54 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both
 }
+.ck-editor__editable {
+    min-height: 300px;
+}
+.card-over {
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-left: 5px;
+}
+.form-group{
+    padding-bottom: 25px;
+}
+.box-seo {
+    margin-bottom: 15px;
+}
+.seo-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #767676;
+}
+.seo-title, .seo-title a{
+    line-height: 20px;
+    color: #1a0dab;
+    font-weight: 600;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.seo-url {
+    color: #006621;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 4px;
+}
+.seo-desc {
+    color: #545454;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
+}
+.pad-user{
+    padding: 8px 0;
+}
+#songTitle {
+    font-size: 28px;
+    height: 56px;
+}
