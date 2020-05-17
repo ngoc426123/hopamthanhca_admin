@@ -35,7 +35,7 @@ class Model_song extends CI_Model {
 		$get = $this->db->get();
 		$cat = $get->result_array();
 		foreach ($cat as $key_cat => $item_cat) {
-			$result["cat"][$item_cat['type_slug']] = $item_cat['id_cat'];
+			$result["cat"][$item_cat['type_slug']][] = $item_cat['id_cat'];
 		}
 
 		return $result;
@@ -75,7 +75,7 @@ class Model_song extends CI_Model {
 			$get = $this->db->get();
 			$cat = $get->result_array();
 			foreach ($cat as $key_cat => $item_cat) {
-				$song_result[$key]["cat"][$item_cat['type_slug']] = $item_cat['id_cat'];
+				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat['id_cat'];
 			}
 		}
 		return $song_result;
@@ -87,5 +87,20 @@ class Model_song extends CI_Model {
 		$this->db->from("song");
 		$get = $this->db->get();
 		return $get->row_array()['COUNT(id)'];
+	}
+
+	public function update($id, $array_update) {
+		$this->load->database();
+		$this->db->set($array_update);
+		$this->db->where([
+			"id" => $id,
+		]);
+		$this->db->update("song");
+	}
+
+	public function add($array) {
+		$this->load->database();
+		$this->db->insert("song", $array);
+		return $this->db->insert_id();
 	}
 }

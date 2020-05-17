@@ -6,7 +6,7 @@
 			        <div class="card-text">
 			            <h4 class="card-title">Thông tin thành viên</h4>
 			        </div>
-			        <div class="pull-right pad-user">
+			        <div class="pull-right">
 			        	<div class="togglebutton">
 	                        <label>
 	                          <input type="checkbox" checked=""><span class="toggle"></span> Admin

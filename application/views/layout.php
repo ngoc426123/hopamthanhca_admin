@@ -20,7 +20,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class='nav-item <?php echo ($page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
+                    <li class="nav-item <?php echo ($page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song?page=1") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
                     <li class="nav-item <?php echo ($page_menu_index >= 30)?'active':'' ?>">
                         <a class="nav-link" href="#category-toggle" data-toggle="collapse"><i class="material-icons">storage</i><p>Danh mục<b class="caret"></b></p></a>
                         <div class="collapse <?php echo ($page_menu_index >= 30)?'show':'' ?>" id="category-toggle">

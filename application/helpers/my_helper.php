@@ -94,3 +94,14 @@ if(!function_exists("alert")){
 		<?php
 	}
 }
+
+if (!function_exists("print_alert")) {
+    function print_alert($alert) {
+        echo "<div class='alert alert-{$alert[0]}'>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <i class='material-icons'>close</i>
+                </button>
+                <span>{$alert[1]}</span>
+            </div>";
+    }
+}

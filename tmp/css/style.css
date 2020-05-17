@@ -84,7 +84,7 @@
     min-height: 300px;
 }
 .card-over {
-    max-height: 300px;
+    max-height: 200px;
     overflow: hidden;
     overflow-y: auto;
     padding-left: 5px;
@@ -124,10 +124,27 @@
     text-overflow: ellipsis;
     line-height: 18px;
 }
-.pad-user{
+.card .card-header-text .pull-right{
     padding: 8px 0;
 }
 #songTitle {
     font-size: 28px;
     height: 56px;
+}
+.pagination{
+    flex-wrap: wrap;
+}
+.table-default{
+    background-color: #f6f6f6;
+}
+.table-default td{
+    overflow: hidden;
+    white-space: normal;
+    padding: 15px 20px !important;
+}
+.table-default .form-group {
+    padding-bottom: 0;
+}
+.table-default .form-check .form-check-sign {
+    top: -1px;
 }

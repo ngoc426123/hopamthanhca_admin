@@ -31,4 +31,33 @@ class Model_cat extends CI_Model {
 		$get = $this->db->get();
 		return  $get->result_array();
 	}
+
+	public function update($id, $array){
+		$this->load->database();
+
+		// DELETE
+		$this->db->where([
+			"id_song" => $id,
+		]);
+		$this->db->delete('songcat');
+		
+		// INSERT
+		foreach ($array as $item) {
+			$this->db->insert('songcat',[
+				"id" => '',
+				"id_song" => $id,
+				"id_cat" => $item
+			]);
+		}
+	}
+
+	public function add($id, $array) {
+		foreach ($array as $item) {
+			$this->db->insert('songcat',[
+				"id" => '',
+				"id_song" => $id,
+				"id_cat" => $item
+			]);
+		}
+	}
 }
