@@ -125,6 +125,20 @@ $(document).ready(() => {
         $('.seo-desc').text(excerpt);
     });
 
+    $("#update_meta_seo_cat").on("click", () => {
+        const title = $('[name="name"]').val();
+        const slug = toSlug($('[name="name"]').val());
+        const keywork = `danh mục hợp âm thánh ca, ${title}, danh mục ${title}, ${title} danh mục`;
+
+        $('[name="seotitle"]').val(title).parent(".bmd-form-group").addClass('is-filled');
+        $('[name="seourl"]').val(slug).parent(".bmd-form-group").addClass('is-filled');
+        $('[name="seokeywork"]').val(keywork).parent(".bmd-form-group").addClass('is-filled');
+
+        $('.seo-title').text(title);
+        $('.seo-url').text(`http://hopamthanhca.com/danh-muc/${slug}`);
+        $('.seo-desc').text(keywork);
+    });
+
     $(".quickEdit").on('click', (event) => {
         const trElement = $(event.target).parents("tr");
         const id        = trElement.find("td:first").text();

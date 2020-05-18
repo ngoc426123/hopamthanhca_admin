@@ -48,4 +48,28 @@ class Model_meta extends CI_Model {
 			"value"   => $value,
 		]);
 	}
+
+	public function update_cat($id, $key, $value) {
+		$array_condition = [
+			"id_cat" => $id,
+			"key"     => $key,
+		];
+		$array_update = [
+			"value"  => $value,
+		];
+		$this->load->database();
+		$this->db->set($array_update);
+		$this->db->where($array_condition);
+		$this->db->update("catmeta");
+	}
+
+	public function add_cat($id, $key, $value) {
+		$this->load->database();
+		$this->db->insert("catmeta", [
+			"id"      => "",
+			"id_cat" => $id,
+			"key"     => $key,
+			"value"   => $value,
+		]);
+	}
 }

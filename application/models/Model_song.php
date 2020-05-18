@@ -103,4 +103,33 @@ class Model_song extends CI_Model {
 		$this->db->insert("song", $array);
 		return $this->db->insert_id();
 	}
+
+	public function update_songcat($id, $array){
+		$this->load->database();
+
+		// DELETE
+		$this->db->where([
+			"id_song" => $id,
+		]);
+		$this->db->delete('songcat');
+		
+		// INSERT
+		foreach ($array as $item) {
+			$this->db->insert('songcat',[
+				"id" => '',
+				"id_song" => $id,
+				"id_cat" => $item
+			]);
+		}
+	}
+
+	public function add_songcat($id, $array) {
+		foreach ($array as $item) {
+			$this->db->insert('songcat',[
+				"id" => '',
+				"id_song" => $id,
+				"id_cat" => $item
+			]);
+		}
+	}
 }

@@ -10,7 +10,7 @@ class Song extends CI_Controller {
 	public function index(){
 		$data["page_menu_index"] = 2;
 		if (isset($_GET['action'])) {
-			if($_GET['action'] == 'edit') {
+			if ($_GET['action'] == 'edit') {
 				$song_id = $_GET['id'];
 				$this->load->model(["model_song", "model_cat"]);
 				$data["song"] = $this->model_song->get($song_id);
@@ -24,7 +24,7 @@ class Song extends CI_Controller {
 
 			} else if ($_GET['action'] == 'update') {
 				if ( isset($_POST['update']) ) {
-					$this->load->model(['model_song','model_cat' , 'model_meta']);
+					$this->load->model(['model_song' , 'model_meta']);
 					$song_id = $_GET['id'];
 					// UPDATE SONG
 					$array_song_update = [
@@ -38,7 +38,7 @@ class Song extends CI_Controller {
 
 					// UPDATE CATEGORY
 					$array_danhmuc = $_POST['danhmuc'];
-					$this->model_cat->update($song_id, $array_danhmuc);
+					$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 					// UPDATE META
 					$this->model_meta->update($song_id, 'seotitle', $_POST['seotitle']);
@@ -49,7 +49,7 @@ class Song extends CI_Controller {
 					$this->model_meta->update($song_id, 'hopamchinh', $_POST['hopamchinh']);
 					$data["alert"] = ["success", "Thành công: cập nhật bài hát."];
 				} else {
-					$data["alert"] = ["wraning", "Không có cập nhật."];
+					$data["alert"] = ["warning", "Không có cập nhật."];
 				}
 				$song_id = $_GET['id'];
 				$this->load->model(["model_song", "model_cat"]);
@@ -63,7 +63,7 @@ class Song extends CI_Controller {
 				$this->load->view("layout", $data);
 
 			} else if ($_GET['action'] == 'add') {
-				$this->load->model(["model_song", "model_cat", "model_meta"]);
+				$this->load->model(["model_song", "model_meta"]);
 				if ( isset($_POST['ok']) ) {
 					// INSERT SONG
 					$array_insert_song = [
@@ -80,7 +80,7 @@ class Song extends CI_Controller {
 					
 					// INSERT CAT
 					$array_danhmuc = $_POST['danhmuc'];
-					$this->model_cat->add($insert_song_id, $array_danhmuc);
+					$this->model_song->add_songcat($insert_song_id, $array_danhmuc);
 
 					// INSERT META
 					$this->model_meta->add($insert_song_id, 'seotitle', $_POST['seotitle']);
@@ -120,7 +120,7 @@ class Song extends CI_Controller {
 
 				// UPDATE CATEGORY
 				$array_danhmuc = $_POST['danhmuc'];
-				$this->model_cat->update($song_id, $array_danhmuc);
+				$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 				// UPDATE META
 				$this->model_meta->update($song_id, 'seotitle', $_POST['seotitle']);
@@ -145,7 +145,7 @@ class Song extends CI_Controller {
 			}
 			$page_start = ($page - 1) * $number_song_on_page;
 			$data["pagination_song"] = $arr_pagination;
-			$data["list_song"] = $this->model_song->getlist($page_start, 20);
+			$data["list_song"] = $this->model_song->getlist($page_start, $number_song_on_page);
 			$data["page_title"] = "Bài hát";
 			$data["page_view"] = "song";
 			$this->load->view("layout", $data);

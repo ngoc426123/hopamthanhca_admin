@@ -25,10 +25,10 @@
                         <a class="nav-link" href="#category-toggle" data-toggle="collapse"><i class="material-icons">storage</i><p>Danh mục<b class="caret"></b></p></a>
                         <div class="collapse <?php echo ($page_menu_index >= 30)?'show':'' ?>" id="category-toggle">
                             <ul class="nav">
-                                <li class="nav-item <?php echo ($page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia") ?>" class="nav-link"><span>Tác giả</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 33)?'active':'' ?>"><a href="<?php echo base_url("category?slug=bang-chu-cai") ?>" class="nav-link"><span>Bảng chữ cái</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 34)?'active':'' ?>"><a href="<?php echo base_url("category?slug=dieu") ?>" class="nav-link"><span>Điệu</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc&page=1") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia&page=1") ?>" class="nav-link"><span>Tác giả</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 33)?'active':'' ?>"><a href="<?php echo base_url("category?slug=bang-chu-cai&page=1") ?>" class="nav-link"><span>Bảng chữ cái</span></a></li>
+                                <li class="nav-item <?php echo ($page_menu_index == 34)?'active':'' ?>"><a href="<?php echo base_url("category?slug=dieu-bai-hat&page=1") ?>" class="nav-link"><span>Điệu</span></a></li>
                             </ul>
                         </div>
                     </li>

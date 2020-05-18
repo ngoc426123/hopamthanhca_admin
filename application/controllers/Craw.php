@@ -99,6 +99,26 @@ class Craw extends CI_Controller {
                 }
             }
             $this->db->insert("cat", $arr_cat);
+
+            $keywork = 'chuyên mục hợp âm thánh ca, ';
+            $keywork = $dat['name'].', ';
+            $keywork .= 'chuyên mục '.$dat['name'].', ';
+            $keywork .= $dat['name'].' chuyên mục';
+            $array_meta_name = [
+                'seotitle'   => $dat['name'],
+                'seourl'     => $dat['slug'],
+                'seodes'     => '',
+                'seokeywork' => $keywork,
+            ];
+            foreach ($array_meta_name as $key => $item) {
+                $array_insert_catmeta = [
+                    "id"     => "",
+                    "id_cat" => $id,
+                    "key"    => $key,
+                    "value"  => $item
+                ];
+                $this->db->insert("catmeta", $array_insert_catmeta);
+            }
         }
 
         // CRAW SONG
