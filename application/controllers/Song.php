@@ -70,7 +70,7 @@ class Song extends CI_Controller {
 						'id'      => '',
 						'title'   => $_POST["title"],
 						'slug'    => $_POST['seourl'],
-						'date'    => (isset($_POST['date']))?$_POST['date']:date('d/m/yy h:m:s'),
+						'date'    => (isset($_POST['date']))?$_POST['date']:get_date_now(),
 						'content' => $_POST['content'],
 						'excerpt' => $_POST['excerpt'],
 						'author'  => $this->session->id,

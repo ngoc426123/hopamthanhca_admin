@@ -65,7 +65,7 @@ if(!function_exists("convent_song")){
 
 if(!function_exists("get_date_now")){
 	function get_date_now(){
-        return date('d').'/'.date('m').'/'.date('Y');
+        return date('d/m/yy h:m:s');
 	}
 }
 
@@ -103,5 +103,12 @@ if (!function_exists("print_alert")) {
                 </button>
                 <span>{$alert[1]}</span>
             </div>";
+    }
+}
+
+if (!function_exists("md_pass")) {
+    function md_pass($pass) {
+        $pass = md5($pass);
+        return $pass;
     }
 }

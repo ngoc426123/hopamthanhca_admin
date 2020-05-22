@@ -5,6 +5,9 @@
                 <div class="card-text">
                     <h4 class="card-title">Danh sách thành viên</h4>
                 </div>
+                <div class="pull-right">
+                    <a href="<?php echo base_url("user?action=add") ?>" class="btn btn-success">Thêm thành viên<div class="ripple-container"></div></a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -22,40 +25,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        foreach ($list_user as $key => $value) {
+                            $stt = $key++;
+                        ?>
                             <tr>
-                                <td>1</td>
+                                <td><?php echo $stt; ?></td>
                                 <td>
-                                    <div>Hoàng Minh Ngọc</div>
+                                    <div><?php echo $value["name"]; ?></div>
                                     <div class="togglebutton">
-                                        <label><input type="checkbox" checked>Admin: <span class="toggle"></span></label>
+                                        <label><input class="changePermission" type="checkbox" <?php echo ($value["permission"]==1)?"checked":""; ?> value="<?php echo $value["id"]; ?>" >Admin: <span class="toggle"></span></label>
                                     </div>
                                 </td>
-                                <td>Minhngoc.ith</td>
-                                <td>admin</td>
-                                <td>**************** <a href="">Chang</a></td>
-                                <td>minhngoc.ith@gmail.com</td>
-                                <td>2020/10/5 15:58:00</td>
-                                <td class="td-actions text-right">
-                                    <a href="<?php echo base_url("user/edit") ?>" class="btn btn-success"><i class="material-icons">build</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
+                                <td><?php echo $value["displayname"]; ?></td>
+                                <td><?php echo $value["username"]; ?></td>
                                 <td>
-                                    <div>Nguyễn Anh Đức</div>
-                                    <div class="togglebutton">
-                                        <label><input type="checkbox">Admin: <span class="toggle"></span></label>
-                                    </div>
+                                    <div>****************</div>
+                                    <button class="btn btn-sm btn-success btnChangePass" value="<?php echo $value["id"]; ?>">Change</button>
                                 </td>
-                                <td>AnhduaVoluin</td>
-                                <td>anhduc</td>
-                                <td>**************** <a href="">Chang</a></td>
-                                <td>anhduc1996@gmail.com</td>
-                                <td>2020/10/5 15:58:00</td>
+                                <td><?php echo $value["username"]; ?></td>
+                                <td><?php echo $value["dateregister"]; ?></td>
                                 <td class="td-actions text-right">
-                                    <a href="<?php echo base_url("user/edit") ?>" class="btn btn-success"><i class="material-icons">build</i></a>
+                                    <a href="<?php echo base_url("user?action=edit&id={$value["id"]}") ?>" class="btn btn-success"><i class="material-icons">build</i></a>
                                 </td>
                             </tr>
+                        <?php
+                        }
+                        ?>  
                         </tbody>
                     </table>
                 </div>

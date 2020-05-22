@@ -57,7 +57,7 @@ $(document).ready(() => {
         });
     }
 
-    $("#changePass").change((element) => {
+    $("#changePassword").change((element) => {
         if ($(element.target).prop('checked')) {
             $("#divChangePass").stop().slideDown(300);
         } else {
@@ -253,4 +253,76 @@ $(document).ready(() => {
         });
         return ret; 
     }
+
+    $(".changePermission").on("change", (event) => {
+        const permission = ($(event.target).prop('checked'))?1:0;
+        const id         = $(event.target).val();
+        new Promise((reslove, reject) => {
+            $.ajax({
+                url: `${base_url}user/changepermission`,
+                async: true,
+                type: `POST`,
+                data: {
+                    id: id,
+                    permission: permission,
+                }
+            });
+        });
+    });
+
+    $(".btnChangePass").on("click", (event) => {
+        const id = $(event.target).val(); 
+        swal({
+            title: `Đổi mật khẩu`,
+            html: `
+                <div class="form-group">
+                    <input type="password" class="form-control passNew" placeholder="Mật khẩu mới">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control passNewAgain" placeholder="Nhập lại mật khẩu">
+                </div>
+            `,
+            showCloseButton: true,
+            showCancelButton: true,
+        }).then((event) => {
+            if ( event.value ) {
+                const passNew = $(".passNew").val();
+                const passNewAgain = $(".passNewAgain").val();
+                
+                if ( passNew!=passNewAgain ) {
+                    swal({
+                        icon: `error`,
+                        title: `Lỗi`,
+                        text: `Mật khẩu nhập lại không đúng`,
+                    });
+                } else if ( passNew == '' || passNewAgain == '' ){
+                    swal({
+                        icon: `error`,
+                        title: `Lỗi`,
+                        text: `Chưa nhập một trong hai mật khẩu`,
+                    });
+                } else {
+                    new Promise((reslove, reject) => {
+                        $.ajax({
+                            url: `${base_url}user/changepassword`,
+                            async: true,
+                            type: `POST`,
+                            data: {
+                                id: id,
+                                passNew: passNew
+                            },
+                            success: () => {
+                                swal({
+                                    title: `Thành công`,
+                                    text: `Đổi mật khẩu thành công`,
+                                });
+                            }
+                        });
+                    });
+                }
+            } else if ( event.dismiss ) {
+                console.log("bạn nhấn cancel");
+            }
+        });
+    });
 });

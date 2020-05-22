@@ -6,7 +6,7 @@ class Model_login extends CI_Model {
         $this->load->database();
 
         $username = $username;
-        $password = md5($password);
+        $password = md_pass($password);
 
         $this->db->select("*");
         $this->db->from("user");

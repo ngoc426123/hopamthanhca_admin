@@ -96,6 +96,9 @@
     <script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>"></script>
     <script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
+    <!-- PLUGIN -->
+    <script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>" type="text/javascript"></script>
+    <!-- STYLE -->
     <script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
     <script> const base_url = '<?php echo base_url() ?>'</script>
 </body>

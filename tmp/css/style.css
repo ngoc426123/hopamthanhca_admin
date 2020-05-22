@@ -148,3 +148,9 @@
 .table-default .form-check .form-check-sign {
     top: -1px;
 }
+.input-group .input-group-addon {
+    padding-left: 15px;
+}
+.alert b {
+    text-transform: none;
+}
