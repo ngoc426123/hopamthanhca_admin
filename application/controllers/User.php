@@ -36,7 +36,7 @@ class User extends CI_Controller {
 				$data["id"] = $_GET["id"];
 				$data["user"] = $this->model_user->get($_GET["id"]);
 				$data["page_menu_index"] = 4;
-				$data["page_title"] = "Thêm thành viên";
+				$data["page_title"] = "Cập nhật thành viên";
 				$data["page_view"] = "user_edit";
 				$this->load->view("layout", $data);
 
@@ -59,8 +59,9 @@ class User extends CI_Controller {
 						if( $password != $passwordAgain ) {
 							$data["alert"] = ["danger", "Mật khẩu nhập lại không giống nên không cập nhật mật khẩu"];
 						} else {
+							$password=md_pass($password);
 							$return = $this->model_user->changepassword($id, $password);
-							$data["alert"] = ["success", "Cập nhật thành viên, bạn đã đổi mật khẩu thành <b>{$password}</b>."];
+							$data["alert"] = ["success", "Cập nhật thành viên, bạn đã đổi mật khẩu thành <b>{$passwordAgain}</b>"];
 						}
 					}
 				} else {
@@ -69,7 +70,7 @@ class User extends CI_Controller {
 				$data["id"] = $_GET["id"];
 				$data["user"] = $this->model_user->get($_GET["id"]);
 				$data["page_menu_index"] = 4;
-				$data["page_title"] = "Thêm thành viên";
+				$data["page_title"] = "Cập nhật thành viên";
 				$data["page_view"] = "user_edit";
 				$this->load->view("layout", $data);
 			}

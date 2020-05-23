@@ -65,6 +65,52 @@ $(document).ready(() => {
         }
     });
 
+    $(".btnCreatePassword").on(`click`, () => {
+        const maxChar = 10;
+        const stepChar = 4;
+        const arrChar = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMLOPQRSTWXYZ0123456789`;
+        const arrCharSpc = `!@#$%^&*`;
+        const arrCharLength = arrChar.length;
+        const arrCharSpcLength = arrCharSpc.length;
+        const randomChar = return_char();
+
+        function random_char() {
+            return arrChar[Math.floor(Math.random() * (arrCharLength - 1)) + 1];
+        }
+
+        function random_char_spc() {
+            return arrCharSpc[Math.floor(Math.random() * (arrCharSpcLength - 1)) + 1];
+        }
+
+        function replaceAt(string, index, replace) {
+            return string.substring(0, index) + replace + string.substring(index + 1);
+        }
+
+        function return_char () {
+            let output = ``;
+            for (let i = 0; i < maxChar; i++) {
+                output+=random_char();
+            }
+            for (let i = 0; i < output.length; i+=stepChar) {
+                output = replaceAt(output, i, random_char_spc())
+            }
+            return output;
+        }
+
+        $(`[name="password"], [name="passwordAgain"]`).val(randomChar).parent(".bmd-form-group").addClass('is-filled');
+
+        const eleInputPassword = $(`[name="password"]`);
+        const eleInputPasswordAgain = $(`[name="passwordAgain"]`);
+
+        eleInputPassword.attr("type", "text");
+        eleInputPasswordAgain.attr("type", "text")
+        
+    });
+    $(`[name="password"], [name="passwordAgain"]`).on(`focus`, (event) => {
+        $(event.target).attr("type", "password");
+    })
+
+
     $(".card-form-check").each((index, element) => {
         let __self = $(element);
         let itemCheck = null;

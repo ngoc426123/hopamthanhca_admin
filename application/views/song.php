@@ -32,7 +32,7 @@
                         <td><?php echo $song["id"]; ?></td>
                         <td><a href="<?php echo base_url("song?action=edit&id={$song["id"]}"); ?>"><?php echo $song["title"]; ?></a></td>
                         <td><?php echo $song["slug"]; ?></td>
-                        <td><?php echo isset($song["meta"]["luotxem"])?$song["meta"]["luotxem"]:"0"; ?></td>
+                        <td><?php echo isset($song["meta"]["luotxem"])?fmt_number($song["meta"]["luotxem"]):"0"; ?></td>
                         <td>
                             <div><?php echo $song["status"]; ?></div>
                             <small><?php echo $song["date"]; ?></small>

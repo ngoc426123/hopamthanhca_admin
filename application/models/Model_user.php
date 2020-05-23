@@ -51,6 +51,18 @@ class Model_user extends CI_Model {
 		$this->db->update("user");
 	}
 
+	public function checkpass($id, $pass) {
+		$this->load->database();
+		$this->db->select("*");
+		$this->db->from("user");
+		$this->db->where([
+			"id" => $id,
+			"password" => $pass,
+		]);
+		$get = $this->db->get();
+		return ($get->num_rows() > 0) ? true : false;
+	}
+
 	public function changepermission($id, $permission) {
 		$this->load->database();
 		$this->db->set([

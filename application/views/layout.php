@@ -19,23 +19,23 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class='nav-item <?php echo ($page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song?page=1") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index >= 30)?'active':'' ?>">
+                    <li class='nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song?page=1") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index >= 30)?'active':'' ?>">
                         <a class="nav-link" href="#category-toggle" data-toggle="collapse"><i class="material-icons">storage</i><p>Danh mục<b class="caret"></b></p></a>
-                        <div class="collapse <?php echo ($page_menu_index >= 30)?'show':'' ?>" id="category-toggle">
+                        <div class="collapse <?php echo (isset($page_menu_index) && $page_menu_index >= 30)?'show':'' ?>" id="category-toggle">
                             <ul class="nav">
-                                <li class="nav-item <?php echo ($page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc&page=1") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia&page=1") ?>" class="nav-link"><span>Tác giả</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 33)?'active':'' ?>"><a href="<?php echo base_url("category?slug=bang-chu-cai&page=1") ?>" class="nav-link"><span>Bảng chữ cái</span></a></li>
-                                <li class="nav-item <?php echo ($page_menu_index == 34)?'active':'' ?>"><a href="<?php echo base_url("category?slug=dieu-bai-hat&page=1") ?>" class="nav-link"><span>Điệu</span></a></li>
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc&page=1") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia&page=1") ?>" class="nav-link"><span>Tác giả</span></a></li>
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 33)?'active':'' ?>"><a href="<?php echo base_url("category?slug=bang-chu-cai&page=1") ?>" class="nav-link"><span>Bảng chữ cái</span></a></li>
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 34)?'active':'' ?>"><a href="<?php echo base_url("category?slug=dieu-bai-hat&page=1") ?>" class="nav-link"><span>Điệu</span></a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item <?php echo ($page_menu_index == 4)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("user") ?>"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index == 5)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("database") ?>"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index == 6)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">build</i><p>Cấu hình</p></a></li>
-                    <li class="nav-item <?php echo ($page_menu_index == 7)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("login/logout") ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 4)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("user") ?>"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 5)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("database") ?>"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 6)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">build</i><p>Cấu hình</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 7)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("login/logout") ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
                 </ul>
             </div>
             <div class="sidebar-background"></div>
@@ -63,8 +63,8 @@
                                     <p class="d-lg-none d-md-block">Account</p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="#">Thông tin</a>
-                                    <a class="dropdown-item" href="#">Thay mật khẩu</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("member?action=editprofile") ?>">Thông tin</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("member?action=changepassword") ?>">Thay mật khẩu</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">Đăng xuất</a>
                                 </div>

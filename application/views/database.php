@@ -30,7 +30,7 @@
                             }
                             ?>
                             </td>
-                            <td><?php echo $value["record"]; ?></td>
+                            <td><?php echo fmt_number($value["record"]); ?></td>
                             <td class="td-actions text-right">
                                 <a href="<?php echo base_url("database/emptytable/{$key}"); ?>" class="btn btn-sm btn-rose"><i class="fa fa-times"></i></a>
                                 <a href="<?php echo base_url("database/optimizetable/{$key}"); ?>" class="btn btn-sm btn-primary"><i class="fa fa-repeat"></i></a>

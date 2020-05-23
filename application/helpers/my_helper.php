@@ -112,3 +112,9 @@ if (!function_exists("md_pass")) {
         return $pass;
     }
 }
+
+if (!function_exists("fmt_number")) {
+    function fmt_number($number) {
+        return number_format($number, 0, "", ".");
+    }
+}

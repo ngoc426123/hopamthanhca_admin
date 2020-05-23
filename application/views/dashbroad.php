@@ -6,7 +6,7 @@
                     <i class="material-icons">audiotrack</i>
                 </div>
                 <p class="card-category">Bài hát</p>
-                <h3 class="card-title">255</h3>
+                <h3 class="card-title"><?php echo fmt_number($count["count_song"]) ?></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -22,7 +22,7 @@
                     <i class="material-icons">storage</i>
                 </div>
                 <p class="card-category">Chuyên mục</p>
-                <h3 class="card-title">144</h3>
+                <h3 class="card-title"><?php echo fmt_number($count["count_cat"]) ?></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -38,7 +38,7 @@
                     <i class="material-icons">visibility</i>
                 </div>
                 <p class="card-category">Lượt xem</p>
-                <h3 class="card-title">12.000</h3>
+                <h3 class="card-title"><?php echo fmt_number($count["count_view"]) ?></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -54,7 +54,7 @@
                     <i class="material-icons">favorite</i>
                 </div>
                 <p class="card-category">Lượt love</p>
-                <h3 class="card-title">15</h3>
+                <h3 class="card-title"><?php echo fmt_number($count["count_love"]) ?></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -77,78 +77,22 @@
                         <div class="table-responsive table-sales">
                             <table class="table text-nowrap">
                                 <tbody>
+                                <?php
+                                foreach ($song_new as $key => $item) {
+                                    $stt = $key++;
+                                ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Ca vang tình yêu Chúa</td>
-                                        <td class="text-right">Đinh Công Huỳnh</td>
-                                        <td class="text-right">2920</td>
+                                        <td><?php echo $stt; ?></td>
+                                        <td><?php echo $item["title"]; ?></td>
+                                        <td class="text-right"><?php echo $item["cat"]["tac-gia"]; ?></td>
+                                        <td class="text-right"><?php echo fmt_number($item["meta"]["luotxem"]); ?></td>
                                         <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
+                                        <a href="<?php echo base_url("song?action=edit&id={$item["id"]}"); ?>" rel="tooltip" class="btn btn-success"><i class="material-icons">build</i></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Đưa môn sinh lên núi</td>
-                                        <td class="text-right">Thái Nguyên</td>
-                                        <td class="text-right">150</td>
-                                        <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Về với Ngài</td>
-                                        <td class="text-right">Lộc Đăng</td>
-                                        <td class="text-right">92</td>
-                                        <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Bánh trắng tinh tuyền</td>
-                                        <td class="text-right">Đinh Minh Hoàng</td>
-                                        <td class="text-right">51</td>
-                                        <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Lệ vật mọn hèn</td>
-                                        <td class="text-right">Huỳnh Minh Kỳ</td>
-                                        <td class="text-right">140</td>
-                                        <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Bánh miến rượu ngon</td>
-                                        <td class="text-right">Dương Nguyên Dương</td>
-                                        <td class="text-right">3</td>
-                                        <td class="text-right td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                <?php
+                                }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
@@ -1070,42 +1014,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($song_view as $key => $item) {
+                        $stt = $key+1;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Cho con tin yêu</td>
-                            <td>Lê Tài</td>
-                            <td>120</td>
+                            <td><?php echo $stt ?></td>
+                            <td><?php echo $item["title"] ?></td>
+                            <td><?php echo $item["cat"]["tac-gia"] ?></td>
+                            <td><?php echo fmt_number($item["value"]) ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Con xin yêu Ngài</td>
-                            <td>Nguyễn Mẫn</td>
-                            <td>80</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Để con nên hình bóng ngài</td>
-                            <td>Nguyên Ngọc</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Để Ngài lớn lên</td>
-                            <td>Hoàng Nguyên</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Xin một đời tin yêu</td>
-                            <td>Thái Nguyên</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Lễ dâng mong đợi</td>
-                            <td>Kim Long</td>
-                            <td>2</td>
-                        </tr>
+                    <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -1124,46 +1045,23 @@
                             <th>STT</th>
                             <th>Bài hát</th>
                             <th>Tác giả</th>
-                            <th>Lượt xem</th>
+                            <th>Lượt thích</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($song_love as $key => $item) {
+                        $stt = $key+1;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Để Ngài lớn lên</td>
-                            <td>Lê Tài</td>
-                            <td>120</td>
+                            <td><?php echo $stt ?></td>
+                            <td><?php echo $item["title"] ?></td>
+                            <td><?php echo $item["cat"]["tac-gia"] ?></td>
+                            <td><?php echo fmt_number($item["value"]) ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Lễ dâng mong đợi</td>
-                            <td>Nguyễn Mẫn</td>
-                            <td>80</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Để con nên hình bóng ngài</td>
-                            <td>Nguyên Ngọc</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Cho con tin yêu</td>
-                            <td>Hoàng Nguyên</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Xin một đời tin yêu</td>
-                            <td>Thái Nguyên</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Con xin yêu Ngài</td>
-                            <td>Kim Long</td>
-                            <td>2</td>
-                        </tr>
+                    <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -1187,31 +1085,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($order_cat as $key => $item) {
+                        $stt = $key+1;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Mùa thường niên</td>
-                            <td>120</td>
+                            <td><?php echo $stt; ?></td>
+                            <td><?php echo $item["cat_name"]; ?></td>
+                            <td><?php echo fmt_number($item["count"]); ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Mùa vọng</td>
-                            <td>80</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thái Nguyên</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Đinh Công Huỳnh</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Thánh Thể</td>
-                            <td>10</td>
-                        </tr>
+                    <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -1233,26 +1118,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($order_type as $key => $item) {
+                        $stt = $key+1;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Chuyên mục</td>
-                            <td>22</td>
+                            <td><?php echo $stt; ?></td>
+                            <td><?php echo $item["type_name"]; ?></td>
+                            <td><?php echo fmt_number($item["count"]); ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Tác giả</td>
-                            <td>18</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Bảng chữ cái</td>
-                            <td>26</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Điệu</td>
-                            <td>13</td>
-                        </tr>
+                    <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -1265,7 +1142,7 @@
                 <h4 class="card-title">Đăng nhiều nhất trang</h4>
             </div>
             <div class="card-body ">
-            <table class="table table-hover">
+                <table class="table table-hover">
                     <thead class="text-warning">
                         <tr>
                             <th>STT</th>
@@ -1274,21 +1151,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    foreach ($order_post as $key => $item) {
+                        $stt = $key+1;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Minh Ngọc</td>
-                            <td>200</td>
+                            <td><?php echo $stt; ?></td>
+                            <td><?php echo $item["username"]; ?></td>
+                            <td><?php echo fmt_number($item["count"]); ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Nguyên KTC</td>
-                            <td>120</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Thế Dũng KMN</td>
-                            <td>20</td>
-                        </tr>
+                    <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>

@@ -36,14 +36,12 @@ if (isset($alert)) {
 		                <label class="bmd-label-floating">Gmail</label>
 		                <input type="text" class="form-control" autocomplete="off" name="email" required>
 		            </div>
+					<div class="form-group">
+						<button type="button" class="btn btn-info btn-sm btnCreatePassword">Tạo mật khẩu<div class="ripple-container"></div><div class="ripple-container"></div></button>
+					</div>
 					<div class="form-group bmd-form-group">
 						<label class="bmd-label-floating">Mật khẩu</label>
-						<div class="input-group">
-							<input type="password" class="form-control" name="password" required>
-							<div class="input-group-addon">
-								<button type="button" class="btn btn-info btn-sm">Tạo mật khẩu<div class="ripple-container"></div><div class="ripple-container"></div></button>
-							</div>
-						</div>
+						<input type="password" class="form-control" name="password" required>
 					</div>
 					<div class="form-group clearfix">
 		                <div class="pull-right">
