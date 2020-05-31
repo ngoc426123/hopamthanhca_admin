@@ -2,6 +2,7 @@
 if (isset($alert)) {
     print_alert($alert);
 }
+// pr($song);
 ?>
 <form action="<?php echo base_url("song?action=update&id={$song["id"]}"); ?>" method="post">
 <div class="row">
@@ -110,7 +111,7 @@ if (isset($alert)) {
                 <div class="card-over card-form-check">
                 <?php
                 foreach ($cat['chuyen-muc'] as $item) {
-                    $isCat     = isset($song['cat']['chuyen-muc']);
+                    $isCat = isset($song['cat']['chuyen-muc']);
                     if ( $isCat ) {
                         $isChecked = in_array($item['id'], $song['cat']['chuyen-muc']);
                         $checked = ($isCat && $isChecked)?"checked":"";
@@ -118,7 +119,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="chuyenmuc[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>
@@ -146,7 +147,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="tacgia[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>
@@ -174,7 +175,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="bangchucai[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>
@@ -202,7 +203,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="dieubaihat[]" <?php echo (isset($checked))?$checked:""; ?> type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>

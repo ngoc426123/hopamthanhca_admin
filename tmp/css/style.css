@@ -89,9 +89,9 @@
     overflow-y: auto;
     padding-left: 5px;
 }
-.form-group{
+/* .form-group{
     padding-bottom: 25px;
-}
+} */
 .box-seo {
     margin-bottom: 15px;
 }
@@ -153,4 +153,85 @@
 }
 .alert b {
     text-transform: none;
+}
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../fonts/Pacifico-Regular.eot');
+    src: url('../fonts/Pacifico-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pacifico-Regular.woff2') format('woff2'),
+        url('../fonts/Pacifico-Regular.woff') format('woff'),
+        url('../fonts/Pacifico-Regular.svg#Pacifico-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.demoMaintain {
+    padding: 85px 10px 115px;
+    background-size: cover;
+    position: relative;
+    color: #ffffff;
+}
+.demoMaintain:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    pointer-events: none;
+}
+.demoMaintain .wrap{
+    max-width: 550px;
+    margin: 0 auto;
+}
+.demoMaintain .title{
+    color: #ffffff;
+    text-align: center;
+    font-size: 45px;
+    line-height: 55px;
+    z-index: 2;
+    position: relative;
+    margin-bottom: 45px;
+    font-family: 'Pacifico';
+}
+.demoMaintain .content{
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    z-index: 2;
+    position: relative;
+    margin-bottom: 40px;
+    white-space: pre-wrap;
+}
+.demoMaintain .social {
+    position: relative;
+    z-index: 1;
+}
+.demoMaintain .social ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.demoMaintain .social ul li {
+    margin: 0 5px;
+}
+.demoMaintain .social ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333333;
+    background-color: #ffffff;
+}
+form .form-group select.form-control {
+    position: static;
 }

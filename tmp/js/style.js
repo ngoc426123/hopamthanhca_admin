@@ -104,12 +104,11 @@ $(document).ready(() => {
 
         eleInputPassword.attr("type", "text");
         eleInputPasswordAgain.attr("type", "text")
-        
     });
+
     $(`[name="password"], [name="passwordAgain"]`).on(`focus`, (event) => {
         $(event.target).attr("type", "password");
     })
-
 
     $(".card-form-check").each((index, element) => {
         let __self = $(element);
@@ -188,6 +187,9 @@ $(document).ready(() => {
     $(".quickEdit").on('click', (event) => {
         const trElement = $(event.target).parents("tr");
         const id        = trElement.find("td:first").text();
+        if ( trElement.next("tr").hasClass("table-default") ) {
+            return false;
+        }
         fetch(`${base_url}song/get_quick_song?id=${id}`)
         .then(res => res.json())
         .then(data => {
@@ -366,6 +368,39 @@ $(document).ready(() => {
                         });
                     });
                 }
+            } else if ( event.dismiss ) {
+                console.log("bạn nhấn cancel");
+            }
+        });
+    });
+
+    $(".btn-remove-song").on("click", (event) => {
+        const ele = $(event.target).parent("button");
+        const id = ele.attr("data-id");
+
+        swal({
+            title: `Xóa bài hát`,
+            showCloseButton: true,
+            showCancelButton: true,
+        }).then((event) => {
+            if ( event.value ) {
+                new Promise((reslove, reject) => {
+                    $.ajax({
+                        url: `${base_url}song/del`,
+                        async: true,
+                        type: `POST`,
+                        data: {
+                            id: id,
+                        },
+                        success: (e) => {
+                            ele.parents("tr").remove();
+                            swal({
+                                title: `Thành công`,
+                                text: `Bạn đã xóa bài hát vừa rồi`,
+                            });
+                        }
+                    });
+                });
             } else if ( event.dismiss ) {
                 console.log("bạn nhấn cancel");
             }

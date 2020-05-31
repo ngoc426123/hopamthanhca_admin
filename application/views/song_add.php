@@ -92,7 +92,7 @@ if (isset($alert)) {
         <div class="card">
             <div class="card-body">
                 <div class="togglebutton">
-                    <label><input type="checkbox" name="status" checked>Publish <span class="toggle"></span></label>
+                    <label><input type="checkbox" name="status" <?php echo ($setting["post_defaultstatus"] == "publish") ? "checked" : "" ?>>Publish <span class="toggle"></span></label>
                 </div>
                 <div>Publish on: <b class='font-weight-bold'>15/20/2020</b></div>
             </div>
@@ -113,7 +113,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="chuyenmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>
@@ -136,7 +136,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="tacgia[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>
@@ -159,7 +159,7 @@ if (isset($alert)) {
                 ?>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                            <input class="form-check-input" name="bangchucai[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                             <span class="form-check-sign"><span class="check"></span></span>
                         </label>
                     </div>

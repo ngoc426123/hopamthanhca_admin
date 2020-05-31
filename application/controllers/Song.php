@@ -63,7 +63,11 @@ class Song extends CI_Controller {
 				$this->load->view("layout", $data);
 
 			} else if ($_GET['action'] == 'add') {
-				$this->load->model(["model_song", "model_meta"]);
+				$this->load->model(["model_song", "model_meta", "model_cat", 'model_option']);
+				$data["setting"] = [
+					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
+					"post_defaultcategory"=> json_decode("{$this->model_option->get('post_defaultcategory')}", true),
+				];
 				if ( isset($_POST['ok']) ) {
 					// INSERT SONG
 					$array_insert_song = [
@@ -79,7 +83,12 @@ class Song extends CI_Controller {
 					$insert_song_id = $this->model_song->add($array_insert_song);
 					
 					// INSERT CAT
-					$array_danhmuc = $_POST['danhmuc'];
+					$array_danhmuc = [];
+					$arr_chuyenmuc = (isset($_POST['chuyenmuc'])) ? $_POST['chuyenmuc'] : [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
+					$arr_tacgia = (isset($_POST['tacgia'])) ? $_POST['tacgia'] : [$data["setting"]["post_defaultcategory"]["tac-gia"]];
+					$arr_bangchucai = (isset($_POST['bangchucai'])) ? $_POST['bangchucai'] : [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
+					$arr_dieubaihat = (isset($_POST['dieubaihat'])) ? $_POST['dieubaihat'] : [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
+					$array_danhmuc = array_merge($array_danhmuc, $arr_chuyenmuc, $arr_tacgia, $arr_bangchucai, $arr_dieubaihat);
 					$this->model_song->add_songcat($insert_song_id, $array_danhmuc);
 
 					// INSERT META
@@ -92,6 +101,7 @@ class Song extends CI_Controller {
 
 					$data["alert"] = ["success", "Thêm bài thành công."];
 				}
+				
 				$data["cat"]["chuyen-muc"] = $this->model_cat->getlist("chuyen-muc");
 				$data["cat"]["tac-gia"] = $this->model_cat->getlist("tac-gia");
 				$data["cat"]["bang-chu-cai"] = $this->model_cat->getlist("bang-chu-cai");
@@ -165,6 +175,14 @@ class Song extends CI_Controller {
 		$json = preg_replace("/tac-gia/", "tac_gia", $json);
 		$json = preg_replace("/dieu-bai-hat/", "dieu_bai_hat", $json);
 		echo $json;
+		die();
+	}
+
+	public function del() {
+		$id = $_POST["id"];
+		$this->load->model('model_song');
+		$this->model_song->del($id);
+		echo "done";
 		die();
 	}
 }

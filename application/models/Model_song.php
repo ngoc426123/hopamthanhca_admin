@@ -132,4 +132,25 @@ class Model_song extends CI_Model {
 			]);
 		}
 	}
+
+	public function del($id) {
+		$this->load->database();
+		// SONG
+		$this->db->where([
+			"id" => $id,
+		]);
+		$this->db->delete("song");
+
+		// SONGMETA
+		$this->db->where([
+			"id_song" => $id,
+		]);
+		$this->db->delete("songmeta");
+
+		// SONGCAT
+		$this->db->where([
+			"id_song" => $id,
+		]);
+		$this->db->delete("songcat");
+	}
 }

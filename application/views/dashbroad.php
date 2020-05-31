@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
@@ -73,7 +73,7 @@
             </div>
             <div class="card-body ">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-xl-6 col-md-12">
                         <div class="table-responsive table-sales">
                             <table class="table text-nowrap">
                                 <tbody>
@@ -97,10 +97,9 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-6 ml-auto mr-auto">
-                        <div id="worldMap" style="height: 300px;">
-                            <div class="jvectormap-container" style="background-color: transparent;"><svg width="756.5"
-                                    height="300">
+                    <div class="col-xl-6 col-md-12 ml-auto mr-auto">
+                        <div id="worldMap">
+                            <div class="jvectormap-container" style="background-color: transparent;"><svg width="100%" viewBox="0 0 756.5 300">
                                     <defs></defs>
                                     <g transform="scale(0.6807254461445076) translate(105.65720679656113, 0)">
                                         <path
@@ -997,7 +996,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-xl-6">
         <div class="card">
             <div class="card-header card-header-warning">
                 <h4 class="card-title">Bài hát xem nhiều</h4>
@@ -1032,7 +1031,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-xl-6">
         <div class="card">
             <div class="card-header card-header-rose">
                 <h4 class="card-title">Bài hát yêu thích</h4>
@@ -1069,7 +1068,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-xl-4">
         <div class="card ">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon"><i class="material-icons">storage</i></div>
@@ -1102,7 +1101,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-xl-4">
         <div class="card ">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon"><i class="material-icons">storage</i></div>
@@ -1135,7 +1134,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-xl-4">
         <div class="card ">
             <div class="card-header card-header-primary card-header-icon">
                 <div class="card-icon"><i class="material-icons">person</i></div>

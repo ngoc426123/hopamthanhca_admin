@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/material-dashboard.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/material-dashboard.min.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("tmp/css/style.css"); ?>" />
 </head>
 
@@ -15,15 +15,16 @@
     <div class="wrapper">
         <div class="sidebar" data-color="azure" data-background-color="white">
             <div class="logo">
-                <a href="http://hopamthanhca.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a>
+                <!-- <a href="http://hopamthanhca.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a> -->
+                <a href="" class="simple-text logo-mini"><img src="" alt=""></a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class='nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song?page=1") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
-                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index >= 30)?'active':'' ?>">
+                    <li class="nav-item <?php echo (isset($page_menu_index) && (39 >= $page_menu_index && $page_menu_index >= 30))?'active':'' ?>">
                         <a class="nav-link" href="#category-toggle" data-toggle="collapse"><i class="material-icons">storage</i><p>Danh mục<b class="caret"></b></p></a>
-                        <div class="collapse <?php echo (isset($page_menu_index) && $page_menu_index >= 30)?'show':'' ?>" id="category-toggle">
+                        <div class="collapse <?php echo (isset($page_menu_index) && (39 >= $page_menu_index && $page_menu_index >= 30))?'show':'' ?>" id="category-toggle">
                             <ul class="nav">
                                 <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 31)?'active':'' ?>"><a href="<?php echo base_url("category?slug=chuyen-muc&page=1") ?>" class="nav-link"><span>Chuyên mục</span></a></li>
                                 <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 32)?'active':'' ?>"><a href="<?php echo base_url("category?slug=tac-gia&page=1") ?>" class="nav-link"><span>Tác giả</span></a></li>
@@ -34,7 +35,15 @@
                     </li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 4)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("user") ?>"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 5)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("database") ?>"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
-                    <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 6)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">build</i><p>Cấu hình</p></a></li>
+                    <li class="nav-item <?php echo (isset($page_menu_index) && (69 >= $page_menu_index && $page_menu_index >= 60))?'active':'' ?>">
+                        <a class="nav-link" href="#category-toggle-2" data-toggle="collapse"><i class="material-icons">build</i><p>Cấu hình<b class="caret"></b></p></a>
+                        <div class="collapse <?php echo (isset($page_menu_index) && (69 >= $page_menu_index && $page_menu_index >= 60))?'show':'' ?>" id="category-toggle-2">
+                            <ul class="nav">
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 61)?'active':'' ?>"><a href="<?php echo base_url("config?action=setting") ?>" class="nav-link"><span>Tùy chỉnh</span></a></li>
+                                <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 62)?'active':'' ?>"><a href="<?php echo base_url("config?action=maintain") ?>" class="nav-link"><span>Bảo trì</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 7)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("login/logout") ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
                 </ul>
             </div>
