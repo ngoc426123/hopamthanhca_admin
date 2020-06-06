@@ -5,6 +5,7 @@ class Config extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		check_login();
+		check_admin_rdr();
 	}
 
 	public function index(){
@@ -35,6 +36,8 @@ class Config extends CI_Controller {
 					$this->model_option->update('keywork', $_POST['keywork']);
 					$this->model_option->update('desc', $_POST['desc']);
 					$this->model_option->update('email', $_POST['email']);
+					$this->model_option->update('dateformat', $_POST['dateformat']);
+					$this->model_option->update('timeformat', $_POST['timeformat']);
 					$this->model_option->update('site_url', $_POST['site_url']);
 					$this->model_option->update('home_url', $_POST['home_url']);
 					$this->model_option->update('favicon', $_POST['favicon']);
@@ -51,6 +54,8 @@ class Config extends CI_Controller {
 					"keywork"=> $this->model_option->get('keywork'),
 					"desc"=> $this->model_option->get('desc'),
 					"email"=> $this->model_option->get('email'),
+					"dateformat"=> $this->model_option->get('dateformat'),
+					"timeformat"=> $this->model_option->get('timeformat'),
 					"site_url"=> $this->model_option->get('site_url'),
 					"home_url"=> $this->model_option->get('home_url'),
 					"favicon"=> $this->model_option->get('favicon'),

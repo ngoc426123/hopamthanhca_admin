@@ -4,6 +4,8 @@ class Database extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+		check_login();
+		check_admin_rdr();
 	}
 	public function index(){
 		$list_tables = [];

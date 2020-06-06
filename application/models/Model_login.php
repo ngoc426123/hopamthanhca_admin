@@ -25,6 +25,7 @@ class Model_login extends CI_Model {
                 "email"        => $result["email"],
                 "dateregister" => $result["dateregister"],
                 "displayname"  => $result["displayname"],
+                "permission"   => $result["permission"],
             );
             $this->session->set_userdata($arr);
             return 1;

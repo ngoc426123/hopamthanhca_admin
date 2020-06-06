@@ -44,6 +44,56 @@ if (isset($alert)) {
                         </div>
                     </div>
                     <div class="row">
+                        <label class="col-sm-2 col-form-label label-checkbox">Web: Date Format</label>
+                        <div class="col-sm-10 checkbox-radios">
+                        <?php
+                        $arr_date_format = [
+                            "dd/mm/yyyy" => "24/10/1993",
+                            "mm/dd/yyyy" => "10/24/1993",
+                            "yyyy/dd/mm" => "1993/10/24",
+                            "dd-mm-yyyy" => "24-10-1993",
+                            "mm-dd-yyyy" => "10-24-1993",
+                            "yyyy-dd-mm" => "1993-10-24",
+                        ];
+                        foreach ($arr_date_format as $key => $value) {
+                        ?>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="dateformat" value="<?php echo $key ?>" <?php echo ($setting["dateformat"]==$key ? "checked" : "") ?>> <?php echo $value ?>
+                                    <span class="circle"><span class="check"></span></span>
+                                </label>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label label-checkbox">Web: Time Format</label>
+                        <div class="col-sm-10 checkbox-radios">
+                        <?php
+                        $arr_date_format = [
+                            "H:s" => "0:19",
+                            "HH:ss" => "00:19",
+                            "h:ss a" => "2:19 am",
+                            "hh:ss a" => "02:19 am",
+                        ];
+                        foreach ($arr_date_format as $key => $value) {
+                        ?>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="timeformat" value="<?php echo $key ?>" <?php echo ($setting["timeformat"]==$key ? "checked" : "") ?>> <?php echo $value ?>
+                                    <span class="circle"><span class="check"></span></span>
+                                </label>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
                         <label class="col-sm-2 col-form-label">URL: Site</label>
                         <div class="col-sm-10">
                             <div class="form-group bmd-form-group"><input type="text" name="site_url" class="form-control" value="<?php echo $setting["site_url"] ?>"></div>

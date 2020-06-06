@@ -15,10 +15,36 @@
     <div class="wrapper">
         <div class="sidebar" data-color="azure" data-background-color="white">
             <div class="logo">
-                <!-- <a href="http://hopamthanhca.com" class="simple-text logo-mini"><img src="<?php echo base_url("tmp/img/logo.svg"); ?>" alt=""></a> -->
-                <a href="" class="simple-text logo-mini"><img src="" alt=""></a>
+                <a href="" class="simple-text logo-mini">HA</a>
+                <a href="" class="simple-text logo-normal">Admin</a>
             </div>
             <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="<?php echo base_url("tmp/img/avatar_default.jpg") ?>">
+                </div>
+                <div class="user-info">
+                    <a data-toggle="collapse" href="#collapseExample" class="username" aria-expanded="true">
+                        <span><?php echo $this->session->displayname ?> <b class="caret"></b></span>
+                    </a>
+                    <div class="collapse show" id="collapseExample" style="">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url("member?action=editprofile") ?>">
+                                    <span class="sidebar-mini">IF</span>
+                                    <span class="sidebar-normal">Thông tin</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url("member?action=changepassword") ?>">
+                                    <span class="sidebar-mini">PS</span>
+                                    <span class="sidebar-normal">Thay mật khẩu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
                 <ul class="nav">
                     <li class='nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 1)?'active':'' ?>'><a class="nav-link" href="<?php echo base_url("dashbroad") ?>"><i class="material-icons">dashboard</i><p>Thống kê</p></a></li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 2)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("song?page=1") ?>"><i class="material-icons">audiotrack</i><p>Bài hát</p></a></li>
@@ -33,6 +59,9 @@
                             </ul>
                         </div>
                     </li>
+                    <?php
+                    if( check_admin() ) {
+                    ?>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 4)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("user") ?>"><i class="material-icons">supervisor_account</i><p>Thành viên</p></a></li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 5)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("database") ?>"><i class="material-icons">business_center</i><p>Dữ liệu</p></a></li>
                     <li class="nav-item <?php echo (isset($page_menu_index) && (69 >= $page_menu_index && $page_menu_index >= 60))?'active':'' ?>">
@@ -44,6 +73,9 @@
                             </ul>
                         </div>
                     </li>
+                    <?php
+                    }
+                    ?>
                     <li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 7)?'active':'' ?>"><a class="nav-link" href="<?php echo base_url("login/logout") ?>"><i class="material-icons">undo</i><p>Đăng xuất</p></a></li>
                 </ul>
             </div>
