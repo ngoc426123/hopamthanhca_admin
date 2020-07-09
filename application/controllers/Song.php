@@ -98,6 +98,8 @@ class Song extends CI_Controller {
 					$this->model_meta->add($insert_song_id, 'seokeywork', $_POST['seokeywork']);
 					$this->model_meta->add($insert_song_id, 'pdffile', $_POST['pdffile']);
 					$this->model_meta->add($insert_song_id, 'hopamchinh', $_POST['hopamchinh']);
+					$this->model_meta->add($insert_song_id, 'luotxem', 0);
+					$this->model_meta->add($insert_song_id, 'lovesong', 0);
 
 					$data["alert"] = ["success", "Thêm bài thành công."];
 				}
