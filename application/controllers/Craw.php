@@ -36,6 +36,88 @@ class Craw extends CI_Controller {
             $this->db->insert("type", $item);
         }
         // INSERT USER
+        $arr_options_insert = [
+            [
+                'id'    => '',
+                'key'   => 'title',
+                'value' => 'Hợp âm thánh ca ',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'keywork',
+                'value' => 'Hợp am thánh ca, hợp âm thánh ca có hợp âm, hợp âm guitar, hợm âm guitar hay nhất, thánh ca có hợp âm',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'desc',
+                'value' => 'Wepsite những bài hát thánh ca có hợp âm theo chuẩn. Cung cấp các công cụ hữu ích khi tra cứu hợp âm. Kho bài hát thánh ca đồ sộ với các bái hát của các tác giả nổi tiếng. Bài hát được chia theo từng chuyên mục, từng tác giả, thuận tiện trong việc tìm kiếm.',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'site_url',
+                'value' => 'http://hopamthanhca.com',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'home_url',
+                'value' => 'http://hopamthanhca.com',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'favicon',
+                'value' => 'tmp/img.favicon.ico',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'maintain_status',
+                'value' => '0',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'maintain_title',
+                'value' => 'Bảo Trì Trang Web',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'maintain_content',
+                'value' => 'Thật sự không muốn có những bất tiện này xẩy đến, chúng tôi luôn mong muốn có những trải nghiệm tốt nhất cho các bạn nên chúng tôi đành phải bảo trì trang web để cập nhật những tính năng tất nhất và hay nhất cho các bạn. Luôn luôn hy vọng các bạn đồng hành cùng trang web. Xin cảm ơn.',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'maintain_background',
+                'value' => 'http://localhost/hopamthanhca_admin/tmp/img/bg.jpg',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'post_defaultstatus',
+                'value' => 'publish',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'post_defaultcategory',
+                'value' => '{"chuyen-muc":38,"tac-gia":189,"bang-chu-cai":152,"dieu-bai-hat":208}',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'email',
+                'value' => 'minhngoc.ith@gmail.com',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'dateformat',
+                'value' => 'dd/mm/yyyy',
+            ],
+            [
+                'id'    => '',
+                'key'   => 'timeformat',
+                'value' => 'HH:ss',
+            ],
+        ];
+        foreach ($arr_options_insert as $item) {
+            $this->db->insert("options", $item);
+        }
+
+        // INSERT OPTION
         $arr_user_insert = [
             [
                 'id'           => '',

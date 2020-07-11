@@ -6,7 +6,13 @@
         <div class="card-text">
             <h4 class="card-title">Danh sách bài hát</h4>
         </div>
-        <div class="pull-right">
+        <div class="pull-right d-flex">
+            <form action="<?php echo base_url("song"); ?>" method="GET" style="margin-right: 20px">
+                <div class="form-group bmd-form-group">
+                    <input type="hidden" name="action" value="search">
+                    <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm">
+                </div>
+            </form>
             <a href="<?php echo base_url("song?action=add") ?>" class="btn btn-success">Thêm bài<div class="ripple-container"></div></a>
         </div>
     </div>
@@ -50,6 +56,9 @@
             </table>
         </div>
     </div>
+    <?php 
+    if ( isset($pagination_song) ) {
+    ?>
     <div class="card-footer justify-content-end">
         <nav>
             <ul class="pagination pagination-primary">
@@ -63,4 +72,7 @@
             </ul>
         </nav>
     </div>
+    <?php
+    }
+    ?>
 </div>

@@ -24,7 +24,11 @@ class Song extends CI_Controller {
 
 			} else if ($_GET['action'] == 'update') {
 				if ( isset($_POST['update']) ) {
-					$this->load->model(['model_song' , 'model_meta']);
+					$this->load->model(['model_song' , 'model_meta', 'model_option']);
+					$data["setting"] = [
+						"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
+						"post_defaultcategory"=> json_decode("{$this->model_option->get('post_defaultcategory')}", true),
+					];
 					$song_id = $_GET['id'];
 					// UPDATE SONG
 					$array_song_update = [
@@ -37,7 +41,12 @@ class Song extends CI_Controller {
 					$this->model_song->update($song_id, $array_song_update);
 
 					// UPDATE CATEGORY
-					$array_danhmuc = $_POST['danhmuc'];
+					$array_danhmuc = [];
+					$arr_chuyenmuc = (isset($_POST['chuyenmuc'])) ? $_POST['chuyenmuc'] : [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
+					$arr_tacgia = (isset($_POST['tacgia'])) ? $_POST['tacgia'] : [$data["setting"]["post_defaultcategory"]["tac-gia"]];
+					$arr_bangchucai = (isset($_POST['bangchucai'])) ? $_POST['bangchucai'] : [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
+					$arr_dieubaihat = (isset($_POST['dieubaihat'])) ? $_POST['dieubaihat'] : [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
+					$array_danhmuc = array_merge($array_danhmuc, $arr_chuyenmuc, $arr_tacgia, $arr_bangchucai, $arr_dieubaihat);
 					$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 					// UPDATE META
@@ -111,6 +120,18 @@ class Song extends CI_Controller {
 				$data["page_title"] = "Thêm bài hát";
 				$data["page_view"] = "song_add";
 				$this->load->view("layout", $data);
+			} else if ($_GET['action'] == 'search') {
+				if ( isset($_GET['keyword']) ) {
+					$this->load->model("model_song");
+					$keyword = $_GET['keyword'];
+					$data["list_song"] = $this->model_song->getbykeyword($keyword);
+					$data["page_title"] = "Bài hát";
+					$data["page_view"] = "song";
+					$this->load->view("layout", $data);
+				} else {
+					
+				}
+				
 			}
 		} else {
 			if (isset($_GET['page'])) {
