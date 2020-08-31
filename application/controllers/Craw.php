@@ -14,22 +14,26 @@ class Craw extends CI_Controller {
             [
                 'id'        => '',
                 'type_name' => 'chuyên mục',
-                'type_slug' => 'chuyen-muc'
+                'type_slug' => 'chuyen-muc',
+                'desc'      => 'Danh sách bài hát được lọc theo bảng chữ cái, thuận tiện cho việc tìm kiếm các bài hát theo các mẫu tự.',
             ],
             [
                 'id'        => '',
                 'type_name' => 'tác giả',
-                'type_slug' => 'tac-gia'
+                'type_slug' => 'tac-gia',
+                'desc'      => 'Bài hát được sắp xếp theo từng tác giả, từng nhà soạn nhạc dễ dàng cho việc tìm kiếm, tra cứu các bài hát, tiện lợi cho việc sử dụng của người dùng.',
             ],
             [
                 'id'        => '',
                 'type_name' => 'bảng chữ cái',
-                'type_slug' => 'bang-chu-cai'
+                'type_slug' => 'bang-chu-cai',
+                'desc'      => 'Danh sách bài hát được lọc theo bảng chữ cái, thuận tiện cho việc tìm kiếm các bài hát theo các mẫu tự.',
             ],
             [
                 'id'        => '',
                 'type_name' => 'điệu bài hát',
-                'type_slug' => 'dieu-bai-hat'
+                'type_slug' => 'dieu-bai-hat',
+                'desc'      => 'Bài hát được sắp xếp theo từng điệu bài hát, từng nhà soạn nhạc dễ dàng cho việc tìm kiếm, tra cứu các bài hát, tiện lợi cho việc sử dụng của người dùng.',
             ],
         ];
         foreach ($arr_type_insert as $item) {
@@ -122,32 +126,12 @@ class Craw extends CI_Controller {
             [
                 'id'           => '',
                 'username'     => 'admin',
-                'password'     => md5('b'),
+                'password'     => md5('@hopam!thanhca@ngoclock7680123'),
                 'name'         => 'Hoàng Minh Ngọc',
                 'email'        => 'minhngoc.ith@gmail.com',
                 'dateregister' => '16/05/2020 12:23:00',
                 'displayname'  => 'Minh Ngọc',
                 'permission'   => '1',
-            ],
-            [
-                'id'           => '',
-                'username'     => 'ducanh',
-                'password'     => md5('1234567890'),
-                'name'         => 'Nguyễn Trần Đức Anh',
-                'email'        => 'ducanh1996@gmail.com',
-                'dateregister' => '12/05/2020 12:25:00',
-                'displayname'  => 'DA1528',
-                'permission'   => '0',
-            ],
-            [
-                'id'           => '',
-                'username'     => 'linhking1945',
-                'password'     => md5('123456'),
-                'name'         => 'Trương Hoàng Linh',
-                'email'        => 'linhking145@gmail.com',
-                'dateregister' => '12/05/2020 15:45:00',
-                'displayname'  => 'LinhZuto',
-                'permission'   => '0',
             ],
         ];
         foreach ($arr_user_insert as $item) {
@@ -160,7 +144,7 @@ class Craw extends CI_Controller {
         $this->db->order_by("id", "ASC");
         $query = $this->db->get();
         $cat = $query->result_array();
-        $data_cat =  file_get_contents("http://hopamthanhca.com/wp-json/hopam/danh-muc");
+        $data_cat =  file_get_contents("http://localhost/hopamthanhca/wp-json/hopam/danh-muc");
         $data_cat = json_decode($data_cat, true);
         foreach($data_cat as $dat) {
             $arr_cat = array(
@@ -204,7 +188,7 @@ class Craw extends CI_Controller {
         }
 
         // CRAW SONG
-        $data_song =  file_get_contents("http://hopamthanhca.com/wp-json/hopam/bai-hat?perpage=-1&order_by=date");
+        $data_song =  file_get_contents("http://localhost/hopamthanhca/wp-json/hopam/bai-hat?perpage=-1&order_by=date");
         $data_song = json_decode($data_song, true);
         foreach ($data_song as $dat) {
             $arr_song_insert = array(

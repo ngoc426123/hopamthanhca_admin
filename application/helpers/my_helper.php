@@ -124,7 +124,8 @@ if (!function_exists("print_alert")) {
 
 if (!function_exists("md_pass")) {
     function md_pass($pass) {
-        $pass = md5($pass);
+        $keySpice = "@hopam!thanhca@";
+        $pass = md5($keySpice.$pass);
         return $pass;
     }
 }
