@@ -44,6 +44,7 @@ class Model_cat extends CI_Model {
 				$this->db->limit($limit, $offset);
 			}
 		}
+		$this->db->order_by('cat.cat_name', 'ASC');
 		
 		$get = $this->db->get();
 		$result = $get->result_array();
