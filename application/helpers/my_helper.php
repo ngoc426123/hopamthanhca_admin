@@ -81,7 +81,7 @@ if(!function_exists("convent_song")){
 
 if(!function_exists("get_date_now")){
 	function get_date_now(){
-        return date('d/m/yy h:m:s');
+        return date('d/m/Y h:m:s');
 	}
 }
 
