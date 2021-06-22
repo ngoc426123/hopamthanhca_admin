@@ -109,6 +109,7 @@ class Model_song extends CI_Model {
 			$this->db->select('*');
 			$this->db->from('songcat');
 			$this->db->join("cattype", "songcat.id_cat = cattype.id_cat");
+			$this->db->join("cat", "cat.id = cattype.id_cat");
 			$this->db->join("type", "cattype.id_type = type.id");
 			$this->db->where([
 				"songcat.id_song" => $id_song
@@ -116,7 +117,7 @@ class Model_song extends CI_Model {
 			$get = $this->db->get();
 			$cat = $get->result_array();
 			foreach ($cat as $key_cat => $item_cat) {
-				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat['id_cat'];
+				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
 			}
 		}
 		return $song_result;
