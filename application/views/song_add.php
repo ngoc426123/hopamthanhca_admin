@@ -112,7 +112,7 @@ if (isset($alert)) {
         </div>
       </div>
       <div class="card-body">
-        <div class="card-over card-form-check">
+        <div class="card-over card-form-check" data-cat-find>
         <?php
         foreach ($cat['chuyen-muc'] as $item) {
         ?>
@@ -126,75 +126,79 @@ if (isset($alert)) {
         }
         ?>
         </div>
+        <input type="text" class="input-find" data-input-find>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header card-header-rose card-header-text">
+        <div class="card-text">
+          <h4 class="card-title">Tác giả</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-over card-form-check" data-cat-find>
+        <?php
+        foreach ($cat['tac-gia'] as $item) {
+        ?>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" name="tacgia[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+              <span class="form-check-sign"><span class="check"></span></span>
+            </label>
+          </div>
+        <?php
+        }
+        ?>
+        </div>
+        <input type="text" class="input-find" data-input-find>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header card-header-rose card-header-text">
+        <div class="card-text">
+          <h4 class="card-title">Bảng chữ cái</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-over card-form-check" data-cat-find>
+        <?php
+        foreach ($cat['bang-chu-cai'] as $item) {
+        ?>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" name="bangchucai[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+              <span class="form-check-sign"><span class="check"></span></span>
+            </label>
+          </div>
+        <?php
+        }
+        ?>
+        </div>
+        <input type="text" class="input-find" data-input-find>
       </div>
     </div>
     <div class="card">
         <div class="card-header card-header-rose card-header-text">
-            <div class="card-text">
-                <h4 class="card-title">Tác giả</h4>
-            </div>
+          <div class="card-text">
+            <h4 class="card-title">Điệu bài hát</h4>
+          </div>
         </div>
         <div class="card-body">
-            <div class="card-over card-form-check">
-            <?php
-            foreach ($cat['tac-gia'] as $item) {
-            ?>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="tacgia[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
-                        <span class="form-check-sign"><span class="check"></span></span>
-                    </label>
-                </div>
-            <?php
-            }
-            ?>
+          <div class="card-over card-form-check" data-cat-find>
+          <?php
+          foreach ($cat['dieu-bai-hat'] as $item) {
+          ?>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                <span class="form-check-sign"><span class="check"></span></span>
+              </label>
             </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header card-header-rose card-header-text">
-            <div class="card-text">
-                <h4 class="card-title">Bảng chữ cái</h4>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="card-over card-form-check">
-            <?php
-            foreach ($cat['bang-chu-cai'] as $item) {
-            ?>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="bangchucai[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
-                        <span class="form-check-sign"><span class="check"></span></span>
-                    </label>
-                </div>
-            <?php
-            }
-            ?>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header card-header-rose card-header-text">
-            <div class="card-text">
-                <h4 class="card-title">Điệu bài hát</h4>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="card-over card-form-check">
-            <?php
-            foreach ($cat['dieu-bai-hat'] as $item) {
-            ?>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
-                        <span class="form-check-sign"><span class="check"></span></span>
-                    </label>
-                </div>
-            <?php
-            }
-            ?>
-            </div>
+          <?php
+          }
+          ?>
+          </div>
+          <input type="text" class="input-find" data-input-find>
         </div>
     </div>
   </div>

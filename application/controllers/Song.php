@@ -186,7 +186,7 @@ class Song extends CI_Controller {
 	}
 
 	public function get_quick_song(){
-		$this->load->model(['model_song','model_cat' , 'model_meta']);
+		$this->load->model(['model_song','model_cat', 'model_meta']);
 		$song = $this->model_song->get($_GET['id']);
 		$danhmuc['chuyenmuc'] = $this->model_cat->getlist("chuyen-muc");
 		$danhmuc['tacgia'] = $this->model_cat->getlist("tac-gia");

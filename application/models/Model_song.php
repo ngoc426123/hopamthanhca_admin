@@ -37,7 +37,6 @@ class Model_song extends CI_Model {
 		foreach ($cat as $key_cat => $item_cat) {
 			$result["cat"][$item_cat['type_slug']][] = $item_cat['id_cat'];
 		}
-
 		return $result;
 	}
 
@@ -123,12 +122,66 @@ class Model_song extends CI_Model {
 		return $song_result;
 	}
 
-	public function count() {
+	public function getlistoncat($cat_id, $offset = 0, $limit = 5) {
 		$this->load->database();
-		$this->db->select("COUNT(id)");
+		$this->db->select("* ");
 		$this->db->from("song");
+		$this->db->join("songcat", "songcat.id_song = song.id");
+		$this->db->where([
+			"songcat.id_cat" => $cat_id,
+		]);
+		$this->db->order_by("song.id", "DESC");
+		$this->db->limit($limit, $offset);
 		$get = $this->db->get();
-		return $get->row_array()['COUNT(id)'];
+		$song_result = $get->result_array();
+
+		foreach ($song_result as $key => $item) {
+			$id_song = $item['id_song'];
+
+			// META
+			$this->db->select("key, value");
+			$this->db->from("songmeta");
+			$this->db->where([
+				"id_song" => $id_song
+			]);
+			$get = $this->db->get();
+			$meta_result = $get->result_array();
+			foreach ($meta_result as $key_meta => $item_meta) {
+				$song_result[$key]["meta"][$item_meta['key']] = $item_meta['value'];
+			}
+
+			// CATEGORY
+			$this->db->select('*');
+			$this->db->from('songcat');
+			$this->db->join("cattype", "songcat.id_cat = cattype.id_cat");
+			$this->db->join("cat", "cat.id = cattype.id_cat");
+			$this->db->join("type", "cattype.id_type = type.id");
+			$this->db->where([
+				"songcat.id_song" => $id_song
+			]);
+			$get = $this->db->get();
+			$cat = $get->result_array();
+			foreach ($cat as $key_cat => $item_cat) {
+				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
+			}
+		}
+		return $song_result;
+	}
+
+	public function count($cat_id = 0) {
+		$this->load->database();
+		$this->db->select("COUNT(song.id)");
+		$this->db->from("song");
+		if ( $cat_id != 0 ) {
+			$this->db->join("songcat", "songcat.id_song = song.id");
+			$this->db->join("cat", "cat.id = songcat.id_cat");
+			$this->db->where([
+				"cat.id" => $cat_id,
+			]);
+		}
+		$get = $this->db->get();
+
+		return $get->row_array()['COUNT(song.id)'];
 	}
 
 	public function update($id, $array_update) {

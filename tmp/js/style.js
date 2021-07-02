@@ -398,6 +398,8 @@ $(document).ready(() => {
 			this.$songTitle = this.$element.find('[data-song-title]');
 			this.$songExist = this.$element.find('[data-song-exist]');
 			this.$listSongExist = this.$element.find('[data-list-song-exist]');
+			this.$inputFind = this.$element.find('[data-input-find]');
+			this.$catFind = this.$element.find('[data-cat-find]');
 		}
 
 		async initEvent () {
@@ -427,6 +429,27 @@ $(document).ready(() => {
 					this.$songExist.addClass('d-none');
 				}
 			});
+
+			this.$inputFind.on('keyup', (event) => {
+				const target = $(event.target)
+				const domCatFind =  target.prev(this.$catFind);
+				const domItemFind = domCatFind.find('.form-check');
+				const value = target.val();
+
+				domItemFind.addClass('d-none');
+
+				if ( !value ) {
+					domItemFind.removeClass('d-none');
+				} else {
+					domItemFind.each((index, item) => {
+						const textFind = $(item).find('.form-check-label').text().toUpperCase();
+						const valueUpper = value.toUpperCase();
+						const regex = new RegExp(`(${valueUpper})`, 'g');
+
+						regex.exec(textFind) !== null && $(item).removeClass('d-none');
+					});
+				}
+			})
 		}
 
 		renderListSongExist (data) {
