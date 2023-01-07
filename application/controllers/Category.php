@@ -51,6 +51,7 @@ class Category extends CI_Controller {
 					$this->model_meta->update_cat($id_cat, 'seotitle', $_POST['seotitle']);
 					$this->model_meta->update_cat($id_cat, 'seourl', $_POST['seourl']);
 					$this->model_meta->update_cat($id_cat, 'seokeywork', $_POST['seokeywork']);
+					$this->model_meta->update_cat($id_cat, 'seodes', $_POST['des']);
 
 					$data["alert"] = ["success", "Thành công: cập nhật danh mục."];
 				} else {
@@ -86,6 +87,7 @@ class Category extends CI_Controller {
 					$this->model_meta->add_cat($id_cat, 'seotitle', $_POST['seotitle']);
 					$this->model_meta->add_cat($id_cat, 'seourl', $_POST['seourl']);
 					$this->model_meta->add_cat($id_cat, 'seokeywork', $_POST['seokeywork']);
+					$this->model_meta->add_cat($id_cat, 'seodes', $_POST['des']);
 
 					$data["alert"] = ["success", "Thêm danh mục."];
 				} else {
