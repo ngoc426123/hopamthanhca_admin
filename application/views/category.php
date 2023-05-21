@@ -77,22 +77,24 @@ if (isset($alert)) {
             <tbody>
             <?php
             // pr($list_cat);
-            foreach ($list_cat as $key => $value) {
-            ?>
-              <tr>
-                <td><?php echo $value['id_cat'] ?></td>
-                <td><a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>"><?php echo $value['cat_name'] ?></a></td>
-                <td><?php echo $value['cat_slug'] ?></td>
-                <td class="td-actions text-right">
-                  <a href="<?php echo base_url("category?slug={$value['type_slug']}&cat_id={$value['id_cat']}&page=1") ?>" rel="tooltip" class="btn btn-info">
-                    <i class="material-icons">list</i>
-                  </a>
-                  <a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>" rel="tooltip" class="btn btn-success">
-                    <i class="material-icons">build</i>
-                  </a>
-                </td>
-              </tr>
-            <?php
+            if (count($list_cat) > 0) {
+              foreach ($list_cat as $key => $value) {
+              ?>
+                <tr>
+                  <td><?php echo $value['id_cat'] ?></td>
+                  <td><a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>"><?php echo $value['cat_name'] ?></a></td>
+                  <td><?php echo $value['cat_slug'] ?></td>
+                  <td class="td-actions text-right">
+                    <a href="<?php echo base_url("category?slug={$value['type_slug']}&cat_id={$value['id_cat']}&page=1") ?>" rel="tooltip" class="btn btn-info">
+                      <i class="material-icons">list</i>
+                    </a>
+                    <a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>" rel="tooltip" class="btn btn-success">
+                      <i class="material-icons">build</i>
+                    </a>
+                  </td>
+                </tr>
+              <?php
+              }
             }
             ?>
             </tbody>
@@ -103,10 +105,12 @@ if (isset($alert)) {
         <nav>
           <ul class="pagination pagination-primary">
           <?php
-          foreach ($pagination_song as $value) {
-          ?>
-            <li class="page-item <?php echo ($value['active']===1)?'active':'' ?>"><a class="page-link" href="<?php echo $value['link'] ?>"><?php echo $value['number'] ?></a></li>
-          <?php
+          if (count($list_cat) > 0) {
+            foreach ($pagination_song as $value) {
+            ?>
+              <li class="page-item <?php echo ($value['active']===1)?'active':'' ?>"><a class="page-link" href="<?php echo $value['link'] ?>"><?php echo $value['number'] ?></a></li>
+            <?php
+            }
           }
           ?>
           </ul>

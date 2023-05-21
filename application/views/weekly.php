@@ -4,7 +4,7 @@
 <div class="card">
   <div class="card-header card-header-rose card-header-text">
     <div class="card-text">
-      <h4 class="card-title">Danh sách bài hát</h4>
+      <h4 class="card-title">Danh sách soạn</h4>
     </div>
     <div class="pull-right d-flex">
       <form action="<?php echo base_url("song"); ?>" method="GET" style="margin-right: 20px">
@@ -13,7 +13,7 @@
           <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm">
         </div>
       </form>
-      <a href="<?php echo base_url("song?action=add") ?>" class="btn btn-success">Thêm bài<div class="ripple-container"></div></a>
+      <a href="<?php echo base_url("weekly?action=add") ?>" class="btn btn-success">Thêm<div class="ripple-container"></div></a>
     </div>
   </div>
   <div class="card-body">

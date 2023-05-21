@@ -134,11 +134,7 @@ class Song extends CI_Controller {
 				
 			}
 		} else {
-			if (isset($_GET['page'])) {
-				$page = $_GET['page'];
-			} else {
-				$page = 1;
-			}
+			$page = $_GET['page'] || 1;
 			if (isset($_GET['quickedit'])) {
 				$this->load->model(['model_song','model_cat' , 'model_meta']);
 				$song_id =$_GET['quickedit'];
