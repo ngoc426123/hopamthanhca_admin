@@ -7,18 +7,24 @@ class Weekly extends CI_Controller {
 	}
 
   public function index () {
+    $data["page_menu_index"] = 41;
     if (isset($_GET['action'])) {
       if ($_GET['action'] === "add") {
-        $data["page_title"] = "Soạn bài hát";
+        $this->load->model(['model_cat', 'model_option']);
+        $data["setting"] = [
+					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
+				];
+        $data["cat"]["nam-phung-vu"] = $this->model_cat->getlist("nam-phung-vu");
+        $data["cat"]["phan-hat"] = $this->model_cat->getlist("phan-hat");
+        $data["page_title"] = "Soạn mới";
 				$data["page_view"] = "weekly_add";
 				$this->load->view("layout", $data);
       }
+    } else {
+      $data["page_title"] = "Soạn bài hát";
+      $data["page_view"] = "weekly";
+      $this->load->view("layout", $data);
     }
-
-    $data["page_menu_index"] = 41;
-    $data["page_title"] = "Danh sách soạn";
-    $data["page_view"] = "weekly";
-    $this->load->view("layout", $data);
   }
 
   public function add() {

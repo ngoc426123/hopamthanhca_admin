@@ -97,7 +97,10 @@ if (isset($alert)) {
     <div class="card">
       <div class="card-body">
         <div class="togglebutton">
-          <label><input type="checkbox" name="status" <?php echo ($setting["post_defaultstatus"] == "publish") ? "checked" : "" ?>>Publish <span class="toggle"></span></label>
+          <label>
+            <input type="checkbox" name="status" <?php echo ($setting["post_defaultstatus"] == "publish") ? "checked" : "" ?>>
+            Publish <span class="toggle"></span>
+          </label>
         </div>
         <div>Publish on: <b class='font-weight-bold'>15/20/2020</b></div>
       </div>

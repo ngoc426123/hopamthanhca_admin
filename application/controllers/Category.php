@@ -24,7 +24,7 @@ class Category extends CI_Controller {
 			case 'dieu-bai-hat':
 				$data["page_menu_index"] = 34;
 				break;
-			case 'phan-thanh-le':
+			case 'phan-hat':
 				$data["page_menu_index"] = 42;
 				break;
 			case 'nam-phung-vu':
@@ -140,7 +140,7 @@ class Category extends CI_Controller {
 						"active" => $active,
 					];
 				}
-				$isWeekly = in_array($slug, ["phan-thanh-le", "nam-phung-vu"]);
+				$isWeekly = in_array($slug, ["phan-hat", "nam-phung-vu"]);
 				$page_start = ($page - 1) * $number_song_on_page;
 				$data["pagination_song"] = $arr_pagination;
 				$data["list_song"] = $this->model_song->getlistoncat($cat_id, $page_start, $number_song_on_page);

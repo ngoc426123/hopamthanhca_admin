@@ -467,4 +467,11 @@ $(document).ready(() => {
 	}
 
 	$("[data-song-add]").length && new SongAdd($("[data-song-add]"));
+
+	$("[data-select-phase]").on('changed.bs.select', function () {
+		const id = +$(this).selectpicker('val');
+
+		console.log(id);
+		$(this).val(0).selectpicker('render');
+	});
 });

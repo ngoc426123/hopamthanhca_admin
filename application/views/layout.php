@@ -72,8 +72,8 @@
 						</a>
 						<div class="collapse <?php echo (isset($page_menu_index) && (49 >= $page_menu_index && $page_menu_index >= 40)) ? 'show' : '' ?>" id="category-toggle-1">
 							<ul class="nav">
-								<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 41) ? 'active' : '' ?>"><a href="<?php echo base_url("weekly?page=1") ?>" class="nav-link"><span>Danh sách soạn</span></a></li>
-								<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 42) ? 'active' : '' ?>"><a href="<?php echo base_url("category?slug=phan-thanh-le&page=1") ?>" class="nav-link"><span>Phần thánh lễ</span></a></li>
+								<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 41) ? 'active' : '' ?>"><a href="<?php echo base_url("weekly?page=1") ?>" class="nav-link"><span>Soạn bài hát</span></a></li>
+								<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 42) ? 'active' : '' ?>"><a href="<?php echo base_url("category?slug=phan-hat&page=1") ?>" class="nav-link"><span>Phần hát</span></a></li>
 								<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 43) ? 'active' : '' ?>"><a href="<?php echo base_url("category?slug=nam-phung-vu&page=1") ?>" class="nav-link"><span>Năm phụng vụ</span></a></li>
 							</ul>
 						</div>
@@ -166,6 +166,7 @@
 	<script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
 	<!-- PLUGIN -->
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url("assets/js/plugins/bootstrap-selectpicker.js"); ?>"></script>
 	<!-- STYLE -->
 	<script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
 	<script>
