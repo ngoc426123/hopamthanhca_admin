@@ -3,7 +3,7 @@ if (isset($alert)) {
   print_alert($alert);
 }
 ?>
-<div>
+<div data-weekly-add>
   <form action="<?php echo base_url("song?action=add"); ?>" method="post">
     <div class="row">
       <div class="col-12">
@@ -13,20 +13,21 @@ if (isset($alert)) {
         </div>
       </div>
       <div class="col-12 col-lg-8 col-xl-9">
-        <div class="card">
+        <div class="card" data-card-phase>
           <div class="card-body">
             <div class="form-group d-flex justify-content-end">
-                <select class="selectpicker" data-style="btn btn-primary" title="Single Select" data-select-phase>
-                  <option selected value="0">Thêm phần hát</option>
-                  <?php
-                  foreach ($cat["phan-hat"] as $key => $value) {
-                  ?>
-                    <option value="<?php echo $value["id_cat"] ?>"><?php echo $value["cat_name"] ?></option>
-                  <?php
-                  }
-                  ?>
-                </select>
-              </div>
+              <select class="selectpicker" data-style="btn btn-primary" title="Single Select" data-select-phase>
+                <option selected value="0">Thêm phần hát</option>
+                <?php
+                foreach ($cat["phan-hat"] as $key => $value) {
+                ?>
+                  <option value="<?php echo $value["id_cat"] ?>" data-slug="<?php echo $value["cat_slug"] ?>"><?php echo $value["cat_name"] ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div data-content-phase></div>
           </div>
         </div>
       </div>

@@ -209,5 +209,6 @@ class Song extends CI_Controller {
 		$this->load->model(['model_song']);
 		$count = $this->model_song->count();
 		echo json_encode($this->model_song->getlist(0, $count), JSON_UNESCAPED_UNICODE);
+		die();
 	}
 }

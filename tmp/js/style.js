@@ -11,14 +11,14 @@ $(document).ready(() => {
 
 	function check_login() {
 		const element = $('.card-login');
-		const element_head  = $('.card-header');
+		const element_head = $('.card-header');
 		const element_input = $('.form-control');
 		const username = $('#username').val();
 		const password = $('#password').val();
 
 		new Promise((reslove, reject) => {
 			$.ajax({
-				url: base_url+'login/check',
+				url: base_url + 'login/check',
 				async: true,
 				data: {
 					username: username,
@@ -30,9 +30,9 @@ $(document).ready(() => {
 						element
 							.addClass('tada')
 							.on('animationend webkitAnimationEnd oAnimationEnd', (ele) => {
-									element.removeClass('tada');
-									setTimeout(() => { window.location.href = base_url }, 300);
-									
+								element.removeClass('tada');
+								setTimeout(() => { window.location.href = base_url }, 300);
+
 							});
 						element_head
 							.removeClass('card-header-info')
@@ -43,7 +43,7 @@ $(document).ready(() => {
 						element
 							.addClass('headshake')
 							.on('animationend webkitAnimationEnd oAnimationEnd', (ele) => {
-									element.removeClass('headshake');
+								element.removeClass('headshake');
 							});
 						element_head
 							.removeClass('card-header-info')
@@ -85,13 +85,13 @@ $(document).ready(() => {
 			return string.substring(0, index) + replace + string.substring(index + 1);
 		}
 
-		function return_char () {
+		function return_char() {
 			let output = ``;
 			for (let i = 0; i < maxChar; i++) {
-					output+=random_char();
+				output += random_char();
 			}
-			for (let i = 0; i < output.length; i+=stepChar) {
-					output = replaceAt(output, i, random_char_spc())
+			for (let i = 0; i < output.length; i += stepChar) {
+				output = replaceAt(output, i, random_char_spc())
 			}
 			return output;
 		}
@@ -121,7 +121,7 @@ $(document).ready(() => {
 		});
 	});
 
-	function toSlug(text){
+	function toSlug(text) {
 		slug = text.toLowerCase();
 		slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
 		slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -173,22 +173,22 @@ $(document).ready(() => {
 
 	$(".quickEdit").on('click', (event) => {
 		const trElement = $(event.target).parents("tr");
-		const id        = trElement.find("td:first").text();
-		if ( trElement.next("tr").hasClass("table-default") ) {
-				return false;
+		const id = trElement.find("td:first").text();
+		if (trElement.next("tr").hasClass("table-default")) {
+			return false;
 		}
 		fetch(`${base_url}song/get_quick_song?id=${id}`)
-		.then(res => res.json())
-		.then(data => {
-			let current_url = window.location.href;
-			current_url = current_url.replace(/#/g,"");
-			current_url = current_url+`&quickedit=${data.id}`;
+			.then(res => res.json())
+			.then(data => {
+				let current_url = window.location.href;
+				current_url = current_url.replace(/#/g, "");
+				current_url = current_url + `&quickedit=${data.id}`;
 
-			const chuyenmuc = renderCheckCat(data.chuyenmuc, data.cat.chuyen_muc);
-			const tacgia = renderCheckCat(data.tacgia, data.cat.tac_gia);
-			const bangchucai = renderCheckCat(data.bangchucai, data.cat.bang_chu_cai);
-			const dieubaihat = renderCheckCat(data.dieubaihat, data.cat.dieu_bai_hat);  
-			const layout = `<tr class="table-default">
+				const chuyenmuc = renderCheckCat(data.chuyenmuc, data.cat.chuyen_muc);
+				const tacgia = renderCheckCat(data.tacgia, data.cat.tac_gia);
+				const bangchucai = renderCheckCat(data.bangchucai, data.cat.bang_chu_cai);
+				const dieubaihat = renderCheckCat(data.dieubaihat, data.cat.dieu_bai_hat);
+				const layout = `<tr class="table-default">
 												<td colspan=6>
 													<form method="post" action="${current_url}">
 														<div class="form-group">
@@ -228,7 +228,7 @@ $(document).ready(() => {
 															<div class="col-12 col-lg-6">
 																<div class="form-group">
 																	<div class="togglebutton">
-																		<label><input type="checkbox" name="status" ${data.status=='publish'?'checked':''}>Publish <span class="toggle"></span></label>
+																		<label><input type="checkbox" name="status" ${data.status == 'publish' ? 'checked' : ''}>Publish <span class="toggle"></span></label>
 																	</div>
 																</div>
 																<div class="form-group">
@@ -262,15 +262,15 @@ $(document).ready(() => {
 													</form>
 												</td>
 											</tr>`;
-			$(layout).insertAfter(trElement);
-		});
+				$(layout).insertAfter(trElement);
+			});
 		event.preventDefault();
 	});
 
-	function renderCheckCat (danhmuc, danhmuc_song) {
+	function renderCheckCat(danhmuc, danhmuc_song) {
 		let ret = ``;
 		danhmuc.forEach(element => {
-			const checked = (danhmuc_song.includes(element.id))?`checked`:``;
+			const checked = (danhmuc_song.includes(element.id)) ? `checked` : ``;
 			ret += `<div class="form-check">
 								<label class="form-check-label">
 									<input class="form-check-input" name="danhmuc[]" type="checkbox" value="${element.id}" ${checked}>
@@ -279,30 +279,30 @@ $(document).ready(() => {
 								</label>
 							</div>`;
 		});
-		return ret; 
+		return ret;
 	}
 
 	$(".changePermission").on("change", (event) => {
-		const permission = ($(event.target).prop('checked'))?1:0;
-		const id         = $(event.target).val();
+		const permission = ($(event.target).prop('checked')) ? 1 : 0;
+		const id = $(event.target).val();
 		new Promise((reslove, reject) => {
 			$.ajax({
-					url: `${base_url}user/changepermission`,
-					async: true,
-					type: `POST`,
-					data: {
-						id: id,
-						permission: permission,
-					}
+				url: `${base_url}user/changepermission`,
+				async: true,
+				type: `POST`,
+				data: {
+					id: id,
+					permission: permission,
+				}
 			});
 		});
 	});
 
 	$(".btnChangePass").on("click", (event) => {
-		const id = $(event.target).val(); 
+		const id = $(event.target).val();
 		swal({
-				title: `Đổi mật khẩu`,
-				html: `
+			title: `Đổi mật khẩu`,
+			html: `
 						<div class="form-group">
 								<input type="password" class="form-control passNew" placeholder="Mật khẩu mới">
 						</div>
@@ -310,20 +310,20 @@ $(document).ready(() => {
 								<input type="password" class="form-control passNewAgain" placeholder="Nhập lại mật khẩu">
 						</div>
 				`,
-				showCloseButton: true,
-				showCancelButton: true,
+			showCloseButton: true,
+			showCancelButton: true,
 		}).then((event) => {
-		if ( event.value ) {
+			if (event.value) {
 				const passNew = $(".passNew").val();
 				const passNewAgain = $(".passNewAgain").val();
 
-				if ( passNew!=passNewAgain ) {
+				if (passNew != passNewAgain) {
 					swal({
 						icon: `error`,
 						title: `Lỗi`,
 						text: `Mật khẩu nhập lại không đúng`,
 					});
-				} else if ( passNew == '' || passNewAgain == '' ){
+				} else if (passNew == '' || passNewAgain == '') {
 					swal({
 						icon: `error`,
 						title: `Lỗi`,
@@ -332,146 +332,58 @@ $(document).ready(() => {
 				} else {
 					new Promise((reslove, reject) => {
 						$.ajax({
-								url: `${base_url}user/changepassword`,
-								async: true,
-								type: `POST`,
-								data: {
-									id: id,
-									passNew: passNew
-								},
-								success: () => {
-									swal({
-										title: `Thành công`,
-										text: `Đổi mật khẩu thành công`,
-									});
-								}
+							url: `${base_url}user/changepassword`,
+							async: true,
+							type: `POST`,
+							data: {
+								id: id,
+								passNew: passNew
+							},
+							success: () => {
+								swal({
+									title: `Thành công`,
+									text: `Đổi mật khẩu thành công`,
+								});
+							}
 						});
 					});
 				}
-			} else if ( event.dismiss ) {
+			} else if (event.dismiss) {
 				console.log("bạn nhấn cancel");
 			}
 		});
 	});
 
 	$(".btn-remove-song").on("click", (event) => {
-			const ele = $(event.target).parent("button");
-			const id = ele.attr("data-id");
+		const ele = $(event.target).parent("button");
+		const id = ele.attr("data-id");
 
-			swal({
-				title: `Xóa bài hát`,
-				showCloseButton: true,
-				showCancelButton: true,
-			}).then((event) => {
-				if ( event.value ) {
-					new Promise((reslove, reject) => {
-						$.ajax({
-							url: `${base_url}song/del`,
-							async: true,
-							type: `POST`,
-							data: {
-								id: id,
-							},
-							success: (e) => {
-								ele.parents("tr").remove();
-								swal({
-									title: `Thành công`,
-									text: `Bạn đã xóa bài hát vừa rồi`,
-								});
-							}
-						});
+		swal({
+			title: `Xóa bài hát`,
+			showCloseButton: true,
+			showCancelButton: true,
+		}).then((event) => {
+			if (event.value) {
+				new Promise((reslove, reject) => {
+					$.ajax({
+						url: `${base_url}song/del`,
+						async: true,
+						type: `POST`,
+						data: {
+							id: id,
+						},
+						success: (e) => {
+							ele.parents("tr").remove();
+							swal({
+								title: `Thành công`,
+								text: `Bạn đã xóa bài hát vừa rồi`,
+							});
+						}
 					});
-				} else if ( event.dismiss ) {
-					console.log("bạn nhấn cancel");
-				}
-			});
-	});
-
-	class SongAdd {
-		constructor(element) {
-			this.$element = element;
-			this.initDOM();
-			this.initEvent();
-		}
-
-		initDOM () {
-			this.$songTitle = this.$element.find('[data-song-title]');
-			this.$songExist = this.$element.find('[data-song-exist]');
-			this.$listSongExist = this.$element.find('[data-list-song-exist]');
-			this.$inputFind = this.$element.find('[data-input-find]');
-			this.$catFind = this.$element.find('[data-cat-find]');
-		}
-
-		async initEvent () {
-			const url = window.location.origin;
-			const path = window.location.pathname;
-			const data = await new Promise((reslove, reject) => {
-				fetch(`${url}${path}/listAllSongs`)
-				.then(res => res.json())
-				.then(ret => reslove(ret));
-			});
-
-			this.$songTitle.on("blur", (event) => {
-				const value = $(event.target).val().toLowerCase();
-				const filted = data.filter(song => {
-					const { title } = song;
-					const regex = new RegExp(`(${value})`);
-
-					if ( regex.test(title.toLowerCase()) ) {
-						return song;
-					}
-				}).slice(0,10);
-
-				if ( filted.length > 0 ) {
-					this.$songExist.removeClass('d-none');
-					this.renderListSongExist(filted);
-				} else {
-					this.$songExist.addClass('d-none');
-				}
-			});
-
-			this.$inputFind.on('keyup', (event) => {
-				const target = $(event.target)
-				const domCatFind =  target.prev(this.$catFind);
-				const domItemFind = domCatFind.find('.form-check');
-				const value = target.val();
-
-				domItemFind.addClass('d-none');
-
-				if ( !value ) {
-					domItemFind.removeClass('d-none');
-				} else {
-					domItemFind.each((index, item) => {
-						const textFind = $(item).find('.form-check-label').text().toUpperCase();
-						const valueUpper = value.toUpperCase();
-						const regex = new RegExp(`(${valueUpper})`, 'g');
-
-						regex.exec(textFind) !== null && $(item).removeClass('d-none');
-					});
-				}
-			})
-		}
-
-		renderListSongExist (data) {
-			const url = window.location.origin;
-			const path = window.location.pathname;
-
-			this.$listSongExist.html('');
-			data.forEach(song => {
-				const author = song.cat['tac-gia'].reduce((prev, curr) => prev += `${curr.cat_name}, `, '');
-				const authorSlice = author.substr(0, author.length - 2);
-
-				this.$listSongExist.append(`<li><a href="${url}${path}?action=edit&id=${song.id}">${song.title}</a> - ${authorSlice}</li>`);
-			})
-		}
-	}
-
-	$("[data-song-add]").length && new SongAdd($("[data-song-add]"));
-
-	$("[data-select-phase]").on('changed.bs.select', function () {
-		const id = +$(this).selectpicker('val');
-
-		console.log(id);
-		$(this).val(0).selectpicker('render');
+				});
+			} else if (event.dismiss) {
+				console.log("bạn nhấn cancel");
+			}
+		});
 	});
 });

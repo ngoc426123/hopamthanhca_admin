@@ -7,6 +7,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/material-dashboard.min.css"); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url("tmp/css/style.css"); ?>" />
@@ -169,6 +170,8 @@
 	<script src="<?php echo base_url("assets/js/plugins/bootstrap-selectpicker.js"); ?>"></script>
 	<!-- STYLE -->
 	<script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
+	<script src="<?php echo base_url("tmp/js/style-song-add.js"); ?>"></script>
+	<script src="<?php echo base_url("tmp/js/style-weekly-add.js"); ?>"></script>
 	<script>
 		const base_url = '<?php echo base_url() ?>'
 	</script>
