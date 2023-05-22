@@ -13,7 +13,7 @@ if (isset($alert)) {
         </div>
       </div>
       <div class="col-12 col-lg-8 col-xl-9">
-        <div class="card" data-card-phase>
+        <div class="card">
           <div class="card-body">
             <div class="form-group d-flex justify-content-end">
               <select class="selectpicker" data-style="btn btn-primary" title="Single Select" data-select-phase>

@@ -328,11 +328,12 @@ button:focus {
 	min-height: 75px;
 }
 
-.card.loading {
+body.loading {
 	position: relative;
+	overflow: hidden;
 }
 
-.card.loading:before {
+body.loading:before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -344,12 +345,12 @@ button:focus {
 	z-index: 98;
 }
 
-.card.loading:after {
+body.loading:after {
 	content: "";
 	background-image: url(../img/loading.svg);
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+	background-position: center center;
+	background-size: 250px;
 	position: absolute;
 	top: 0;
 	right: 0;

@@ -107,14 +107,14 @@ $(document).ready(() => {
 		async fetchListSong() {
 			const { host, origin, pathname } = window.location;
 			const apiUrl = `${origin}${host === 'localhost' ? /\/hopamthanhca_admin\//.exec(pathname)[0] : ''}/song/listAllSongs`;
-			const $card = this.$element.find('[data-card-phase]');
+			const $body = $('body');
 			const listSong = await new Promise((reslove, reject) => {
-				$card.addClass('loading');
+				$body.addClass('loading');
 				fetch(apiUrl)
 					.then(res => res.json())
 					.then(ret => {
 						reslove(ret);
-						$card.removeClass('loading');
+						// $card.removeClass('loading');
 					});
 			});
 

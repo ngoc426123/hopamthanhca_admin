@@ -15,13 +15,17 @@ $(document).ready(() => {
 		}
 
 		async initEvent() {
-			console.log(window.location);
 			const url = window.location.origin;
 			const path = window.location.pathname;
+			const $body = $('body');
 			const data = await new Promise((reslove, reject) => {
+				$body.addClass('loading');
 				fetch(`${url}${path}/listAllSongs`)
 					.then(res => res.json())
-					.then(ret => reslove(ret));
+					.then(ret => {
+						reslove(ret);
+						$body.removeClass('loading');
+					});
 			});
 
 			this.$songTitle.on("blur", (event) => {

@@ -29,7 +29,7 @@
 						<a data-toggle="collapse" href="#collapseExample" class="username" aria-expanded="true">
 							<span><?php echo $this->session->displayname ?> <b class="caret"></b></span>
 						</a>
-						<div class="collapse show" id="collapseExample" style="">
+						<div class="collapse show" id="collapseExample">
 							<ul class="nav">
 								<li class="nav-item">
 									<a class="nav-link" href="<?php echo base_url("member?action=editprofile") ?>">
