@@ -114,7 +114,7 @@ $(document).ready(() => {
 					.then(res => res.json())
 					.then(ret => {
 						reslove(ret);
-						// $card.removeClass('loading');
+						$body.removeClass('loading');
 					});
 			});
 
