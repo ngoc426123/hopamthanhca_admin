@@ -81,12 +81,16 @@ class Model_song extends CI_Model {
 		return $song_result;
 	}
 
-	public function getlist($offset = 0, $limit = 5) {
+	public function getlist($offset = -1, $limit = -1) {
+		$this->load->driver('cache', ['adapter' => 'apc', 'backup' => 'file']);
+		if ($offset === -1 && $limit === -1 && $this->cache->get('allsong')) 
+			return $this->cache->get('allsong');
 		$this->load->database();
 		$this->db->select("*");
 		$this->db->from("song");
 		$this->db->order_by("id", "DESC");
-		$this->db->limit($limit, $offset);
+		if ($offset !== -1 && $limit !== -1)
+			$this->db->limit($limit, $offset);
 		$get = $this->db->get();
 		$song_result = $get->result_array();
 		foreach ($song_result as $key => $item) {
@@ -119,6 +123,7 @@ class Model_song extends CI_Model {
 				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
 			}
 		}
+		$this->cache->save('allsong', $song_result, 86400);
 		return $song_result;
 	}
 

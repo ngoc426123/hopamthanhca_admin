@@ -8,7 +8,7 @@ if (isset($alert)) {
     <div class="row">
       <div class="col-12">
         <div class="form-group bmd-form-group">
-          <label class="bmd-label-floating">Tên thánh lễ</label>
+          <label class="bmd-label-floating">Tên lễ</label>
           <input type="text" class="form-control" id="songTitle" name="title" value='' required data-song-title>
         </div>
       </div>
@@ -72,4 +72,15 @@ if (isset($alert)) {
       </div>
     </div>
   </form>
+  <div class="d-flex justify-content-end w-100 position-fixed top-0 bottom-0 start-0 end-0 zindex-1 pl-5 transition opacity-0 invisible bg-gr-black" data-popup-list-song>
+    <div class="d-flex flex-column bg-white border-start border-color-1 w-100 max-w-sm h-100 position-relative transition transform-x-100" data-popup-inner>
+      <button class='w-45 h-45 p-0 border-0 bg-transparent cursor-pointer position-absolute top-0 end-0 z-1' data-popup-close>
+        <i class="d-block text-md material-icons">close</i>
+      </button>
+      <div class="form-group bmd-form-group py-3 mt-1">
+        <input type="text" class="form-control pl-2" id="songTitle" name="title" value='' placeholder='Tên bài hát' required data-search-song>
+      </div>
+      <div class="lex-shrink-0 h-100 overflow-auto" data-list-song></div>
+    </div>
+  </div>
 </div>

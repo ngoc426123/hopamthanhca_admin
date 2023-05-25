@@ -324,8 +324,53 @@ button:focus {
 	font-size: 1.2rem;
 }
 
+.text-md {
+	font-size: 1.6rem;
+}
+
+.w-45 {
+	width: 45px;
+}
+
+.h-45 {
+	height: 45px;
+}
+
 .min-h-75 {
 	min-height: 75px;
+}
+
+.max-w-sm {
+	max-width: 400px;
+}
+
+.zindex-1 {
+	z-index: 1030;
+}
+
+.z-1 {
+	z-index: 1;
+}
+
+.transition {
+	transition: all .3s ease;
+}
+
+.transform-x-100 {
+	transform: translateX(100%);
+}
+
+.border-color-1 {
+	border-color: #dddddd !important;
+}
+
+.table-no-border td,
+.table-no-border th {
+	border-color: transparent !important;
+}
+
+.bg-gr-black {
+	background: linear-gradient(90deg, rgba(255,255,255,0) 00%, rgb(255 255 255 / 100%) 100%);
 }
 
 body.loading {

@@ -15,7 +15,7 @@
 
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="azure" data-background-color="white">
+		<div class="sidebar" data-color="azure" data-background-color="black" data-image="../../assets/img/sidebar-1.jpg">
 			<div class="logo">
 				<a href="" class="simple-text logo-mini">HA</a>
 				<a href="" class="simple-text logo-normal">Admin</a>
@@ -163,11 +163,13 @@
 	<script src="<?php echo base_url("assets/js/core/jquery.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/popper.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/plugins/perfect-scrollbar.jquery.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
 	<!-- PLUGIN -->
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url("assets/js/plugins/bootstrap-selectpicker.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/plugins/jquery.ui.js"); ?>"></script>
 	<!-- STYLE -->
 	<script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
 	<script src="<?php echo base_url("tmp/js/style-song-add.js"); ?>"></script>

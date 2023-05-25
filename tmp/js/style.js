@@ -1,4 +1,6 @@
 $(document).ready(() => {
+	$('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
 	$('#btn-login').off('click').on('click', () => {
 		check_login();
 	});
