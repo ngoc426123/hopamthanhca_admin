@@ -1,5 +1,5 @@
 $(document).ready(() => {
-	$('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+	$('.sidebar .sidebar-wrapper, .main-panel').length > 0 && $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
 
 	$('#btn-login').off('click').on('click', () => {
 		check_login();
@@ -123,7 +123,7 @@ $(document).ready(() => {
 		});
 	});
 
-	function toSlug(text) {
+	window.toSlug = (text) => {
 		slug = text.toLowerCase();
 		slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
 		slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -142,22 +142,6 @@ $(document).ready(() => {
 		slug = slug.replace(/\@\-|\-\@|\@/gi, '');
 		return slug;
 	}
-
-	$("#update_meta_seo").on("click", () => {
-		const title = $('[name="title"]').val();
-		const slug = toSlug($('[name="title"]').val());
-		const excerpt = $('[name="excerpt"]').val();
-		const keywork = `${title}, bài hát ${title}, hợp âm ${title}, hợp âm guitar ${title}, ${title} hợp âm`;
-
-		$('[name="seotitle"]').val(title).parent(".bmd-form-group").addClass('is-filled');
-		$('[name="seourl"]').val(slug).parent(".bmd-form-group").addClass('is-filled');
-		$('[name="seodes"]').val(excerpt).parent(".bmd-form-group").addClass('is-filled');
-		$('[name="seokeywork"]').val(keywork).parent(".bmd-form-group").addClass('is-filled');
-
-		$('.seo-title').text(title);
-		$('.seo-url').text(`http://hopamthanhca.com/${slug}`);
-		$('.seo-desc').text(excerpt);
-	});
 
 	$("#update_meta_seo_cat").on("click", () => {
 		const title = $('[name="name"]').val();

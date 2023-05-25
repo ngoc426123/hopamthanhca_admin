@@ -14,6 +14,24 @@ class Weekly extends CI_Controller {
         $data["setting"] = [
 					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
 				];
+
+        if ( isset($_POST['ok']) ) {
+          pr($_POST);
+
+          $phaseCat = $this->model_cat->getlist("phan-hat");
+          $content = [];
+
+          foreach($phaseCat as $key => $item) {
+            if (isset(($_POST[$item['cat_slug']])))
+              $content[$item['cat_slug']] = $_POST[$item['cat_slug']];
+          }
+
+
+
+          // ADD WEEKLY
+          pr($content);
+        }
+
         $data["cat"]["nam-phung-vu"] = $this->model_cat->getlist("nam-phung-vu");
         $data["cat"]["phan-hat"] = $this->model_cat->getlist("phan-hat");
         $data["page_title"] = "Soạn mới";

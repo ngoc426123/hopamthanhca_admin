@@ -160,6 +160,7 @@
 			</footer>
 		</div>
 	</div>
+	<script> const base_url = '<?php echo base_url() ?>'; </script>
 	<script src="<?php echo base_url("assets/js/core/jquery.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/popper.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
@@ -174,9 +175,7 @@
 	<script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
 	<script src="<?php echo base_url("tmp/js/style-song-add.js"); ?>"></script>
 	<script src="<?php echo base_url("tmp/js/style-weekly-add.js"); ?>"></script>
-	<script>
-		const base_url = '<?php echo base_url() ?>'
-	</script>
+	
 </body>
 
 </html>

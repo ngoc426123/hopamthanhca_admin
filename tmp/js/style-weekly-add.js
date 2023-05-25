@@ -15,8 +15,9 @@ $(document).ready(() => {
 			this.$popupListSong = this.$element.find('[data-popup-list-song]');
 			this.$popupInner = this.$element.find('[data-popup-inner]');
 			this.$popupClose = this.$element.find('[data-popup-close]');
+			this.$btnMetaSeo = this.$element.find('#update_meta_seo');
 
-			this.$listSong.perfectScrollbar();
+			this.$listSong.length > 0 && this.$listSong.perfectScrollbar();
 			this.$contentPhase.sortable();
 		}
 
@@ -55,6 +56,11 @@ $(document).ready(() => {
 			this.$element
 				.off('click.showDepoSong')
 				.on('click.showDepoSong', '[data-depo-song]', this.handleEventDepoSong.bind(this));
+
+			// META SEO
+			this.$btnMetaSeo
+				.off('click.MetaSeo')
+				.on('click.MetaSeo', this.handleEventMetaSeo.bind(this));
 		}
 
 		handleEventAddPhase() {
@@ -107,17 +113,33 @@ $(document).ready(() => {
 			$parent.remove();
 		}
 
+		handleEventMetaSeo() {
+			const $selectedYear = $('[name="chuyenmuc[]"]').filter(':checked');
+			const textYear = $selectedYear.parent().text().trim();
+			const title = $('[name="title"]').val();
+			const slug = toSlug($('[name="title"]').val());
+			const excerpt = $('[name="excerpt"]').val();
+			const defaultExcerpt = `Thánh ca hàng tuần ${title} - ${textYear} biên soạn theo lịch phụng vụ, chuẩn bài hát được cho phép hát trong thánh lễ`;
+			const keywork = `${title} - ${textYear}, bài hát ${title} - ${textYear}, soạn bài hát ${title} - ${textYear}`;
+
+			$('[name="seotitle"]').val(title).parent(".bmd-form-group").addClass('is-filled');
+			$('[name="seourl"]').val(slug).parent(".bmd-form-group").addClass('is-filled');
+			$('[name="seodes"]').val(excerpt || defaultExcerpt).parent(".bmd-form-group").addClass('is-filled');
+			$('[name="seokeywork"]').val(keywork).parent(".bmd-form-group").addClass('is-filled');
+
+			$('.seo-title').text(title);
+			$('.seo-url').text(`http://hopamthanhca.com/weekly/${slug}`);
+			$('.seo-desc').text(excerpt);
+		}
+
 		async fetchListSong() {
-			const { host, origin, pathname } = window.location;
-			const apiUrl = `${origin}${host === 'localhost' ? /\/hopamthanhca_admin\//.exec(pathname)[0] : ''}/song/listAllSongs`;
+			const apiUrl = `${base_url}/song/listAllSongs`;
 			const $body = $('body');
 			const listSong = await new Promise((reslove, reject) => {
 				$body.addClass('loading');
 				fetch(apiUrl)
 					.then(res => res.json())
-					.then(ret => {
-						reslove(ret);
-					});
+					.then(reslove);
 			});
 			const $listSong = this.get$ListSong(listSong);
 						

@@ -4,12 +4,12 @@ if (isset($alert)) {
 }
 ?>
 <div data-weekly-add>
-  <form action="<?php echo base_url("song?action=add"); ?>" method="post">
+  <form action="<?php echo base_url("weekly?action=add"); ?>" method="post">
     <div class="row">
       <div class="col-12">
         <div class="form-group bmd-form-group">
           <label class="bmd-label-floating">Tên lễ</label>
-          <input type="text" class="form-control" id="songTitle" name="title" value='' required data-song-title>
+          <input type="text" class="form-control" id="weeklyTitle" name="title" value='Chúa nhật I  - Mùa thường niên' required data-song-title>
         </div>
       </div>
       <div class="col-12 col-lg-8 col-xl-9">
@@ -28,6 +28,61 @@ if (isset($alert)) {
               </select>
             </div>
             <div data-content-phase></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Meta</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">Miêu tả</label>
+              <input type="text" class="form-control" name='excerpt'>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Seo Engine</h4>
+            </div>
+            <div class="pull-right">
+              <button type='button' class='btn btn-sm btn-primary' id="update_meta_seo"><i class="material-icons">file_copy</i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">SEO Title</label>
+                  <input type="text" class="form-control" name="seotitle" required>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">SEO Url</label>
+                  <input type="text" class="form-control" name="seourl" required>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">SEO Meta decription</label>
+                  <input type="text" class="form-control" name="seodes" required>
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">SEO Keyworks</label>
+                  <input type="text" class="form-control" name="seokeywork" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="box-seo">
+                  <div class="seo-header"><i class="fa fa-google"></i> Search Engine Optimization</div>
+                  <div class="seo-content">
+                    <div class="seo-title"></div>
+                    <div class="seo-url"></div>
+                    <div class="seo-desc"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -59,8 +114,8 @@ if (isset($alert)) {
         ?>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="chuyenmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
-              <span class="form-check-sign"><span class="check"></span></span>
+              <input class="form-check-input" name="chuyenmuc[]" type="radio" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+              <span class="circle"><span class="check"></span></span>
             </label>
           </div>
         <?php
@@ -84,3 +139,7 @@ if (isset($alert)) {
     </div>
   </div>
 </div>
+
+<style>
+  .sidebar { display: none !important; }
+</style>
