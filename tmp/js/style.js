@@ -1,5 +1,7 @@
 $(document).ready(() => {
-	$('.sidebar .sidebar-wrapper, .main-panel').length > 0 && $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+	$('.sidebar .sidebar-wrapper, .main-panel').each((_, e) => {
+		$(e).perfectScrollbar();
+	});
 
 	$('#btn-login').off('click').on('click', () => {
 		check_login();
@@ -363,6 +365,39 @@ $(document).ready(() => {
 							swal({
 								title: `Thành công`,
 								text: `Bạn đã xóa bài hát vừa rồi`,
+							});
+						}
+					});
+				});
+			} else if (event.dismiss) {
+				console.log("bạn nhấn cancel");
+			}
+		});
+	});
+
+	$(".btn-remove-weekly").on("click", (event) => {
+		const ele = $(event.target).parent("button");
+		const id = ele.attr("data-id");
+
+		swal({
+			title: `Xóa soạn thánh lễ`,
+			showCloseButton: true,
+			showCancelButton: true,
+		}).then((event) => {
+			if (event.value) {
+				new Promise((reslove, reject) => {
+					$.ajax({
+						url: `${base_url}weekly/del`,
+						async: true,
+						type: `POST`,
+						data: {
+							id: id,
+						},
+						success: (e) => {
+							ele.parents("tr").remove();
+							swal({
+								title: `Thành công`,
+								text: `Bạn đã xóa phần soạn vừa rồi`,
 							});
 						}
 					});

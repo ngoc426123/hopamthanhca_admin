@@ -1,6 +1,6 @@
 <?php 
 if (isset($alert)) {
-    print_alert($alert);
+  print_alert($alert);
 }
 // pr($song);
 ?>

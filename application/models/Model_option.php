@@ -15,6 +15,24 @@ class Model_option extends CI_Model {
 
 	public function update($key, $value) {
 		$this->load->database();
+		// ADD WHEN NOT EXIST
+		$this->db->select('*');
+		$this->db->from('options');
+		$this->db->where(['key' => $key]);
+		$count = $this->db->count_all_results();
+
+		if ($count == 0) {
+			$this->load->database();
+			$this->db->insert("options", [
+				'id' => '',
+				'key' => $key,
+				'value' => $value,
+			]);
+
+			return;
+		}
+
+		// UPDATE
 		$this->db->set([
 			"value" => $value
 		]);

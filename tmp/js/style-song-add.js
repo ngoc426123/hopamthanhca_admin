@@ -58,9 +58,10 @@ $(document).ready(() => {
 			const filted = listSong.filter((song) => {
 				const { title } = song;
 				const regex = new RegExp(`(${value})`);
-
-				return regex.test(title.toLowerCase()) ? song : [];
+				
+				return regex.test(title.toLowerCase());
 			}).slice(0, 10);
+
 
 			if (filted.length > 0) {
 				this.$songExist.removeClass('d-none');

@@ -44,6 +44,12 @@ if (isset($alert)) {
 						</div>
 					</div>
 					<div class="row">
+						<label class="col-sm-2 col-form-label">Web: Phone Number</label>
+						<div class="col-sm-10">
+							<div class="form-group bmd-form-group"><input type="text" name="phonenumber" class="form-control" value="<?php echo $setting["phonenumber"] ?>"></div>
+						</div>
+					</div>
+					<div class="row">
 						<label class="col-sm-2 col-form-label label-checkbox">Web: Date Format</label>
 						<div class="col-sm-10 checkbox-radios">
 							<?php
@@ -160,6 +166,18 @@ if (isset($alert)) {
 									<?php
 									foreach ($cat['dieu-bai-hat'] as $item) {
 										$checked = ($item['id'] == $setting['post_defaultcategory']['dieu-bai-hat']) ? "selected" : "";
+									?>
+										<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
+									<?php
+									}
+									?>
+								</select>
+							</div>
+							<div class="form-group bmd-form-group">
+								<select name="post_defaultcategory_namphungvu" id="" class="form-control">
+									<?php
+									foreach ($cat['nam-phung-vu'] as $item) {
+										$checked = ($item['id'] == $setting['post_defaultcategory']['nam-phung-vu']) ? "selected" : "";
 									?>
 										<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
 									<?php

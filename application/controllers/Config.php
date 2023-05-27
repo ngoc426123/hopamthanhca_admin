@@ -32,28 +32,34 @@ class Config extends CI_Controller {
 				$this->load->view("layout", $data);
 			} else if ( $_GET['action']=='setting' ) {
 				if ( isset($_POST['update']) ) {
+					echo "phone: ".$this->model_option->get('phonenumber');
 					$this->model_option->update('title', $_POST['title']);
 					$this->model_option->update('keywork', $_POST['keywork']);
 					$this->model_option->update('desc', $_POST['desc']);
 					$this->model_option->update('email', $_POST['email']);
+					$this->model_option->update('phonenumber', $_POST['phonenumber']);
 					$this->model_option->update('dateformat', $_POST['dateformat']);
 					$this->model_option->update('timeformat', $_POST['timeformat']);
 					$this->model_option->update('site_url', $_POST['site_url']);
 					$this->model_option->update('home_url', $_POST['home_url']);
 					$this->model_option->update('favicon', $_POST['favicon']);
 					$this->model_option->update('post_defaultstatus', $_POST['post_defaultstatus']);
-					$this->model_option->update('post_defaultcategory', '{"chuyen-muc":'.$_POST["post_defaultcategory_chuyenmuc"].',"tac-gia":'.$_POST["post_defaultcategory_tacgia"].',"bang-chu-cai":'.$_POST["post_defaultcategory_bangchucai"].',"dieu-bai-hat":'.$_POST["post_defaultcategory_dieubaihat"].'}');					$data["alert"] = ["success", "Thành công: cập nhật trang web."];
+					$this->model_option->update('post_defaultcategory', '{"chuyen-muc":'.$_POST["post_defaultcategory_chuyenmuc"].',"tac-gia":'.$_POST["post_defaultcategory_tacgia"].',"bang-chu-cai":'.$_POST["post_defaultcategory_bangchucai"].',"dieu-bai-hat":'.$_POST["post_defaultcategory_dieubaihat"].', "nam-phung-vu":'.$_POST["post_defaultcategory_namphungvu"].'}');
+					
+					$data["alert"] = ["success", "Thành công: cập nhật trang web."];
 				}
 
 				$data["cat"]["chuyen-muc"] = $this->model_cat->getlist("chuyen-muc");
 				$data["cat"]["tac-gia"] = $this->model_cat->getlist("tac-gia");
 				$data["cat"]["bang-chu-cai"] = $this->model_cat->getlist("bang-chu-cai");
 				$data["cat"]["dieu-bai-hat"] = $this->model_cat->getlist("dieu-bai-hat");
+				$data["cat"]["nam-phung-vu"] = $this->model_cat->getlist("nam-phung-vu");
 				$data["setting"] = [
 					"title"=> $this->model_option->get('title'),
 					"keywork"=> $this->model_option->get('keywork'),
 					"desc"=> $this->model_option->get('desc'),
 					"email"=> $this->model_option->get('email'),
+					"phonenumber"=> $this->model_option->get('phonenumber'),
 					"dateformat"=> $this->model_option->get('dateformat'),
 					"timeformat"=> $this->model_option->get('timeformat'),
 					"site_url"=> $this->model_option->get('site_url'),

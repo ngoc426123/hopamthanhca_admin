@@ -123,7 +123,8 @@ class Model_song extends CI_Model {
 				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
 			}
 		}
-		$this->cache->save('allsong', $song_result, 86400);
+		if ($offset === -1 && $limit === -1) 
+			$this->cache->save('allsong', $song_result, 86400);
 		return $song_result;
 	}
 

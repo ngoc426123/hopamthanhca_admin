@@ -2,33 +2,33 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_meta extends CI_Model {
-	public function get($id, $key) {
+	public function get($table, $id, $key) {
 		$this->load->database();
 		$this->db->select("*");
-		$this->db->from("songmeta");
+		$this->db->from($table);
 		$this->db->where([
-			"id_song" => $id,
+			"id_{$table}" => $id,
 			"key"     => $key
 		]);
 		$get = $this->db->get();
 		return $get->row_array();
 	}
 
-	public function getmeta($id) {
+	public function getmeta($table, $id) {
 		$this->load->database();
 		$this->db->select("*");
-		$this->db->from("songmeta");
+		$this->db->from($table);
 		$this->db->where([
-			"id_song" => $id
+			"id_{$table}" => $id
 		]);
 		$get = $this->db->get();
 		return $get->result_array();
 	}
 
-	public function update($id, $key, $value) {
+	public function update($table, $id, $key, $value) {
 		$array_condition = [
-			"id_song" => $id,
-			"key"     => $key,
+			"id_{$table}" => $id,
+			"key"         => $key,
 		];
 		$array_update = [
 			"value"  => $value,
@@ -36,16 +36,16 @@ class Model_meta extends CI_Model {
 		$this->load->database();
 		$this->db->set($array_update);
 		$this->db->where($array_condition);
-		$this->db->update("songmeta");
+		$this->db->update("{$table}meta");
 	}
 
-	public function add($id, $key, $value) {
+	public function add($table, $id, $key, $value) {
 		$this->load->database();
-		$this->db->insert("songmeta", [
-			"id"      => "",
-			"id_song" => $id,
-			"key"     => $key,
-			"value"   => $value,
+		$this->db->insert("{$table}meta", [
+			"id"          => "",
+			"id_{$table}" => $id,
+			"key"         => $key,
+			"value"       => $value,
 		]);
 	}
 

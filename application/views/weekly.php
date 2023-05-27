@@ -23,31 +23,30 @@
         <thead class="text-info">
           <tr>
             <th>ID</th>
-            <th>Bài hát</th>
-            <th>Slug</th>
-            <th>Lượt xem</th>
+            <th>Lễ</th>
+            <th>Năm phụng vụ</th>
             <th>Ngày</th>
+            <th>Ghi chú</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
         <?php
-        if (isset($list_song) && count($list_song) > 0) {
-          foreach ($list_song as $song) {
+        if (isset($list_weekly) && count($list_weekly) > 0) {
+          foreach ($list_weekly as $weekly) {
           ?>
             <tr>
-              <td><?php echo $song["id"]; ?></td>
-              <td><a href="<?php echo base_url("song?action=edit&id={$song["id"]}"); ?>"><?php echo $song["title"]; ?></a></td>
-              <td><?php echo $song["slug"]; ?></td>
-              <td><?php echo isset($song["meta"]["luotxem"])?fmt_number($song["meta"]["luotxem"]):"0"; ?></td>
+              <td><?php echo $weekly["id"]; ?></td>
+              <td><a href="<?php echo base_url("weekly?action=edit&id={$weekly["id"]}"); ?>"><?php echo $weekly["name"]; ?></a></td>
+              <td><?php echo $weekly["cat"]["nam-phung-vu"][0]["cat_name"]; ?></td>
               <td>
-                <div><?php echo $song["status"]; ?></div>
-                <small><?php echo $song["date"]; ?></small>
+                <div><?php echo $weekly["status"]; ?></div>
+                <small><?php echo $weekly["date"]; ?></small>
               </td>
+              <td><?php echo $weekly["note"]; ?></td>
               <td class="td-actions text-right">
-                <a href="#" class="btn btn-rose quickEdit" rel="tooltip" class="btn btn-rose"><i class="material-icons">edit</i></a>
-                <a href="<?php echo "http://hopamthanhca.com/bai-hat/{$song["slug"]}" ?>" rel="tooltip" class="btn btn-info"><i class="material-icons">visibility</i></a>
-                <button data-id="<?php echo $song["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-song"><i class="material-icons">restore_from_trash</i></button>
+                <a href="<?php echo "http://hopamthanhca.com/thanh-ca-hang-tuan/{$weekly["slug"]}" ?>" rel="tooltip" class="btn btn-info"><i class="material-icons">visibility</i></a>
+                <button data-id="<?php echo $weekly["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-weekly"><i class="material-icons">restore_from_trash</i></button>
               </td>
             </tr>
           <?php
@@ -59,13 +58,13 @@
     </div>
   </div>
   <?php 
-  if ( isset($pagination_song) ) {
+  if ( isset($pagination_weekly) ) {
   ?>
   <div class="card-footer justify-content-end">
     <nav>
       <ul class="pagination pagination-primary">
       <?php
-      foreach ($pagination_song as $value) {
+      foreach ($pagination_weekly as $value) {
       ?>
         <li class="page-item <?php echo ($value['active']===1)?'active':'' ?>"><a class="page-link" href="<?php echo $value['link'] ?>"><?php echo $value['number'] ?></a></li>
       <?php

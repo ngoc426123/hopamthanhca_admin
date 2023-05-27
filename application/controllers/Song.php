@@ -32,11 +32,11 @@ class Song extends CI_Controller {
 					$song_id = $_GET['id'];
 					// UPDATE SONG
 					$array_song_update = [
-						"title" => $_POST['title'],
-						"slug" => $_POST['seourl'],
+						"title"   => $_POST['title'],
+						"slug"    => $_POST['seourl'],
 						"content" => $_POST['content'],
 						"excerpt" => $_POST['excerpt'],
-						"status" => (isset($_POST['status']))?'publish':'private',
+						"status"  => (isset($_POST['status']))?'publish':'private',
 					];
 					$this->model_song->update($song_id, $array_song_update);
 
@@ -50,12 +50,12 @@ class Song extends CI_Controller {
 					$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 					// UPDATE META
-					$this->model_meta->update($song_id, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->update($song_id, 'seourl', $_POST['seourl']);
-					$this->model_meta->update($song_id, 'seodes', $_POST['seodes']);
-					$this->model_meta->update($song_id, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->update($song_id, 'pdffile', $_POST['pdffile']);
-					$this->model_meta->update($song_id, 'hopamchinh', $_POST['hopamchinh']);
+					$this->model_meta->update('song', $song_id, 'seotitle', $_POST['seotitle']);
+					$this->model_meta->update('song', $song_id, 'seourl', $_POST['seourl']);
+					$this->model_meta->update('song', $song_id, 'seodes', $_POST['seodes']);
+					$this->model_meta->update('song', $song_id, 'seokeywork', $_POST['seokeywork']);
+					$this->model_meta->update('song', $song_id, 'pdffile', $_POST['pdffile']);
+					$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
 					$data["alert"] = ["success", "Thành công: cập nhật bài hát."];
 				} else {
 					$data["alert"] = ["warning", "Không có cập nhật."];
@@ -83,7 +83,7 @@ class Song extends CI_Controller {
 						'id'      => '',
 						'title'   => $_POST["title"],
 						'slug'    => $_POST['seourl'],
-						'date'    => (isset($_POST['date']))?$_POST['date']:get_date_now(),
+						'date'    => (isset($_POST['date'])) ? $_POST['date'] : get_date_now(),
 						'content' => $_POST['content'],
 						'excerpt' => $_POST['excerpt'],
 						'author'  => $this->session->id,
@@ -101,14 +101,14 @@ class Song extends CI_Controller {
 					$this->model_song->add_songcat($insert_song_id, $array_danhmuc);
 
 					// INSERT META
-					$this->model_meta->add($insert_song_id, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->add($insert_song_id, 'seourl', $_POST['seourl']);
-					$this->model_meta->add($insert_song_id, 'seodes', $_POST['seodes']);
-					$this->model_meta->add($insert_song_id, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->add($insert_song_id, 'pdffile', $_POST['pdffile']);
-					$this->model_meta->add($insert_song_id, 'hopamchinh', $_POST['hopamchinh']);
-					$this->model_meta->add($insert_song_id, 'luotxem', 0);
-					$this->model_meta->add($insert_song_id, 'lovesong', 0);
+					$this->model_meta->add('song', $insert_song_id, 'seotitle', $_POST['seotitle']);
+					$this->model_meta->add('song', $insert_song_id, 'seourl', $_POST['seourl']);
+					$this->model_meta->add('song', $insert_song_id, 'seodes', $_POST['seodes']);
+					$this->model_meta->add('song', $insert_song_id, 'seokeywork', $_POST['seokeywork']);
+					$this->model_meta->add('song', $insert_song_id, 'pdffile', $_POST['pdffile']);
+					$this->model_meta->add('song', $insert_song_id, 'hopamchinh', $_POST['hopamchinh']);
+					$this->model_meta->add('song', $insert_song_id, 'luotxem', 0);
+					$this->model_meta->add('song', $insert_song_id, 'lovesong', 0);
 
 					$data["alert"] = ["success", "Thêm bài thành công."];
 				}
@@ -128,13 +128,10 @@ class Song extends CI_Controller {
 					$data["page_title"] = "Bài hát";
 					$data["page_view"] = "song";
 					$this->load->view("layout", $data);
-				} else {
-					
 				}
 				
 			}
 		} else {
-			$page = $_GET['page'] || 1;
 			if (isset($_GET['quickedit'])) {
 				$this->load->model(['model_song','model_cat' , 'model_meta']);
 				$song_id =$_GET['quickedit'];
@@ -152,14 +149,15 @@ class Song extends CI_Controller {
 				$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 				// UPDATE META
-				$this->model_meta->update($song_id, 'seotitle', $_POST['seotitle']);
-				$this->model_meta->update($song_id, 'seourl', $_POST['seourl']);
-				$this->model_meta->update($song_id, 'seodes', $_POST['seodes']);
-				$this->model_meta->update($song_id, 'seokeywork', $_POST['seokeywork']);
-				$this->model_meta->update($song_id, 'pdffile', $_POST['pdffile']);
-				$this->model_meta->update($song_id, 'hopamchinh', $_POST['hopamchinh']);
+				$this->model_meta->update('song', $song_id, 'seotitle', $_POST['seotitle']);
+				$this->model_meta->update('song', $song_id, 'seourl', $_POST['seourl']);
+				$this->model_meta->update('song', $song_id, 'seodes', $_POST['seodes']);
+				$this->model_meta->update('song', $song_id, 'seokeywork', $_POST['seokeywork']);
+				$this->model_meta->update('song', $song_id, 'pdffile', $_POST['pdffile']);
+				$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
 			}
 			$this->load->model("model_song");
+			$page = $_GET['page'] || 1;
 			$arr_pagination = array();
 			$number_song_on_page = 20;
 			$count_song = $this->model_song->count();

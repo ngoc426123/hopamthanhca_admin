@@ -9,7 +9,7 @@ if (isset($alert)) {
       <div class="col-12">
         <div class="form-group bmd-form-group">
           <label class="bmd-label-floating">Tên lễ</label>
-          <input type="text" class="form-control" id="weeklyTitle" name="title" value='Chúa nhật I  - Mùa thường niên' required data-song-title>
+          <input type="text" class="form-control" id="weeklyTitle" name="title" required data-song-title>
         </div>
       </div>
       <div class="col-12 col-lg-8 col-xl-9">
@@ -39,7 +39,11 @@ if (isset($alert)) {
           <div class="card-body">
             <div class="form-group bmd-form-group">
               <label class="bmd-label-floating">Miêu tả</label>
-              <input type="text" class="form-control" name='excerpt'>
+              <input type="text" class="form-control" name='desc'>
+            </div>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">Ghi chú</label>
+              <input type="text" class="form-control" name='note'>
             </div>
           </div>
         </div>
@@ -57,7 +61,7 @@ if (isset($alert)) {
               <div class="col-12 col-md-6">
                 <div class="form-group bmd-form-group">
                   <label class="bmd-label-floating">SEO Title</label>
-                  <input type="text" class="form-control" name="seotitle" required>
+                  <input type="text" class="form-control" name="seotitle" required >
                 </div>
                 <div class="form-group bmd-form-group">
                   <label class="bmd-label-floating">SEO Url</label>
@@ -91,7 +95,7 @@ if (isset($alert)) {
           <div class="card-body">
             <div class="togglebutton">
               <label>
-                <input type="checkbox" name="status" <?php echo ($setting["post_defaultstatus"] == "publish") ? "checked" : "" ?>>
+                <input type="checkbox" name="status" <?php echo $setting["post_defaultstatus"] == "publish" ? "checked" : "" ?>>
                 Publish <span class="toggle"></span>
               </label>
             </div>
@@ -114,7 +118,7 @@ if (isset($alert)) {
         ?>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="chuyenmuc[]" type="radio" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+              <input class="form-check-input" name="chuyenmuc[]" type="radio" value="<?php echo $item['id'] ?>" <?php echo $setting["post_defaultcategory"]["nam-phung-vu"] == $item['id'] ? 'checked' : '' ?>> <?php echo $item['cat_name'] ?>
               <span class="circle"><span class="check"></span></span>
             </label>
           </div>
@@ -139,7 +143,3 @@ if (isset($alert)) {
     </div>
   </div>
 </div>
-
-<style>
-  .sidebar { display: none !important; }
-</style>
