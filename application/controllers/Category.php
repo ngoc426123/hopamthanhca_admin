@@ -8,7 +8,7 @@ class Category extends CI_Controller {
 	}
 
 	public function index(){
-		$this->load->model(['model_cat', 'model_meta','model_song']);
+		$this->load->model(['model_cat', 'model_meta','model_song', 'model_weekly']);
 		$arr_pagination = array();
 		$slug = $_GET['slug'];
 		switch ($slug) {
@@ -108,7 +108,7 @@ class Category extends CI_Controller {
 				$count = $this->model_cat->count($slug);
 				$number_pagination = ceil($count / $number_cat_on_page);
 				for ($i=1; $i <= $number_pagination ; $i++) {
-					$active = ($i == $page)?1:0;
+					$active = $i == $page ? 1 : 0;
 					$arr_pagination[] = [
 						"number" => $i,
 						"link" => base_url("category?slug={$slug}&page={$i}"),
@@ -124,7 +124,7 @@ class Category extends CI_Controller {
 				$this->load->view("layout", $data);
 			}
 		} else if ( isset($_GET["cat_id"]) ) {
-				$page = $_GET['page'] || 1;
+				$page = $_GET['page'] | 1;
 				$slug = $_GET["slug"];
 				$cat_id = $_GET["cat_id"];
 				$cat_info = $this->model_cat->get($cat_id);
@@ -133,7 +133,7 @@ class Category extends CI_Controller {
 				$count_song = $this->model_song->count($cat_id);
 				$number_pagination = ceil($count_song / $number_song_on_page);
 				for ($i=1; $i <= $number_pagination ; $i++) {
-					$active = ($i == $page)?1:0;
+					$active = $i == $page ? 1 : 0;
 					$arr_pagination[] = [
 						"number" => $i,
 						"link" => base_url("/category?slug={$slug}&cat_id={$cat_id}&page={$i}"),
@@ -144,8 +144,9 @@ class Category extends CI_Controller {
 				$page_start = ($page - 1) * $number_song_on_page;
 				$data["pagination_song"] = $arr_pagination;
 				$data["list_song"] = $this->model_song->getlistoncat($cat_id, $page_start, $number_song_on_page);
+				$data["list_weekly"] = $this->model_weekly->getlistoncat($cat_id, $page_start, $number_song_on_page);
 				$data["page_title"] = "Chuyên mục {$cat_name}";
-				$data["page_view"] = $isWeekly ? "weekly_song" : "category_song";
+				$data["page_view"] = $isWeekly ? "category_weekly" : "category_song";
 				$this->load->view("layout", $data);
 		} else {
 			$page = $_GET['page'] | 1;
@@ -153,7 +154,6 @@ class Category extends CI_Controller {
 			$start = ($page - 1) * $number_cat_on_page;
 			$count = $this->model_cat->count($slug);
 			$number_pagination = ceil($count / $number_cat_on_page);
-
 			for ($i=1; $i <= $number_pagination ; $i++) {
 				$active = $i == $page ? 1 : 0;
 				$arr_pagination[] = [
@@ -162,7 +162,6 @@ class Category extends CI_Controller {
 					"active" => $active,
 				];
 			}
-
 			$data["slug"] = $slug;
 			$data["page"] = $page;
 			$data["list_cat"] = $this->model_cat->getlist($slug, $start, $number_cat_on_page);
