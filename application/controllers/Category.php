@@ -148,14 +148,14 @@ class Category extends CI_Controller {
 				$data["page_view"] = $isWeekly ? "weekly_song" : "category_song";
 				$this->load->view("layout", $data);
 		} else {
-			$page = $_GET['page'];
+			$page = $_GET['page'] | 1;
 			$number_cat_on_page = 10;
 			$start = ($page - 1) * $number_cat_on_page;
 			$count = $this->model_cat->count($slug);
 			$number_pagination = ceil($count / $number_cat_on_page);
 
 			for ($i=1; $i <= $number_pagination ; $i++) {
-				$active = ($i == $page)?1:0;
+				$active = $i == $page ? 1 : 0;
 				$arr_pagination[] = [
 					"number" => $i,
 					"link" => base_url("category?slug={$slug}&page={$i}"),

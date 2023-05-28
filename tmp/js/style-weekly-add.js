@@ -15,6 +15,7 @@ $(document).ready(() => {
 			this.$popupListSong = this.$element.find('[data-popup-list-song]');
 			this.$popupInner = this.$element.find('[data-popup-inner]');
 			this.$popupClose = this.$element.find('[data-popup-close]');
+			this.$searchSong = this.$element.find('[data-search-song]');
 			this.$btnMetaSeo = this.$element.find('#update_meta_seo');
 
 			this.$listSong.length > 0 && this.$listSong.perfectScrollbar();
@@ -61,6 +62,11 @@ $(document).ready(() => {
 			this.$btnMetaSeo
 				.off('click.MetaSeo')
 				.on('click.MetaSeo', this.handleEventMetaSeo.bind(this));
+	
+			// META SEO
+			this.$searchSong
+				.off('keyup.SearchSong')
+				.on('keyup.SearchSong', this.handleEventSearchSong.bind(this));
 		}
 
 		handleEventAddPhase() {
@@ -153,7 +159,7 @@ $(document).ready(() => {
 			const phaseSlug = this.$selectPhase.find(`option[value="${id}"]`).data('slug');
 			const bgColor = (phaseSlug) => {
 				switch (phaseSlug) {
-					case 'nhap-le': return 'bg-info';
+					case 'nhap-le': return 'bg-start';
 					case 'dap-ca': return 'bg-success';
 					case 'ca-tiep-lien': return 'bg-danger';
 					case 'dang-le': return 'bg-info';
@@ -176,7 +182,7 @@ $(document).ready(() => {
 					</div>
 					<div class='col-12 col-md-9 d-flex flex-column justify-content-end'>
 						<div class='w-100 pr-5' data-list-songs>
-							<table class='table table-no-border mb-0'>
+							<table class='table table-no-border mb-0' data-table-song>
 								<tbody></tbody>
 							</table>
 						</div>
@@ -225,7 +231,7 @@ $(document).ready(() => {
 			const { current: { phaseSlug } } = this.state;
 			const textColor = () => {
 				switch (phaseSlug) {
-					case 'nhap-le': return 'text-info';
+					case 'nhap-le': return 'text-start';
 					case 'dap-ca': return 'text-success';
 					case 'ca-tiep-lien': return 'text-danger';
 					case 'dang-le': return 'text-info';
@@ -250,6 +256,26 @@ $(document).ready(() => {
 					</td>
 				</tr>
 			`;
+		}
+
+		handleEventSearchSong(e) {
+			const $target = $(e.currentTarget);
+			const value = $target.val();
+			const $popupListSong = $target.closest('[data-popup-list-song]');
+			const $listSong = $popupListSong.find('[data-list-song]').find('table').find('tr');
+
+			if (!value) {
+				$listSong.each((_, e) => $(e).removeAttr('style'));
+				return;
+			}
+
+			$listSong.each((_, e) => {
+				const text = $(e).find('td:first').text().trim().replace(/\s{2,}/, ' ');
+				const regex = new RegExp(`(${value})`, 'g');
+				const isMatch = regex.exec(text) !== null;
+				
+				$(e).css({ 'display': isMatch ? 'table-row' : 'none' });
+			});
 		}
 	}
 

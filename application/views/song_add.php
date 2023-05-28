@@ -9,7 +9,7 @@ if (isset($alert)) {
   <div class="col-12">
     <div class="form-group bmd-form-group">
       <label class="bmd-label-floating">Tên bài hát</label>
-      <input type="text" class="form-control" id="songTitle" name="title" value='' required data-song-title>
+      <input type="text" class="form-control heading-input" id="songTitle" name="title" value='' required data-song-title>
     </div>
   </div>
   <div class="col-12 d-none" data-song-exist>

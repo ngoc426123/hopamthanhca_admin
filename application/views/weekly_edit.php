@@ -10,7 +10,7 @@ $content = unserialize($weekly["content"]);
       <div class="col-12">
         <div class="form-group bmd-form-group">
           <label class="bmd-label-floating">Tên lễ</label>
-          <input type="text" class="form-control" id="weeklyTitle" name="title" required value="<?php echo $weekly["name"] ?>">
+          <input type="text" class="form-control heading-input" id="weeklyTitle" name="title" required value="<?php echo $weekly["name"] ?>">
         </div>
       </div>
       <div class="col-12 col-lg-8 col-xl-9">
@@ -49,7 +49,7 @@ $content = unserialize($weekly["content"]);
                   </div>
                   <div class="col-12 col-md-9 d-flex flex-column justify-content-end">
                     <div class="w-100 pr-5" data-list-songs="">
-                      <table class="table table-no-border mb-0">
+                      <table class="table table-no-border mb-0" data-table-song>
                         <tbody>
                           <?php
                           foreach ($value as $item) {
@@ -164,7 +164,7 @@ $content = unserialize($weekly["content"]);
             <div>Publish on: <b class='font-weight-bold'>15/20/2020</b></div>
           </div>
           <div class="card-footer justify-content-end">
-            <button type='submit' class='btn btn-success' name="ok">Đồng ý</button>
+            <button type='submit' class='btn btn-success' name="update">Đồng ý</button>
           </div>
         </div>
         <div class="card">

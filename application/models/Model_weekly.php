@@ -87,6 +87,25 @@ class Model_weekly extends CI_Model {
 		}
 	}
 
+	public function update_weeklycat($id, $array){
+		$this->load->database();
+
+		// DELETE
+		$this->db->where([
+			"id_weekly" => $id,
+		]);
+		$this->db->delete('weeklycat');
+		
+		// INSERT
+		foreach ($array as $item) {
+			$this->db->insert('weeklycat',[
+				"id" => '',
+				"id_weekly" => $id,
+				"id_cat" => $item
+			]);
+		}
+	}
+
 	public function getlist($offset = -1, $limit = -1) {
 		$this->load->database();
 		$this->db->select("*");

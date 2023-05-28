@@ -70,7 +70,6 @@ class Song extends CI_Controller {
 				$data["page_title"] = "Sửa bài hát";
 				$data["page_view"] = "song_edit";
 				$this->load->view("layout", $data);
-
 			} else if ($_GET['action'] == 'add') {
 				$this->load->model(["model_song", "model_meta", "model_cat", 'model_option']);
 				$data["setting"] = [
@@ -157,13 +156,13 @@ class Song extends CI_Controller {
 				$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
 			}
 			$this->load->model("model_song");
-			$page = $_GET['page'] || 1;
+			$page = $_GET['page'] | 1;
 			$arr_pagination = array();
 			$number_song_on_page = 20;
 			$count_song = $this->model_song->count();
 			$number_pagination = ceil($count_song / $number_song_on_page);
 			for ($i=1; $i <= $number_pagination ; $i++) {
-				$active = ($i == $page)?1:0;
+				$active = $i == $page ? 1 : 0;
 				$arr_pagination[] = [
 					"number" => $i,
 					"link" => base_url("song?page={$i}"),

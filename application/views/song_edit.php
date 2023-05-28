@@ -10,7 +10,7 @@ if (isset($alert)) {
   <div class="col-12">
     <div class="form-group bmd-form-group">
       <label class="bmd-label-floating">Tên bài hát</label>
-      <input type="text" class="form-control" id="songTitle" name="title" value='<?php echo $song["title"] ?>' required>
+      <input type="text" class="form-control heading-input" id="songTitle" name="title" value='<?php echo $song["title"] ?>' required>
     </div>
   </div>
 </div>
