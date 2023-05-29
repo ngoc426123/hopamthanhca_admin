@@ -14,12 +14,11 @@ class Weekly extends CI_Controller {
         if ( isset($_POST['ok']) ) {
           $phaseCat = $this->model_cat->getlist("phan-hat");
           $content = [];
-
-          foreach($phaseCat as $item) {
-            if (isset(($_POST[$item['cat_slug']])))
-              $content[$item['cat_slug']] = $_POST[$item['cat_slug']];
+          foreach($_POST as $key => $item) {
+            foreach ($phaseCat as $value) {
+              if (array_search($key, $value)) $content[$key] = $item;
+            }
           }
-
           // INSERT WEEKLY
           $array_insert_weekly = [
             'id'      => '',
