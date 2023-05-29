@@ -27,7 +27,7 @@ class Song extends CI_Controller {
 					$this->load->model(['model_song' , 'model_meta', 'model_option']);
 					$data["setting"] = [
 						"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
-						"post_defaultcategory"=> json_decode("{$this->model_option->get('post_defaultcategory')}", true),
+						"post_defaultcategory"=> unserialize($this->model_option->get('post_defaultcategory')),
 					];
 					$song_id = $_GET['id'];
 					// UPDATE SONG
@@ -74,7 +74,7 @@ class Song extends CI_Controller {
 				$this->load->model(["model_song", "model_meta", "model_cat", 'model_option']);
 				$data["setting"] = [
 					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
-					"post_defaultcategory"=> json_decode("{$this->model_option->get('post_defaultcategory')}", true),
+					"post_defaultcategory"=> unserialize($this->model_option->get('post_defaultcategory')),
 				];
 				if ( isset($_POST['ok']) ) {
 					// INSERT SONG
@@ -128,7 +128,6 @@ class Song extends CI_Controller {
 					$data["page_view"] = "song";
 					$this->load->view("layout", $data);
 				}
-				
 			}
 		} else {
 			if (isset($_GET['quickedit'])) {

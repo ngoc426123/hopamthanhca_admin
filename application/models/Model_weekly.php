@@ -193,6 +193,48 @@ class Model_weekly extends CI_Model {
 		return $weekly_result;
 	}
 
+	public function getbykeyword($keyword) {
+		$this->load->database();
+		$this->db->select("*");
+		$this->db->from("weekly");
+		$this->db->like("name", $keyword);
+		$this->db->or_like("id", $keyword);
+		$this->db->order_by("id", "DESC");
+		$get = $this->db->get();
+		$weekly_result = $get->result_array();
+		foreach ($weekly_result as $key => $item) {
+			$id_weekly = $item['id'];
+
+			// META
+			$this->db->select("key, value");
+			$this->db->from("weeklymeta");
+			$this->db->where([
+				"id_weekly" => $id_weekly
+			]);
+			$get = $this->db->get();
+			$meta_result = $get->result_array();
+			foreach ($meta_result as $key_meta => $item_meta) {
+				$weekly_result[$key]["meta"][$item_meta['key']] = $item_meta['value'];
+			}
+
+			// CATEGORY
+			$this->db->select('*');
+			$this->db->from('weeklycat');
+			$this->db->join("cat", "weeklycat.id_cat = cat.id");
+			$this->db->join("cattype", "weeklycat.id_cat = cattype.id_cat");
+			$this->db->join("type", "cattype.id_type = type.id");
+			$this->db->where([
+				"weeklycat.id_weekly" => $id_weekly
+			]);
+			$get = $this->db->get();
+			$cat = $get->result_array();
+			foreach ($cat as $item_cat) {
+				$weekly_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
+			}
+		}
+		return $weekly_result;
+	}
+
 	public function count($cat_id = 0) {
 		$this->load->database();
 		$this->db->select("COUNT(weekly.id)");

@@ -47,7 +47,7 @@ class Weekly extends CI_Controller {
         }
         $data["setting"] = [
 					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
-          "post_defaultcategory"=> json_decode("{$this->model_option->get('post_defaultcategory')}", true),
+          "post_defaultcategory"=> unserialize($this->model_option->get('post_defaultcategory'))
 				];
         $data["cat"]["nam-phung-vu"] = $this->model_cat->getlist("nam-phung-vu");
         $data["cat"]["phan-hat"] = $this->model_cat->getlist("phan-hat");
@@ -108,7 +108,16 @@ class Weekly extends CI_Controller {
         $data["page_title"] = "Sửa phần soạn thánh lễ";
 				$data["page_view"] = "weekly_edit";
         $this->load->view("layout", $data);
-      }
+      } else if ($_GET['action'] == 'search') {
+				if ( isset($_GET['keyword']) ) {
+					$this->load->model("model_weekly");
+					$keyword = $_GET['keyword'];
+					$data["list_weekly"] = $this->model_weekly->getbykeyword($keyword);
+					$data["page_title"] = "Danh sách";
+					$data["page_view"] = "weekly";
+					$this->load->view("layout", $data);
+				}
+			}
     } else {
       $this->load->model("model_weekly");
       
@@ -127,7 +136,7 @@ class Weekly extends CI_Controller {
 			$page_start = ($page - 1) * $number_weekly_on_page;
       $data["pagination_weekly"] = $arr_pagination;
       $data["list_weekly"] = $this->model_weekly->getlist($page_start, $number_weekly_on_page);
-      $data["page_title"] = "Soạn bài hát";
+      $data["page_title"] = "Danh sách";
       $data["page_view"] = "weekly";
       $this->load->view("layout", $data);
     }

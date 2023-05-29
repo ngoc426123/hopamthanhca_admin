@@ -7,7 +7,7 @@
       <h4 class="card-title">Danh sách soạn</h4>
     </div>
     <div class="pull-right d-flex">
-      <form action="<?php echo base_url("song"); ?>" method="GET" style="margin-right: 20px">
+      <form action="<?php echo base_url("weekly"); ?>" method="GET" style="margin-right: 20px">
         <div class="form-group bmd-form-group">
           <input type="hidden" name="action" value="search">
           <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm">
