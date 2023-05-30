@@ -1,4 +1,6 @@
 $(document).ready(() => {
+	const $body = $("body");
+
 	$('.sidebar .sidebar-wrapper, .main-panel').each((_, e) => {
 		$(e).perfectScrollbar();
 	});
@@ -407,4 +409,39 @@ $(document).ready(() => {
 			}
 		});
 	});
+
+	$("[data-clear-cache]").on("click", async () => {
+		const api = base_url + 'cache/clearCache';
+		const method = "POST";
+		const headers = { "Content-Type": "text/plain" };
+		let message = '';
+		let type = '';
+
+		$body.addClass('loading');
+		fetch(api, { method, headers })
+			.then(e => e.text())
+			.then(() => {
+				const type = 'success';
+				const message = 'Clear cache thành công.';
+
+				$body.removeClass('loading');
+				$.notify({ icon: "add_alert", message }, {
+					type,
+					timer: 2000,
+					placement: { from: 'bottom', align: 'right' }
+				});
+			})
+			.catch((e) => {
+				console.log(e);
+				const type = 'danger';
+				const message = 'Không thành công.';
+				
+				$body.removeClass('loading');
+				$.notify({ icon: "add_alert", message }, {
+					type,
+					timer: 2000,
+					placement: { from: 'bottom', align: 'right' }
+				});
+			});
+	})
 });
