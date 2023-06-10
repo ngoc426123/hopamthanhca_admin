@@ -144,6 +144,7 @@ if (!function_exists("get_color_phase")) {
 			case 'dap-ca': return ['bg-info', 'text-info'];
 			case 'hiep-le': return ['bg-warning', 'text-warning'];
 			case 'ket-le': return ['bg-primary', 'text-primary'];
+			case 'xuc-tro': return ['bg-primary', 'text-primary'];
 			case 'ca-tiep-lien': return ['bg-danger', 'text-danger'];
 			default: return ['bg-info', 'text-info'];
 		}

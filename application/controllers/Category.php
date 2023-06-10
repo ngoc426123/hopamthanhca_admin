@@ -101,7 +101,7 @@ class Category extends CI_Controller {
 					$data["alert"] = ["warning", "Không có thêm danh mục."];
 				}
 
-				$page = $_GET['page'];
+				$page = $this->input->get('page');
 				$number_cat_on_page = 10;
 				$start = ($page - 1) * $number_cat_on_page;
 
@@ -124,7 +124,7 @@ class Category extends CI_Controller {
 				$this->load->view("layout", $data);
 			}
 		} else if ( isset($_GET["cat_id"]) ) {
-				$page = $_GET['page'] | 1;
+				$page = $this->input->get('page');
 				$slug = $_GET["slug"];
 				$cat_id = $_GET["cat_id"];
 				$cat_info = $this->model_cat->get($cat_id);
@@ -149,7 +149,7 @@ class Category extends CI_Controller {
 				$data["page_view"] = $isWeekly ? "category_weekly" : "category_song";
 				$this->load->view("layout", $data);
 		} else {
-			$page = $_GET['page'] | 1;
+			$page = $this->input->get('page');
 			$number_cat_on_page = 10;
 			$start = ($page - 1) * $number_cat_on_page;
 			$count = $this->model_cat->count($slug);

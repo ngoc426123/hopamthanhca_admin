@@ -137,7 +137,7 @@ class Song extends CI_Controller {
 				$array_song_update = [
 					"title" => $_POST['title'],
 					"slug" => $_POST['seourl'],
-					"status" => (isset($_POST['status']))?'publish':'private',
+					"status" => isset($_POST['status']) ? 'publish' : 'private',
 					"excerpt" => $_POST['excerpt'],
 				];
 				$this->model_song->update($song_id, $array_song_update);
@@ -155,7 +155,7 @@ class Song extends CI_Controller {
 				$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
 			}
 			$this->load->model("model_song");
-			$page = $_GET['page'] | 1;
+			$page = $this->input->get('page');
 			$arr_pagination = array();
 			$number_song_on_page = 20;
 			$count_song = $this->model_song->count();

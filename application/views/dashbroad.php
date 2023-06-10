@@ -79,7 +79,7 @@
 								<tbody>
 									<?php
 									foreach ($song_new as $key => $item) {
-										$stt = $key++;
+										$stt = ++$key;
 									?>
 										<tr>
 											<td><?php echo $stt; ?></td>

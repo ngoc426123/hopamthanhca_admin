@@ -119,8 +119,8 @@ class Weekly extends CI_Controller {
 			}
     } else {
       $this->load->model("model_weekly");
-      
-      $page = $_GET['page'] || 1;
+
+      $page = $this->input->get('page');
       $number_weekly_on_page = 20;
       $count_weekly = $this->model_weekly->count();
       $number_pagination = ceil($count_weekly / $number_weekly_on_page);

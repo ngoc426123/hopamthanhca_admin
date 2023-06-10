@@ -165,6 +165,7 @@ $(document).ready(() => {
 					case 'dang-le': return 'bg-info';
 					case 'hiep-le': return 'bg-warning';
 					case 'ket-le': return 'bg-primary';
+					case 'xuc-tro': return 'bg-primary';
 				}
 			}
 
@@ -237,6 +238,7 @@ $(document).ready(() => {
 					case 'dang-le': return 'text-info';
 					case 'hiep-le': return 'text-warning';
 					case 'ket-le': return 'text-primary';
+					case 'xuc-tro': return 'text-primary';
 				}
 			}
 
@@ -270,8 +272,8 @@ $(document).ready(() => {
 			}
 
 			$listSong.each((_, e) => {
-				const text = $(e).find('td:first').text().trim().replace(/\s{2,}/, ' ');
-				const regex = new RegExp(`(${value})`, 'g');
+				const text = $(e).find('td:first').text().trim().replace(/\s{2,}/, ' ').toLocaleLowerCase();
+				const regex = new RegExp(`(${value.toLowerCase()})`, 'g');
 				const isMatch = regex.exec(text) !== null;
 				
 				$(e).css({ 'display': isMatch ? 'table-row' : 'none' });

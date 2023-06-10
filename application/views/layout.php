@@ -17,8 +17,8 @@
 	<div class="wrapper">
 		<div class="sidebar" data-color="azure" data-background-color="black" data-image="../../assets/img/sidebar-1.jpg">
 			<div class="logo">
-				<a href="" class="simple-text logo-mini">HA</a>
-				<a href="" class="simple-text logo-normal">Admin</a>
+				<a href="<?php echo base_url() ?>" class="simple-text logo-mini">HA</a>
+				<a href="<?php echo base_url() ?>" class="simple-text logo-normal">Admin</a>
 			</div>
 			<div class="sidebar-wrapper">
 				<div class="user">
@@ -124,8 +124,14 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end">
 						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:;" data-clear-cache>
+									<i class="material-icons">cleaning_services</i>
+									<p class="d-lg-none d-md-block">Clear cache</p>
+								</a>
+							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<a class="nav-link" href="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i class="material-icons">person</i>
 									<p class="d-lg-none d-md-block">Account</p>
 								</a>
@@ -150,12 +156,12 @@
 				<div class="container-fluid">
 					<nav class="float-left">
 						<ul>
-							<li><a href="http://hopamthanhca.com">Hợp âm thánh ca</a></li>
+							<li><a href="<?php echo base_url(); ?>">Hợp âm thánh ca</a></li>
 						</ul>
 					</nav>
 					<div class="copyright float-right">@ <script>
 							document.write(new Date().getFullYear())
-						</script> Hopamthanhca.com</a></div>
+						</script> <a href="<?php echo base_url(); ?>">Hopamthanhca.com</a></div>
 				</div>
 			</footer>
 		</div>
@@ -166,11 +172,12 @@
 	<script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/plugins/perfect-scrollbar.jquery.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
 	<!-- PLUGIN -->
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url("assets/js/plugins/bootstrap-selectpicker.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/plugins/bootstrap-notify.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/plugins/jquery.ui.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
 	<!-- STYLE -->
 	<script src="<?php echo base_url("tmp/js/style.js"); ?>"></script>
 	<script src="<?php echo base_url("tmp/js/style-song-add.js"); ?>"></script>
