@@ -5,10 +5,14 @@ class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		check_login();
-		check_admin_rdr();
 	}
 
 	public function index(){
+		if ($this->session->permission != 1) {
+			$this->load->view("layout-not-permission");
+			return;
+		}
+
 		$this->load->model('model_user');
 		if ( isset($_GET["action"]) ) {
 			if ( $_GET["action"]=="add" ) {

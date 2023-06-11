@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_song extends CI_Model {
+	private $userID;
+	private $userPermission;
+
+	public function __construct() {
+		$this->userID = $this->session->id;
+		$this->userPermission = $this->session->permission;
+	}
+
 	public function get($id) {
 		$this->load->database();
 		$this->db->select("*");
@@ -88,6 +96,11 @@ class Model_song extends CI_Model {
 		$this->load->database();
 		$this->db->select("*");
 		$this->db->from("song");
+		// CHECK USER PERMISSION
+		if($offset !== -1 && $limit !== -1 && $this->userPermission == 0)
+			$this->db->where([
+				"author" => $this->userID,
+			]);
 		$this->db->order_by("id", "DESC");
 		if ($offset !== -1 && $limit !== -1)
 			$this->db->limit($limit, $offset);
@@ -100,11 +113,11 @@ class Model_song extends CI_Model {
 			$this->db->select("key, value");
 			$this->db->from("songmeta");
 			$this->db->where([
-				"id_song" => $id_song
+				"id_song" => $id_song,
 			]);
 			$get = $this->db->get();
 			$meta_result = $get->result_array();
-			foreach ($meta_result as $key_meta => $item_meta) {
+			foreach ($meta_result as $item_meta) {
 				$song_result[$key]["meta"][$item_meta['key']] = $item_meta['value'];
 			}
 
@@ -136,6 +149,11 @@ class Model_song extends CI_Model {
 		$this->db->where([
 			"songcat.id_cat" => $cat_id,
 		]);
+		// CHECK USER PERMISSION
+		if($this->userPermission == 0)
+			$this->db->where([
+				"author" => $this->userID,
+			]);
 		$this->db->order_by("song.id", "DESC");
 		$this->db->limit($limit, $offset);
 		$get = $this->db->get();
@@ -177,6 +195,11 @@ class Model_song extends CI_Model {
 	public function count($cat_id = 0) {
 		$this->load->database();
 		$this->db->select("COUNT(song.id)");
+		// CHECK USER PERMISSION
+		if($this->userPermission == 0)
+			$this->db->where([
+				"author" => $this->userID,
+			]);
 		$this->db->from("song");
 		if ( $cat_id != 0 ) {
 			$this->db->join("songcat", "songcat.id_song = song.id");

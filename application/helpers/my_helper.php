@@ -11,7 +11,7 @@ if(!function_exists("check_login")){
 if(!function_exists("check_admin")){
 	function check_admin() {
 		$CI =& get_instance();
-		return ($CI->session->permission == 1) ? true : false;
+		return $CI->session->permission == 1;
 	}
 }
 

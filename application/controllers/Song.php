@@ -2,8 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Song extends CI_Controller {
+	private $userID;
+	private $userPermission;
+
 	public function __construct(){
 		parent::__construct();
+		$this->userID = $this->session->id;
+		$this->userPermission = $this->session->permission;
 		check_login();
 	}
 
@@ -20,8 +25,11 @@ class Song extends CI_Controller {
 				$data["cat"]["dieu-bai-hat"] = $this->model_cat->getlist("dieu-bai-hat");
 				$data["page_title"] = "Sửa bài hát";
 				$data["page_view"] = "song_edit";
-				$this->load->view("layout", $data);
-
+				if ($this->userPermission == 1) $this->load->view("layout", $data);
+				else {
+					$view = $this->userID == $data["song"]["author"] ? "layout" : "layout-not-permission";
+					$this->load->view($view, $data);
+				}
 			} else if ($_GET['action'] == 'update') {
 				if ( isset($_POST['update']) ) {
 					$this->load->model(['model_song' , 'model_meta', 'model_option']);
@@ -69,7 +77,11 @@ class Song extends CI_Controller {
 				$data["cat"]["dieu-bai-hat"] = $this->model_cat->getlist("dieu-bai-hat");
 				$data["page_title"] = "Sửa bài hát";
 				$data["page_view"] = "song_edit";
-				$this->load->view("layout", $data);
+				if ($this->userPermission == 1) $this->load->view("layout", $data);
+				else {
+					$view = $this->userID == $data["song"]["author"] ? "layout" : "layout-not-permission";
+					$this->load->view($view, $data);
+				}
 			} else if ($_GET['action'] == 'add') {
 				$this->load->model(["model_song", "model_meta", "model_cat", 'model_option']);
 				$data["setting"] = [
@@ -135,9 +147,9 @@ class Song extends CI_Controller {
 				$song_id =$_GET['quickedit'];
 				// UPDATE SONG
 				$array_song_update = [
-					"title" => $_POST['title'],
-					"slug" => $_POST['seourl'],
-					"status" => isset($_POST['status']) ? 'publish' : 'private',
+					"title"   => $_POST['title'],
+					"slug"    => $_POST['seourl'],
+					"status"  => isset($_POST['status']) ? 'publish' : 'private',
 					"excerpt" => $_POST['excerpt'],
 				];
 				$this->model_song->update($song_id, $array_song_update);

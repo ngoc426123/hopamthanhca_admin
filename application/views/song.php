@@ -45,9 +45,15 @@
                 <small><?php echo $song["date"]; ?></small>
               </td>
               <td class="td-actions text-right">
-                <a href="#" class="btn btn-rose quickEdit" rel="tooltip" class="btn btn-rose"><i class="material-icons">edit</i></a>
+                <?php
+                  if ($this->session->permission == 1 || $this->session->id == $song["author"]) {
+                ?>
+                  <a href="#" class="btn btn-rose quickEdit" rel="tooltip" class="btn btn-rose"><i class="material-icons">edit</i></a>
+                  <button data-id="<?php echo $song["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-song"><i class="material-icons">restore_from_trash</i></button>
+                <?php
+                  }
+                ?>
                 <a href="<?php echo "http://hopamthanhca.com/bai-hat/{$song["slug"]}" ?>" rel="tooltip" class="btn btn-info"><i class="material-icons">visibility</i></a>
-                <button data-id="<?php echo $song["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-song"><i class="material-icons">restore_from_trash</i></button>
               </td>
             </tr>
           <?php

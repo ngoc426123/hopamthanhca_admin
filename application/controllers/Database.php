@@ -5,9 +5,13 @@ class Database extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		check_login();
-		check_admin_rdr();
+
 	}
 	public function index(){
+		if ($this->session->permission != 1) {
+			$this->load->view("layout-not-permission");
+			return;
+		}
 		$list_tables = [];
 		foreach ($this->db->list_tables() as $key => $value) {
 			$list_tables[$value]["field"] = $this->db->list_fields($value);
@@ -19,9 +23,13 @@ class Database extends CI_Controller {
 		$data["page_menu_index"] = 5;
 		$data["page_title"] = "Dữ liệu";
 		$data["page_view"] = "database";
-		$this->load->view('layout',$data);
+		$this->load->view("layout", $data);
 	}
 	public function emptytable($table){
+		if ($this->session->permission !== 1) {
+			$this->load->view("layout-not-permission");
+			return;
+		}
 		if(isset($table)){
 			$this->db->empty_table($table);
 			$this->db->query("ALTER TABLE {$table} AUTO_INCREMENT = 1");
@@ -42,9 +50,14 @@ class Database extends CI_Controller {
 		$data["page_menu_index"] = 5;
 		$data["page_title"] = "Dữ liệu";
 		$data["page_view"] = "database";
-		$this->load->view('layout',$data);
+		$this->load->view("layout", $data);
 	}
 	public function optimizetable($table){
+		if ($this->session->permission != 1) {
+			$this->load->view("layout-not-permission");
+			return;
+		}
+
 		if(isset($table)){
 			$this->load->dbutil();
 			$this->dbutil->repair_table($table);
@@ -66,7 +79,7 @@ class Database extends CI_Controller {
 		$data["page_menu_index"] = 5;
 		$data["page_title"] = "Dữ liệu";
 		$data["page_view"] = "database";
-		$this->load->view('layout',$data);
+		$this->load->view("layout", $data);
 	}
 	public function backup(){
 		$filename="backup_hopamthanhca_".date("d-m-Y_H-i-s").'.sql';
