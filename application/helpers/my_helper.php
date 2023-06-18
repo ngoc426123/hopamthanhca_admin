@@ -11,7 +11,7 @@ if(!function_exists("check_login")){
 if(!function_exists("check_admin")){
 	function check_admin() {
 		$CI =& get_instance();
-		return $CI->session->permission == 1;
+		return ($CI->session->permission == 1) ? true : false;
 	}
 }
 
@@ -19,7 +19,7 @@ if(!function_exists("check_admin_rdr")){
 	function check_admin_rdr() {
 		$CI =& get_instance();
 		if ( $CI->session->permission == 0 ) {
-			redirect('dashbroad');
+			redirect('notpermission');
 		}
 	}
 }
