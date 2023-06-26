@@ -136,14 +136,26 @@ class Model_song extends CI_Model {
 				$song_result[$key]["cat"][$item_cat['type_slug']][] = $item_cat;
 			}
 		}
-		if ($offset === -1 && $limit === -1) 
-			$this->cache->save('allsong', $song_result, 86400);
+		if ($offset === -1 && $limit === -1) {
+			$this->db->select("*");
+			$this->db->from("options");
+			$this->db->where([
+				"key" => "cache_unit",
+			]);
+			$this->db->or_where([
+				"key" => "cache_value",
+			]);
+			$get = $this->db->get();
+			$result_cache = $get->result_array();
+			$timeCache = get_cache_time($result_cache[0]["value"], $result_cache[1]["value"]);
+			$this->cache->save('allsong', $song_result, $timeCache);
+		}
 		return $song_result;
 	}
 
 	public function getlistoncat($cat_id, $offset = 0, $limit = 5) {
 		$this->load->database();
-		$this->db->select("* ");
+		$this->db->select("*");
 		$this->db->from("song");
 		$this->db->join("songcat", "songcat.id_song = song.id");
 		$this->db->where([

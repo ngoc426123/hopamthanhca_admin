@@ -150,3 +150,23 @@ if (!function_exists("get_color_phase")) {
 		}
 	}
 }
+
+if (!function_exists("get_cache_time")) {
+	function get_cache_time($value, $unit) {
+		$sec = 1;
+		$minus = $sec * 60;
+		$hour = $minus * 60;
+		$day = $hour * 24;
+		$week = $day * 7;
+		$month = $day * 30;
+		
+		switch ($unit) {
+			case 'hours': return $value * $hour;
+			case 'days': return $value * $day;
+			case 'weeks': return $value * $week;
+			case 'months': return $value * $month;
+			
+			default: return $value;
+		}
+	}
+}

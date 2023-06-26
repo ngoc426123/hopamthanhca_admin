@@ -1,8 +1,10 @@
 $(document).ready(() => {
 	const $body = $("body");
 
-	$('.sidebar .sidebar-wrapper, .main-panel').each((_, e) => {
-		$(e).perfectScrollbar();
+	['.sidebar', '.sidebar-wrapper', '.main-panel'].forEach(item => {
+		if ($(item).length != 0) {
+			const pc = new PerfectScrollbar(item);
+		}
 	});
 
 	$('#btn-login').off('click').on('click', () => {
@@ -410,15 +412,15 @@ $(document).ready(() => {
 		});
 	});
 
-	$("[data-clear-cache]").on("click", async () => {
-		const api = base_url + 'cache/clearCache';
+	$("[data-clear-cache]").on("click", async (e) => {
+		const $target = $(e.target);
+		const value = $target.data('clearCache');
 		const method = "POST";
 		const headers = { "Content-Type": "text/plain" };
-		let message = '';
-		let type = '';
+		const api = [base_url + 'cache/clearCache', 'https://hopamthanhca.com/clearCache'];
 
 		$body.addClass('loading');
-		fetch(api, { method, headers })
+		fetch(api[value === 'admin' ? 0 : 1], { method, headers })
 			.then(e => e.text())
 			.then(() => {
 				const type = 'success';
@@ -431,8 +433,7 @@ $(document).ready(() => {
 					placement: { from: 'bottom', align: 'right' }
 				});
 			})
-			.catch((e) => {
-				console.log(e);
+			.catch(() => {
 				const type = 'danger';
 				const message = 'Không thành công.';
 				
@@ -443,5 +444,5 @@ $(document).ready(() => {
 					placement: { from: 'bottom', align: 'right' }
 				});
 			});
-	})
+	});
 });

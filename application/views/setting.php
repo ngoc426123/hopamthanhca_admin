@@ -20,6 +20,11 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 			<i class="material-icons">share</i> <span class='d-none d-lg-block'>Mạng xã hội</span>
 		</a>
 	</li>
+	<li class="nav-item">
+		<a class="nav-link <?php echo $tab == "cache" ? "active" : "" ?>" data-toggle="tab" href="#cache" role="tablist">
+			<i class="material-icons">cached</i> <span class='d-none d-lg-block'>Bộ nhớ đệm</span>
+		</a>
+	</li>
 </ul>
 <div class="tab-content tab-space tab-subcategories">
 	<div class="tab-pane <?php echo $tab == "config" ? "active" : "" ?>" id="config">
@@ -149,7 +154,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
 										<select name="post_defaultstatus" id="" class="form-control">
-											<option value="publish" <?php echo ($setting["post_defaultstatus"] == "publish") ? "selected" : "" ?>>Publish</option>
+											<option value="publish" >Publish</option>
 											<option value="private" <?php echo ($setting["post_defaultstatus"] == "private") ? "selected" : "" ?>>Private</option>
 										</select>
 									</div>
@@ -279,6 +284,48 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 				</div>
 				<div class="card-footer text-right">
 					<div class="mr-auto"></div>
+					<button type='submit' class='btn btn-success' name="update">Đồng ý</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="tab-pane <?php echo $tab == "cache" ? "active" : "" ?>" id="cache">
+		<form action="<?php echo base_url("/config?action=setting&tab=cache") ?>" method="post" class="form-horizontal">
+			<div class="card">
+				<div class="card-body">
+					<div class="row justify-content-center">
+						<div class="col-lg-7">
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Giá trị lưu trữ</label>
+								<div class="col-sm-8">
+									<div class="row">
+										<div class="col-9">
+											<div class="form-group bmd-form-group">
+												<input type="text" name="cache_value" class="form-control" value="<?php echo isset($setting["cache_value"]) ? $setting["cache_value"] : '' ?>">
+											</div>
+										</div>
+										<div class="col-3">
+											<select name="cache_unit" class="selectpicker" data-style="btn btn-primary btn-round">
+												<option value="hours" <?php echo isset($setting["cache_unit"]) && $setting["cache_unit"] === 'hours' ? 'selected' : '' ?>>Giờ</option>
+												<option value="days" <?php echo isset($setting["cache_unit"]) && $setting["cache_unit"] === 'days' ? 'selected' : '' ?>>Ngày</option>
+												<option value="weeks" <?php echo isset($setting["cache_unit"]) && $setting["cache_unit"] === 'weeks' ? 'selected' : '' ?>>Tuần</option>
+												<option value="months" <?php echo isset($setting["cache_unit"]) && $setting["cache_unit"] === 'months' ? 'selected' : '' ?>>Tháng</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer text-right">
+					<div class="mr-auto"></div>
+					<button class="btn btn-primary" data-clear-cache="admin" type="button">
+						<i class="material-icons">cleaning_services</i> Admin
+					</button>
+					<button class="btn btn-primary" data-clear-cache="site" type="button">
+						<i class="material-icons">cleaning_services</i> Site
+					</button>
 					<button type='submit' class='btn btn-success' name="update">Đồng ý</button>
 				</div>
 			</div>

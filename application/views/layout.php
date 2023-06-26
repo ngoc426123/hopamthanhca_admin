@@ -124,12 +124,6 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link" href="javascript:;" data-clear-cache>
-									<i class="material-icons">cleaning_services</i>
-									<p class="d-lg-none d-md-block">Clear cache</p>
-								</a>
-							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link" href="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i class="material-icons">person</i>
@@ -170,7 +164,7 @@
 	<script src="<?php echo base_url("assets/js/core/jquery.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/popper.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/core/bootstrap-material-design.min.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/js/plugins/perfect-scrollbar.jquery.min.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/plugins/perfect-scrollbar.min.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>"></script>
 	<!-- PLUGIN -->
 	<script src="<?php echo base_url("assets/js/plugins/sweetalert2.js"); ?>" type="text/javascript"></script>
