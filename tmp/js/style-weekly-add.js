@@ -18,7 +18,9 @@ $(document).ready(() => {
 			this.$searchSong = this.$element.find('[data-search-song]');
 			this.$btnMetaSeo = this.$element.find('#update_meta_seo');
 
-			this.$listSong.length > 0 && this.$listSong.perfectScrollbar();
+			if (this.$listSong.length > 0) {
+				const PS = new PerfectScrollbar(this.$listSong[0]);
+			};
 			this.$contentPhase.sortable();
 		}
 

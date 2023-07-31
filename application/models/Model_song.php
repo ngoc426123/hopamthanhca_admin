@@ -90,11 +90,13 @@ class Model_song extends CI_Model {
 	}
 
 	public function getlist($offset = -1, $limit = -1) {
+		$this->load->database();
 		$this->load->driver('cache', ['adapter' => 'apc', 'backup' => 'file']);
+	
 		if ($offset === -1 && $limit === -1 && $this->cache->get('allsong')) 
 			return $this->cache->get('allsong');
-		$this->load->database();
-		$this->db->select("*");
+
+		$this->db->select("id, title, excerpt, slug, status, date");
 		$this->db->from("song");
 		// CHECK USER PERMISSION
 		if($offset !== -1 && $limit !== -1 && $this->userPermission == 0)
@@ -114,6 +116,7 @@ class Model_song extends CI_Model {
 			$this->db->from("songmeta");
 			$this->db->where([
 				"id_song" => $id_song,
+				"key"     => "luotxem",
 			]);
 			$get = $this->db->get();
 			$meta_result = $get->result_array();
@@ -122,13 +125,14 @@ class Model_song extends CI_Model {
 			}
 
 			// CATEGORY
-			$this->db->select('*');
+			$this->db->select('type.type_slug, cat.cat_name');
 			$this->db->from('songcat');
 			$this->db->join("cattype", "songcat.id_cat = cattype.id_cat");
 			$this->db->join("cat", "cat.id = cattype.id_cat");
 			$this->db->join("type", "cattype.id_type = type.id");
 			$this->db->where([
-				"songcat.id_song" => $id_song
+				"songcat.id_song" => $id_song,
+				"type.type_slug" => "tac-gia",
 			]);
 			$get = $this->db->get();
 			$cat = $get->result_array();
@@ -178,7 +182,7 @@ class Model_song extends CI_Model {
 			$this->db->select("key, value");
 			$this->db->from("songmeta");
 			$this->db->where([
-				"id_song" => $id_song
+				"id_song" => $id_song,
 			]);
 			$get = $this->db->get();
 			$meta_result = $get->result_array();

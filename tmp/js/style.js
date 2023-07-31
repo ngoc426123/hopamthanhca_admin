@@ -1,9 +1,13 @@
 $(document).ready(() => {
 	const $body = $("body");
 
-	['.sidebar', '.sidebar-wrapper', '.main-panel'].forEach(item => {
+	['.sidebar', '.sidebar-wrapper', '.main-panel', '.card-over'].forEach(item => {
 		if ($(item).length != 0) {
-			const pc = new PerfectScrollbar(item);
+			$(item).each((idx, ele) => {
+				const ps = new PerfectScrollbar(ele);
+
+				$(ele).data(ps);
+			});
 		}
 	});
 
