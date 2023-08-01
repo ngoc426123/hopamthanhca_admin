@@ -96,7 +96,7 @@ class Model_song extends CI_Model {
 		if ($offset === -1 && $limit === -1 && $this->cache->get('allsong')) 
 			return $this->cache->get('allsong');
 
-		$this->db->select("id, title, excerpt, slug, status, date");
+		$this->db->select("id, title, excerpt, slug, status, date, author");
 		$this->db->from("song");
 		// CHECK USER PERMISSION
 		if($offset !== -1 && $limit !== -1 && $this->userPermission == 0)
