@@ -193,7 +193,7 @@ if (isset($alert)) {
           ?>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="danhmuc[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
+                <input class="form-check-input" name="dieubaihat[]" type="checkbox" value="<?php echo $item['id'] ?>"> <?php echo $item['cat_name'] ?>
                 <span class="form-check-sign"><span class="check"></span></span>
               </label>
             </div>
