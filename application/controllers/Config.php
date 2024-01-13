@@ -21,7 +21,7 @@ class Config extends CI_Controller {
 					$domain = '.hopamthanhca.com';
 
 					if ($status == 1) {
-						set_cookie('hatc_admin_login', 1, 9999, $domain);
+						set_cookie('hatc_admin_login', 1, 86400, $domain);
 					} else {
 						delete_cookie('hatc_admin_login');
 					}
