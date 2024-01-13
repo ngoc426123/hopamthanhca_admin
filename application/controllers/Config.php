@@ -17,6 +17,15 @@ class Config extends CI_Controller {
 		if ( isset($_GET['action']) ) {
 			if ( $_GET['action']=='maintain' ) {
 				if ( isset($_POST['update']) ) {
+					$status = $_POST['status'];
+					$domain = '.hopamthanhca.com';
+
+					if ($status == 1) {
+						set_cookie('hatc_admin_login', 1, 9999, $domain);
+					} else {
+						delete_cookie('hatc_admin_login');
+					}
+
 					$this->model_option->update('maintain_status', $_POST['status']);
 					$this->model_option->update('maintain_title', $_POST['title']);
 					$this->model_option->update('maintain_content', $_POST['content']);
