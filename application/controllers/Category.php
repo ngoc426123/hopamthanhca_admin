@@ -10,73 +10,83 @@ class Category extends CI_Controller {
 	public function index(){
 		$this->load->model(['model_cat', 'model_meta','model_song', 'model_weekly']);
 		$arr_pagination = array();
-		$slug = $_GET['slug'];
+		$slug = $this->input->get('slug');
+
 		switch ($slug) {
-			case 'chuyen-muc':
-				$data["page_menu_index"] = 31;
-				break;
-			case 'tac-gia':
-				$data["page_menu_index"] = 32;
-				break;
-			case 'bang-chu-cai':
-				$data["page_menu_index"] = 33;
-				break;
-			case 'dieu-bai-hat':
-				$data["page_menu_index"] = 34;
-				break;
-			case 'phan-hat':
-				$data["page_menu_index"] = 42;
-				break;
-			case 'nam-phung-vu':
-				$data["page_menu_index"] = 43;
-				break;
-			default:
-				$data["page_menu_index"] = 30;
-				break;
+			case 'chuyen-muc': $data["page_menu_index"] = 31; break;
+			case 'tac-gia': $data["page_menu_index"] = 32; break;
+			case 'bang-chu-cai': $data["page_menu_index"] = 33; break;
+			case 'dieu-bai-hat': $data["page_menu_index"] = 34; break;
+			case 'phan-hat': $data["page_menu_index"] = 42; break;
+			case 'nam-phung-vu': $data["page_menu_index"] = 43; break;
+			default: $data["page_menu_index"] = 30; break;
 		}
+
 		$data["page_title"] = "Chuyên mục";
 
 		if ( isset($_GET["action"]) ) {
 			if ( $_GET["action"] == "edit" ) {
-				$id_song = $_GET["id"];
-				$data["slug"] = $_GET['slug'];
+				$id_song = $this->input->get('id');
+				$data["slug"] = $this->input->get('slug');
 				$data["cat"] = $this->model_cat->get($id_song);
 				$data["page_view"] = "category_edit";
+
 				$this->load->view("layout", $data);
+
 			} else if ( $_GET["action"] == "update" ) {
-				$id_cat = $_GET["id"];
-				if ( isset($_POST["ok"]) ) {
-					// UPDATE SONG
+				$id_cat = $this->input->get('id');
+
+				if ($this->input->post('ok') !== NULL) {
+					$name = $this->input->post('name');
+					$url = $this->input->post('seourl');
+					$desc = $this->input->post('des');
+					$seotitle = $this->input->post('seotitle');
+					$seourl = $slug;
+					$seokeywork = $this->input->post('seokeywork');
+					$seodesc = $desc;
+					$page =$this->input->get('page');
+
+					// UPDATE CAT
 					$array_cat_update = [
-						"cat_name" => $_POST['name'],
-						"cat_slug" => $_POST['seourl'],
-						"cat_des" => $_POST['des']
+						"cat_name" => $name,
+						"cat_slug" => $url,
+						"cat_des" => $desc,
 					];
 					$this->model_cat->update($id_cat, $array_cat_update);
 
 					// UPDATE META
-					$this->model_meta->update_cat($id_cat, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->update_cat($id_cat, 'seourl', $_POST['seourl']);
-					$this->model_meta->update_cat($id_cat, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->update_cat($id_cat, 'seodes', $_POST['des']);
+					$this->model_meta->update_cat($id_cat, 'seotitle', $seotitle);
+					$this->model_meta->update_cat($id_cat, 'seourl', $seourl);
+					$this->model_meta->update_cat($id_cat, 'seokeywork', $seokeywork);
+					$this->model_meta->update_cat($id_cat, 'seodes', $seodesc);
 
 					$data["alert"] = ["success", "Thành công: cập nhật danh mục."];
 				} else {
 					$data["alert"] = ["warning", "Không có cập nhật."];
 				}
-				
-				$data["slug"] = $_GET['slug'];
+
+				$data["slug"] = $slug;
 				$data["cat"] = $this->model_cat->get($id_cat);
 				$data["page_view"] = "category_edit";
+
 				$this->load->view("layout", $data);
-			} else if ( $_GET["action"] == "add" ) {
-				if ( isset($_POST["ok"]) ) {
+			} else if ($_GET["action"] == "add") {
+				if ($this->input->post('ok') !== NULL) {
+					$name = $this->input->post('name');
+					$url = $this->input->post('seourl');
+					$desc = $this->input->post('des');
+					$seotitle = $this->input->post('seotitle');
+					$seourl = $slug;
+					$seokeywork = $this->input->post('seokeywork');
+					$seodesc = $desc;
+					$page = $this->input->get('page');
+
 					// ADD CAT
 					$array_insert_cat = [
 						"id" => "",
-						"cat_name" => $_POST["name"],
-						"cat_slug" => $_POST["seourl"],
-						"cat_des" => $_POST["des"],
+						"cat_name" => $name,
+						"cat_slug" => $url,
+						"cat_des" => $desc,
 					];
 					$id_cat = $this->model_cat->add($array_insert_cat);
 
@@ -91,10 +101,10 @@ class Category extends CI_Controller {
 					$this->model_cat->addcattype($array_insert_cattype);
 
 					// ADD CAT META
-					$this->model_meta->add_cat($id_cat, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->add_cat($id_cat, 'seourl', $_POST['seourl']);
-					$this->model_meta->add_cat($id_cat, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->add_cat($id_cat, 'seodes', $_POST['des']);
+					$this->model_meta->add_cat($id_cat, 'seotitle', $seotitle);
+					$this->model_meta->add_cat($id_cat, 'seourl', $seourl);
+					$this->model_meta->add_cat($id_cat, 'seokeywork', $seokeywork);
+					$this->model_meta->add_cat($id_cat, 'seodes', $seodesc);
 
 					$data["alert"] = ["success", "Thêm danh mục."];
 				} else {
@@ -104,9 +114,9 @@ class Category extends CI_Controller {
 				$page = $this->input->get('page');
 				$number_cat_on_page = 10;
 				$start = ($page - 1) * $number_cat_on_page;
-
 				$count = $this->model_cat->count($slug);
 				$number_pagination = ceil($count / $number_cat_on_page);
+
 				for ($i=1; $i <= $number_pagination ; $i++) {
 					$active = $i == $page ? 1 : 0;
 					$arr_pagination[] = [
@@ -116,8 +126,8 @@ class Category extends CI_Controller {
 					];
 				}
 
-				$data["slug"] = $_GET["slug"];
-				$data["page"] = $_GET["page"];
+				$data["slug"] = $slug;
+				$data["page"] = $page;
 				$data["list_cat"] = $this->model_cat->getlist($slug, $start, $number_cat_on_page);
 				$data["pagination_song"] = $arr_pagination;
 				$data["page_view"] = "category";
@@ -125,14 +135,14 @@ class Category extends CI_Controller {
 			}
 		} else if ( isset($_GET["cat_id"]) ) {
 				$page = $this->input->get('page');
-				$slug = $_GET["slug"];
-				$cat_id = $_GET["cat_id"];
+				$cat_id = $this->input->get('cat_id');
 				$cat_info = $this->model_cat->get($cat_id);
 				$cat_name = mb_strtoupper($cat_info["cat_name"]);
 				$number_song_on_page = 20;
 				$count_song = $this->model_song->count($cat_id);
 				$number_pagination = ceil($count_song / $number_song_on_page);
-				for ($i=1; $i <= $number_pagination ; $i++) {
+
+				for ($i = 1; $i <= $number_pagination ; $i++) {
 					$active = $i == $page ? 1 : 0;
 					$arr_pagination[] = [
 						"number" => $i,
@@ -140,6 +150,7 @@ class Category extends CI_Controller {
 						"active" => $active,
 					];
 				}
+
 				$isWeekly = in_array($slug, ["phan-hat", "nam-phung-vu"]);
 				$page_start = ($page - 1) * $number_song_on_page;
 				$data["pagination_song"] = $arr_pagination;
@@ -147,6 +158,7 @@ class Category extends CI_Controller {
 				$data["list_weekly"] = $this->model_weekly->getlistoncat($cat_id, $page_start, $number_song_on_page);
 				$data["page_title"] = "Chuyên mục {$cat_name}";
 				$data["page_view"] = $isWeekly ? "category_weekly" : "category_song";
+
 				$this->load->view("layout", $data);
 		} else {
 			$page = $this->input->get('page');
@@ -154,6 +166,7 @@ class Category extends CI_Controller {
 			$start = ($page - 1) * $number_cat_on_page;
 			$count = $this->model_cat->count($slug);
 			$number_pagination = ceil($count / $number_cat_on_page);
+
 			for ($i=1; $i <= $number_pagination ; $i++) {
 				$active = $i == $page ? 1 : 0;
 				$arr_pagination[] = [
@@ -162,11 +175,13 @@ class Category extends CI_Controller {
 					"active" => $active,
 				];
 			}
+
 			$data["slug"] = $slug;
 			$data["page"] = $page;
 			$data["list_cat"] = $this->model_cat->getlist($slug, $start, $number_cat_on_page);
 			$data["pagination_song"] = $arr_pagination;
 			$data["page_view"] = "category";
+
 			$this->load->view("layout", $data);
 		}
 	}
