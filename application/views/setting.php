@@ -153,7 +153,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Trạng thái mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultstatus" id="" class="form-control">
+										<select name="post_defaultstatus" class="selectpicker" data-style="btn btn-primary btn-round">
 											<option value="publish" >Publish</option>
 											<option value="private" <?php echo ($setting["post_defaultstatus"] == "private") ? "selected" : "" ?>>Private</option>
 										</select>
@@ -164,7 +164,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Chuyên mục mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultcategory[chuyen-muc]" id="" class="form-control">
+										<select name="post_defaultcategory[chuyen-muc]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['chuyen-muc'] as $item) {
 												$checked = ($item['id'] == $post_defaultcategory['chuyen-muc']) ? "selected" : "";
@@ -181,7 +181,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Tác giả mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultcategory[tac-gia]" id="" class="form-control">
+										<select name="post_defaultcategory[tac-gia]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['tac-gia'] as $item) {
 												$checked = ($item['id'] == $post_defaultcategory['tac-gia']) ? "selected" : "";
@@ -198,7 +198,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Chữ cái mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultcategory[bang-chu-cai]" id="" class="form-control">
+										<select name="post_defaultcategory[bang-chu-cai]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['bang-chu-cai'] as $item) {
 												$checked = ($item['id'] == $post_defaultcategory['bang-chu-cai']) ? "selected" : "";
@@ -215,7 +215,7 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Điệu mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultcategory[dieu-bai-hat]" id="" class="form-control">
+										<select name="post_defaultcategory[dieu-bai-hat]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['dieu-bai-hat'] as $item) {
 												$checked = ($item['id'] == $post_defaultcategory['dieu-bai-hat']) ? "selected" : "";
@@ -232,10 +232,10 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<label class="col-sm-4 col-form-label">Năm phụng vụ mặc định</label>
 								<div class="col-sm-8">
 									<div class="form-group bmd-form-group">
-										<select name="post_defaultcategory[nam-phung-vu]" id="" class="form-control">
+										<select name="post_defaultcategory[nam-phung-vu]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['nam-phung-vu'] as $item) {
-												$checked = ($item['id'] == $setting['post_defaultcategory']['nam-phung-vu']) ? "selected" : "";
+												$checked = $item['id'] == $post_defaultcategory['dieu-bai-hat'] ? "selected" : "";
 											?>
 												<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
 											<?php
