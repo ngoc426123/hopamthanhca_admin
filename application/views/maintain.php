@@ -33,19 +33,25 @@ if (isset($alert)) {
 					<div class="row">
 						<label class="col-sm-2 col-form-label">Tiêu đề</label>
 						<div class="col-sm-10">
-							<div class="form-group bmd-form-group"><input type="text" name="title" class="form-control" value="<?php echo $maintain["title"] ?>"></div>
+							<div class="form-group bmd-form-group">
+								<input type="text" name="title" class="form-control" value="<?php echo $maintain["title"] ?>">
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<label class="col-sm-2 col-form-label">Nội dung</label>
 						<div class="col-sm-10">
-							<div class="form-group bmd-form-group"><textarea type="text" name="content" class="form-control" style="height: 100px !important"><?php echo $maintain["content"] ?></textarea></div>
+							<div class="form-group bmd-form-group">
+								<textarea type="text" name="content" class="form-control" style="height: 100px !important"><?php echo $maintain["content"] ?></textarea>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<label class="col-sm-2 col-form-label">Background</label>
 						<div class="col-sm-10">
-							<div class="form-group bmd-form-group"><input type="text" name="background" class="form-control" value="<?php echo $maintain["background"] ?>"></div>
+							<div class="form-group bmd-form-group">
+								<input type="text" name="background" class="form-control" value="<?php echo $maintain["background"] ?>">
+							</div>
 						</div>
 					</div>
 					<div class="clearfix">

@@ -29,10 +29,13 @@ if (isset($alert)) {
 						<label class="bmd-label-floating">Gmail</label>
 						<input type="text" class="form-control" autocomplete="off" name="email" value="<?php echo $user["email"] ?>" required>
 					</div>
-					
 					<div class="form-group clearfix">
 						<div class="pull-right">
-							<button type="submit" name="ok" class="btn btn-success">Đồng ý<div class="ripple-container"></div><div class="ripple-container"></div></button>
+							<button type="submit" name="ok" class="btn btn-success">
+								Đồng ý
+								<div class="ripple-container"></div>
+								<div class="ripple-container"></div>
+							</button>
 						</div>
 					</div>
 				</form>

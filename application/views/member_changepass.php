@@ -1,6 +1,6 @@
 <?php 
 if (isset($alert)) {
-    print_alert($alert);
+  print_alert($alert);
 }
 ?>
 <div class="row justify-content-center">
@@ -13,7 +13,11 @@ if (isset($alert)) {
 						<input type="password" class="form-control" required name="passwordOld">
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-info btn-sm btnCreatePassword">Tạo mật khẩu<div class="ripple-container"></div><div class="ripple-container"></div></button>
+						<button type="button" class="btn btn-info btn-sm btnCreatePassword">
+							Tạo mật khẩu
+							<div class="ripple-container"></div>
+							<div class="ripple-container"></div>
+						</button>
 					</div>
 					<div class="form-group bmd-form-group">
 						<label class="bmd-label-floating">Mật khẩu mới</label>
@@ -25,7 +29,11 @@ if (isset($alert)) {
 					</div>
 					<div class="form-group clearfix">
 						<div class="pull-right">
-							<button type="submit" name="ok" class="btn btn-success">Đồng ý<div class="ripple-container"></div><div class="ripple-container"></div></button>
+							<button type="submit" name="ok" class="btn btn-success">
+								Đồng ý
+								<div class="ripple-container"></div>
+								<div class="ripple-container"></div>
+							</button>
 						</div>
 					</div>
 				</form>

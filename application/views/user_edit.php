@@ -13,7 +13,9 @@ if (isset($alert)) {
 				<div class="pull-right">
 					<div class="togglebutton">
 						<label>
-							<input form="formUser" type="checkbox" name="checkadmin" <?php echo ($user["permission"]==1) ? "checked" : "" ?>><span class="toggle"></span> Admin
+							<input form="formUser" type="checkbox" name="checkadmin" <?php echo ($user["permission"]==1) ? "checked" : "" ?>>
+							<span class="toggle"></span>
+							Admin
 						</label> 
 					</div>
 				</div>
@@ -39,21 +41,28 @@ if (isset($alert)) {
 					
 					<div class="form-group clearfix">
 						<div class="pull-right">
-							<button type="submit" name="ok" class="btn btn-success">Đồng ý<div class="ripple-container"></div><div class="ripple-container"></div></button>
+							<button type="submit" name="ok" class="btn btn-success">
+								Đồng ý
+								<div class="ripple-container"></div>
+								<div class="ripple-container"></div>
+							</button>
 						</div>
 					</div>
 				</form>
 				<div class="form-check mr-auto">
 					<label class="form-check-label">
-						<input class="form-check-input" type="checkbox" name="checkChangePass" id="changePassword" form="formUser"> Thay mật khẩu
-						<span class="form-check-sign">
-							<span class="check"></span>
-						</span>
+						<input class="form-check-input" type="checkbox" name="checkChangePass" id="changePassword" form="formUser">
+						Thay mật khẩu
+						<span class="form-check-sign"><span class="check"></span></span>
 					</label>
 				</div>
 				<div id="divChangePass" style="display: none">
 					<div class="form-group">
-						<button type="button" class="btn btn-info btn-sm btnCreatePassword">Tạo mật khẩu<div class="ripple-container"></div><div class="ripple-container"></div></button>
+						<button type="button" class="btn btn-info btn-sm btnCreatePassword">
+							Tạo mật khẩu
+							<div class="ripple-container"></div>
+							<div class="ripple-container"></div>
+						</button>
 					</div>
 					<div class="form-group bmd-form-group">
 						<label class="bmd-label-floating">Mật khẩu mới</label>
