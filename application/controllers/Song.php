@@ -16,8 +16,9 @@ class Song extends CI_Controller {
 		$data["page_menu_index"] = 2;
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'edit') {
-				$song_id = $_GET['id'];
 				$this->load->model(["model_song", "model_cat"]);
+				$song_id = $this->input->get('id');
+
 				$data["song"] = $this->model_song->get($song_id);
 				$data["cat"]["chuyen-muc"] = $this->model_cat->getlist("chuyen-muc");
 				$data["cat"]["tac-gia"] = $this->model_cat->getlist("tac-gia");
@@ -25,51 +26,75 @@ class Song extends CI_Controller {
 				$data["cat"]["dieu-bai-hat"] = $this->model_cat->getlist("dieu-bai-hat");
 				$data["page_title"] = "Sửa bài hát";
 				$data["page_view"] = "song_edit";
-				if ($this->userPermission == 1) $this->load->view("layout", $data);
+
+				if ($this->userPermission == 1)
+					$this->load->view("layout", $data);
 				else {
-					$view = $this->userID == $data["song"]["author"] ? "layout" : "layout-not-permission";
+					$author = $data["song"]["author"] ?? -1;
+					$view = $this->userID == $author ? "layout" : "layout-not-permission";
+
 					$this->load->view($view, $data);
 				}
 			} else if ($_GET['action'] == 'update') {
-				if ( isset($_POST['update']) ) {
-					$this->load->model(['model_song' , 'model_meta', 'model_option']);
+				$this->load->model(["model_song", "model_cat", "model_meta", "model_option"]);
+
+				$song_id = $this->input->get('id');
+
+				if ($this->input->post('update') !== NULL) {
+					$title = $this->input->post('title');
+					$slug = $this->input->post('seourl');
+					$content = $this->input->post('content');
+					$excerpt = $this->input->post('excerpt');
+					$status = $this->input->post('status');
+					$chuyenmuc = $this->input->post('chuyenmuc');
+					$tacgia = $this->input->post('tacgia');
+					$bangchucai = $this->input->post('bangchucai');
+					$dieubaihat = $this->input->post('dieubaihat');
+					$seotitle = $this->input->post('seotitle');
+					$seourl = $slug;
+					$seodes = $this->input->post('seodes');
+					$seokeywork = $this->input->post('seokeywork');
+					$pdffile = $this->input->post('pdffile');
+					$hopamchinh = $this->input->post('hopamchinh');
+
 					$data["setting"] = [
 						"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
 						"post_defaultcategory"=> unserialize($this->model_option->get('post_defaultcategory')),
 					];
-					$song_id = $_GET['id'];
+					
 					// UPDATE SONG
 					$array_song_update = [
-						"title"   => $_POST['title'],
-						"slug"    => $_POST['seourl'],
-						"content" => $_POST['content'],
-						"excerpt" => $_POST['excerpt'],
-						"status"  => (isset($_POST['status']))?'publish':'private',
+						"title"   => $title,
+						"slug"    => $slug,
+						"content" => $content,
+						"excerpt" => $excerpt,
+						'status'  => $status ? "publish" : "private",
 					];
 					$this->model_song->update($song_id, $array_song_update);
 
 					// UPDATE CATEGORY
 					$array_danhmuc = [];
-					$arr_chuyenmuc = (isset($_POST['chuyenmuc'])) ? $_POST['chuyenmuc'] : [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
-					$arr_tacgia = (isset($_POST['tacgia'])) ? $_POST['tacgia'] : [$data["setting"]["post_defaultcategory"]["tac-gia"]];
-					$arr_bangchucai = (isset($_POST['bangchucai'])) ? $_POST['bangchucai'] : [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
-					$arr_dieubaihat = (isset($_POST['dieubaihat'])) ? $_POST['dieubaihat'] : [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
+					$arr_chuyenmuc = $chuyenmuc ?? [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
+					$arr_tacgia = $tacgia ?? [$data["setting"]["post_defaultcategory"]["tac-gia"]];
+					$arr_bangchucai = $bangchucai ?? [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
+					$arr_dieubaihat = $dieubaihat ?? [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
 					$array_danhmuc = array_merge($array_danhmuc, $arr_chuyenmuc, $arr_tacgia, $arr_bangchucai, $arr_dieubaihat);
+
 					$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 					// UPDATE META
-					$this->model_meta->update('song', $song_id, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->update('song', $song_id, 'seourl', $_POST['seourl']);
-					$this->model_meta->update('song', $song_id, 'seodes', $_POST['seodes']);
-					$this->model_meta->update('song', $song_id, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->update('song', $song_id, 'pdffile', $_POST['pdffile']);
-					$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
+					$this->model_meta->update('song', $song_id, 'seotitle', $seotitle);
+					$this->model_meta->update('song', $song_id, 'seourl', $seourl);
+					$this->model_meta->update('song', $song_id, 'seodes', $seodes);
+					$this->model_meta->update('song', $song_id, 'seokeywork', $seokeywork);
+					$this->model_meta->update('song', $song_id, 'pdffile', $pdffile);
+					$this->model_meta->update('song', $song_id, 'hopamchinh', $hopamchinh);
+
 					$data["alert"] = ["success", "Thành công: cập nhật bài hát."];
 				} else {
 					$data["alert"] = ["warning", "Không có cập nhật."];
 				}
-				$song_id = $_GET['id'];
-				$this->load->model(["model_song", "model_cat"]);
+
 				$data["song"] = $this->model_song->get($song_id);
 				$data["cat"]["chuyen-muc"] = $this->model_cat->getlist("chuyen-muc");
 				$data["cat"]["tac-gia"] = $this->model_cat->getlist("tac-gia");
@@ -77,47 +102,68 @@ class Song extends CI_Controller {
 				$data["cat"]["dieu-bai-hat"] = $this->model_cat->getlist("dieu-bai-hat");
 				$data["page_title"] = "Sửa bài hát";
 				$data["page_view"] = "song_edit";
-				if ($this->userPermission == 1) $this->load->view("layout", $data);
+				if ($this->userPermission == 1)
+					$this->load->view("layout", $data);
 				else {
 					$view = $this->userID == $data["song"]["author"] ? "layout" : "layout-not-permission";
 					$this->load->view($view, $data);
 				}
 			} else if ($_GET['action'] == 'add') {
 				$this->load->model(["model_song", "model_meta", "model_cat", 'model_option']);
+
 				$data["setting"] = [
 					"post_defaultstatus"=> $this->model_option->get('post_defaultstatus'),
 					"post_defaultcategory"=> unserialize($this->model_option->get('post_defaultcategory')),
 				];
-				if ( isset($_POST['ok']) ) {
+
+				if ($this->input->post('ok') !== NULL) {
+					$title = $this->input->post('title');
+					$slug = $this->input->post('seourl');
+					$date = $this->input->post('date');
+					$content = $this->input->post('content');
+					$excerpt = $this->input->post('excerpt');
+					$status = $this->input->post('status');
+					$chuyenmuc = $this->input->post('chuyenmuc');
+					$tacgia = $this->input->post('tacgia');
+					$bangchucai = $this->input->post('bangchucai');
+					$dieubaihat = $this->input->post('dieubaihat');
+					$seotitle = $this->input->post('seotitle');
+					$seourl = $slug;
+					$seodes = $this->input->post('seodes');
+					$seokeywork = $this->input->post('seokeywork');
+					$pdffile = $this->input->post('pdffile');
+					$hopamchinh = $this->input->post('hopamchinh');
+
 					// INSERT SONG
 					$array_insert_song = [
 						'id'      => '',
-						'title'   => $_POST["title"],
-						'slug'    => $_POST['seourl'],
-						'date'    => (isset($_POST['date'])) ? $_POST['date'] : get_date_now(),
-						'content' => $_POST['content'],
-						'excerpt' => $_POST['excerpt'],
+						'title'   => $title,
+						'slug'    => $slug,
+						'date'    => $date ?? get_date_now(),
+						'content' => $content,
+						'excerpt' => $excerpt,
 						'author'  => $this->session->id,
-						'status'  => (isset($_POST['status']))?"publish":"private",
+						'status'  => $status ? "publish" : "private",
 					];
 					$insert_song_id = $this->model_song->add($array_insert_song);
 					
 					// INSERT CAT
 					$array_danhmuc = [];
-					$arr_chuyenmuc = (isset($_POST['chuyenmuc'])) ? $_POST['chuyenmuc'] : [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
-					$arr_tacgia = (isset($_POST['tacgia'])) ? $_POST['tacgia'] : [$data["setting"]["post_defaultcategory"]["tac-gia"]];
-					$arr_bangchucai = (isset($_POST['bangchucai'])) ? $_POST['bangchucai'] : [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
-					$arr_dieubaihat = (isset($_POST['dieubaihat'])) ? $_POST['dieubaihat'] : [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
+					$arr_chuyenmuc = $chuyenmuc ?? [$data["setting"]["post_defaultcategory"]["chuyen-muc"]];
+					$arr_tacgia = $tacgia ?? [$data["setting"]["post_defaultcategory"]["tac-gia"]];
+					$arr_bangchucai = $bangchucai ?? [$data["setting"]["post_defaultcategory"]["bang-chu-cai"]];
+					$arr_dieubaihat = $dieubaihat ?? [$data["setting"]["post_defaultcategory"]["dieu-bai-hat"]];
 					$array_danhmuc = array_merge($array_danhmuc, $arr_chuyenmuc, $arr_tacgia, $arr_bangchucai, $arr_dieubaihat);
+
 					$this->model_song->add_songcat($insert_song_id, $array_danhmuc);
 
 					// INSERT META
-					$this->model_meta->add('song', $insert_song_id, 'seotitle', $_POST['seotitle']);
-					$this->model_meta->add('song', $insert_song_id, 'seourl', $_POST['seourl']);
-					$this->model_meta->add('song', $insert_song_id, 'seodes', $_POST['seodes']);
-					$this->model_meta->add('song', $insert_song_id, 'seokeywork', $_POST['seokeywork']);
-					$this->model_meta->add('song', $insert_song_id, 'pdffile', $_POST['pdffile']);
-					$this->model_meta->add('song', $insert_song_id, 'hopamchinh', $_POST['hopamchinh']);
+					$this->model_meta->add('song', $insert_song_id, 'seotitle', $seotitle);
+					$this->model_meta->add('song', $insert_song_id, 'seourl', $seourl);
+					$this->model_meta->add('song', $insert_song_id, 'seodes', $seodes);
+					$this->model_meta->add('song', $insert_song_id, 'seokeywork', $seokeywork);
+					$this->model_meta->add('song', $insert_song_id, 'pdffile', $pdffile);
+					$this->model_meta->add('song', $insert_song_id, 'hopamchinh', $hopamchinh);
 					$this->model_meta->add('song', $insert_song_id, 'luotxem', 0);
 					$this->model_meta->add('song', $insert_song_id, 'lovesong', 0);
 
@@ -134,23 +180,31 @@ class Song extends CI_Controller {
 			} else if ($_GET['action'] == 'search') {
 				if ( isset($_GET['keyword']) ) {
 					$this->load->model("model_song");
-					$keyword = $_GET['keyword'];
+
+					$keyword = 	$this->input->get('keyword');
+
 					$data["list_song"] = $this->model_song->getbykeyword($keyword);
 					$data["page_title"] = "Bài hát";
 					$data["page_view"] = "song";
+
 					$this->load->view("layout", $data);
 				}
 			}
 		} else {
 			if (isset($_GET['quickedit'])) {
 				$this->load->model(['model_song','model_cat' , 'model_meta']);
-				$song_id =$_GET['quickedit'];
+				$song_id = $this->input->get('quickedit');
+				$title = $this->input->post('title');
+				$slug = $this->input->post('seourl');
+				$status = $this->input->post('status');
+				$excerpt = $this->input->post('excerpt');
+
 				// UPDATE SONG
 				$array_song_update = [
-					"title"   => $_POST['title'],
-					"slug"    => $_POST['seourl'],
-					"status"  => isset($_POST['status']) ? 'publish' : 'private',
-					"excerpt" => $_POST['excerpt'],
+					"title"   => $title,
+					"slug"    => $slug,
+					"status"  => isset($status) ? 'publish' : 'private',
+					"excerpt" => $excerpt,
 				];
 				$this->model_song->update($song_id, $array_song_update);
 
@@ -166,12 +220,15 @@ class Song extends CI_Controller {
 				$this->model_meta->update('song', $song_id, 'pdffile', $_POST['pdffile']);
 				$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
 			}
+
 			$this->load->model("model_song");
+
 			$page = $this->input->get('page');
 			$arr_pagination = array();
 			$number_song_on_page = 20;
 			$count_song = $this->model_song->count();
 			$number_pagination = ceil($count_song / $number_song_on_page);
+
 			for ($i=1; $i <= $number_pagination ; $i++) {
 				$active = $i == $page ? 1 : 0;
 				$arr_pagination[] = [
@@ -180,17 +237,20 @@ class Song extends CI_Controller {
 					"active" => $active,
 				];
 			}
+
 			$page_start = ($page - 1) * $number_song_on_page;
 			$data["pagination_song"] = $arr_pagination;
 			$data["list_song"] = $this->model_song->getlist($page_start, $number_song_on_page);
 			$data["page_title"] = "Bài hát";
 			$data["page_view"] = "song";
+
 			$this->load->view("layout", $data);
 		}
 	}
 
 	public function get_quick_song(){
 		$this->load->model(['model_song','model_cat', 'model_meta']);
+
 		$song = $this->model_song->get($_GET['id']);
 		$danhmuc['chuyenmuc'] = $this->model_cat->getlist("chuyen-muc");
 		$danhmuc['tacgia'] = $this->model_cat->getlist("tac-gia");
@@ -201,21 +261,24 @@ class Song extends CI_Controller {
 		$json = preg_replace("/bang-chu-cai/", "bang_chu_cai", $json);
 		$json = preg_replace("/tac-gia/", "tac_gia", $json);
 		$json = preg_replace("/dieu-bai-hat/", "dieu_bai_hat", $json);
+
 		echo $json;
 		die();
 	}
 
 	public function del() {
 		$id = $_POST["id"];
+
 		$this->load->model('model_song');
 		$this->model_song->del($id);
+
 		echo "done";
 		die();
 	}
 
 	public function listAllSongs() {
 		$this->load->model(['model_song']);
-		$count = $this->model_song->count();
+
 		echo json_encode($this->model_song->getlist(), JSON_UNESCAPED_UNICODE);
 		die();
 	}

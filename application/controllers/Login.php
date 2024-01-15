@@ -12,7 +12,10 @@ class Login extends CI_Controller {
 
 	public function check(){
 		$this->load->model("model_login");
-		echo $this->model_login->check($_POST['username'], $_POST['password']);
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+
+		echo $this->model_login->check($username, $password);
 		die();
 	}
 
