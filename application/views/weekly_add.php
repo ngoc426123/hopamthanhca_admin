@@ -118,7 +118,14 @@ if (isset($alert)) {
         ?>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="chuyenmuc[]" type="radio" value="<?php echo $item['id'] ?>" <?php echo $setting["post_defaultcategory"]["nam-phung-vu"] == $item['id'] ? 'checked' : '' ?>> <?php echo $item['cat_name'] ?>
+              <input
+                class="form-check-input"
+                name="chuyenmuc[]"
+                type="radio"
+                value="<?php echo $item['id'] ?>"
+                <?php echo $setting["post_defaultcategory"]["nam-phung-vu"] == $item['id'] ? 'checked' : '' ?>
+              />
+              <?php echo $item['cat_name'] ?>
               <span class="circle"><span class="check"></span></span>
             </label>
           </div>

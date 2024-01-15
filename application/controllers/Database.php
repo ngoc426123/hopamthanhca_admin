@@ -4,14 +4,9 @@ class Database extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
-		check_login();
 
 	}
 	public function index(){
-		if ($this->session->permission != 1) {
-			$this->load->view("layout-not-permission");
-			return;
-		}
 		$list_tables = [];
 		foreach ($this->db->list_tables() as $key => $value) {
 			$list_tables[$value]["field"] = $this->db->list_fields($value);

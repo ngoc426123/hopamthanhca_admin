@@ -36,7 +36,13 @@ $content = unserialize($weekly["content"]);
                   return $key == $var["cat_slug"];
                 }))[0];
               ?>
-                <div class="row mb-2" data-phase data-phase-id="<?php echo $phaseFilter["id_cat"] ?>" data-phase-slug="<?php echo $phaseFilter["cat_slug"] ?>" data-phase-name="<?php echo $phaseFilter["cat_name"] ?>">
+                <div
+                  class="row mb-2"
+                  data-phase
+                  data-phase-id="<?php echo $phaseFilter["id_cat"] ?>"
+                  data-phase-slug="<?php echo $phaseFilter["cat_slug"] ?>"
+                  data-phase-name="<?php echo $phaseFilter["cat_name"] ?>"
+                >
                   <div class="col-12 col-md-3">
                     <div class="h-100 min-h-75 p-2 <?php echo $bg ?> rounded text-light position-relative">
                       <h5 class="font-weight-bold"><?php echo $phaseFilter["cat_name"] ?></h5>

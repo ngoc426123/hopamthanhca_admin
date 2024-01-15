@@ -51,7 +51,11 @@ if (isset($alert)) {
       </div>
       <div class="form-group clearfix">
         <div class="pull-right">
-          <button type="submit" name="ok" class="btn btn-success">Thêm danh mục<div class="ripple-container"></div><div class="ripple-container"></div></button>
+          <button type="submit" name="ok" class="btn btn-success">
+            Thêm danh mục
+            <div class="ripple-container"></div>
+            <div class="ripple-container"></div>
+          </button>
         </div>
       </div>
     </form>
@@ -82,7 +86,11 @@ if (isset($alert)) {
               ?>
                 <tr>
                   <td><?php echo $value['id_cat'] ?></td>
-                  <td><a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>"><?php echo $value['cat_name'] ?></a></td>
+                  <td>
+                    <a href="<?php echo base_url("category?slug={$value['type_slug']}&action=edit&id={$value['id_cat']}") ?>">
+                      <?php echo $value['cat_name'] ?>
+                    </a>
+                  </td>
                   <td><?php echo $value['cat_slug'] ?></td>
                   <td class="td-actions text-right">
                     <?php
@@ -114,7 +122,9 @@ if (isset($alert)) {
           if (count($list_cat) > 0) {
             foreach ($pagination_song as $value) {
             ?>
-              <li class="page-item <?php echo ($value['active']===1)?'active':'' ?>"><a class="page-link" href="<?php echo $value['link'] ?>"><?php echo $value['number'] ?></a></li>
+              <li class="page-item <?php echo ($value['active']===1)?'active':'' ?>">
+                <a class="page-link" href="<?php echo $value['link'] ?>"><?php echo $value['number'] ?></a>
+              </li>
             <?php
             }
           }

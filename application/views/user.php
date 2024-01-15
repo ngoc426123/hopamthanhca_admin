@@ -34,7 +34,15 @@
 									<td>
 										<div><?php echo $value["name"]; ?></div>
 										<div class="togglebutton">
-											<label><input class="changePermission" type="checkbox" <?php echo ($value["permission"] == 1) ? "checked" : ""; ?> value="<?php echo $value["id"]; ?>">Admin: <span class="toggle"></span></label>
+											<label>
+												<input
+													class="changePermission"
+													type="checkbox"
+													<?php echo ($value["permission"] == 1) ? "checked" : ""; ?>
+													value="<?php echo $value["id"]; ?>"
+												/>
+													Admin: <span class="toggle"></span>
+												</label>
 										</div>
 									</td>
 									<td><?php echo $value["displayname"]; ?></td>

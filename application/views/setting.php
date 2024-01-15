@@ -1,8 +1,8 @@
 <?php
-if (isset($alert)) {
-	print_alert($alert);
-}
-$post_defaultcategory = unserialize($setting["post_defaultcategory"]);
+	if (isset($alert)) {
+		print_alert($alert);
+	}
+	$post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 ?>
 <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center" role="tablist">
 	<li class="nav-item">
@@ -36,49 +36,65 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Đường dẫn chính</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="site_url" class="form-control" value="<?php echo $setting["site_url"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="site_url" class="form-control" value="<?php echo $setting["site_url"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Trang chủ</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="home_url" class="form-control" value="<?php echo $setting["home_url"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="home_url" class="form-control" value="<?php echo $setting["home_url"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Tiêu đề Trang web</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="title" class="form-control" value="<?php echo $setting["title"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="title" class="form-control" value="<?php echo $setting["title"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Từ khoá</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="keywork" class="form-control" value="<?php echo $setting["keywork"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="keywork" class="form-control" value="<?php echo $setting["keywork"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Giới thiệu</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="desc" class="form-control" value="<?php echo $setting["desc"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="desc" class="form-control" value="<?php echo $setting["desc"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Favicon</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="favicon" class="form-control" value="<?php echo $setting["favicon"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="favicon" class="form-control" value="<?php echo $setting["favicon"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Email</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="email" class="form-control" value="<?php echo $setting["email"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="email" class="form-control" value="<?php echo $setting["email"] ?>">
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<label class="col-sm-4 col-form-label">Phone</label>
 									<div class="col-sm-8">
-										<div class="form-group bmd-form-group"><input type="text" name="phonenumber" class="form-control" value="<?php echo $setting["phonenumber"] ?>"></div>
+										<div class="form-group bmd-form-group">
+											<input type="text" name="phonenumber" class="form-control" value="<?php echo $setting["phonenumber"] ?>">
+										</div>
 									</div>
 								</div>
 							</div>
@@ -99,7 +115,14 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 										?>
 											<div class="form-check">
 												<label class="form-check-label">
-													<input class="form-check-input" type="radio" name="dateformat" value="<?php echo $key ?>" <?php echo ($setting["dateformat"] == $key ? "checked" : "") ?>> <?php echo $value ?>
+													<input
+														class="form-check-input"
+														type="radio"
+														name="dateformat"
+														value="<?php echo $key ?>"
+														<?php echo ($setting["dateformat"] == $key ? "checked" : "") ?>
+													/>
+													<?php echo $value ?>
 													<span class="circle"><span class="check"></span></span>
 												</label>
 											</div>
@@ -123,9 +146,16 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 										?>
 											<div class="form-check">
 												<label class="form-check-label">
-													<input class="form-check-input" type="radio" name="timeformat" value="<?php echo $key ?>" <?php echo ($setting["timeformat"] == $key ? "checked" : "") ?>> <?php echo $value ?>
+													<input
+														class="form-check-input"
+														type="radio"
+														name="timeformat"
+														value="<?php echo $key ?>"
+														<?php echo ($setting["timeformat"] == $key ? "checked" : "") ?>
+													/>
+													<?php echo $value ?>
 													<span class="circle"><span class="check"></span></span>
-												</label>
+											</label>
 											</div>
 										<?php
 										}
@@ -264,19 +294,40 @@ $post_defaultcategory = unserialize($setting["post_defaultcategory"]);
 							<div class="row">
 								<label class="col-sm-4 col-form-label">Facebook</label>
 								<div class="col-sm-8">
-									<div class="form-group bmd-form-group"><input type="text" name="social_facebook" class="form-control" value="<?php echo isset($setting["social_facebook"]) ? $setting["social_facebook"] : '' ?>"></div>
+									<div class="form-group bmd-form-group">
+										<input
+											type="text"
+											name="social_facebook"
+											class="form-control"
+											value="<?php echo isset($setting["social_facebook"]) ? $setting["social_facebook"] : '' ?>"
+										/>
+									</div>
 								</div>
 							</div>
 							<div class="row">
 								<label class="col-sm-4 col-form-label">Youtube</label>
 								<div class="col-sm-8">
-									<div class="form-group bmd-form-group"><input type="text" name="social_youtube" class="form-control" value="<?php echo isset($setting["social_youtube"]) ? $setting["social_youtube"] : '' ?>"></div>
+									<div class="form-group bmd-form-group">
+										<input
+											type="text"
+											name="social_youtube"
+											class="form-control"
+											value="<?php echo isset($setting["social_youtube"]) ? $setting["social_youtube"] : '' ?>"
+										/>
+									</div>
 								</div>
 							</div>
 							<div class="row">
 								<label class="col-sm-4 col-form-label">Twitter</label>
 								<div class="col-sm-8">
-									<div class="form-group bmd-form-group"><input type="text" name="social_twitter" class="form-control" value="<?php echo isset($setting["social_twitter"]) ? $setting["social_youtube"] : '' ?>"></div>
+									<div class="form-group bmd-form-group">
+										<input
+											type="text"
+											name="social_twitter"
+											class="form-control"
+											value="<?php echo isset($setting["social_twitter"]) ? $setting["social_youtube"] : '' ?>"
+										/>
+									</div>
 								</div>
 							</div>
 						</div>

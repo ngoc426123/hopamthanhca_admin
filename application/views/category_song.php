@@ -38,15 +38,19 @@
             <td><?php echo $song["id_song"]; ?></td>
             <td><a href="<?php echo base_url("song?action=edit&id={$song["id_song"]}"); ?>"><?php echo $song["title"]; ?></a></td>
             <td><?php echo $song["slug"]; ?></td>
-            <td><?php echo isset($song["meta"]["luotxem"])?fmt_number($song["meta"]["luotxem"]):"0"; ?></td>
+            <td><?php echo isset($song["meta"]["luotxem"]) ? fmt_number($song["meta"]["luotxem"]) : "0"; ?></td>
             <td>
               <div><?php echo $song["status"]; ?></div>
               <small><?php echo $song["date"]; ?></small>
             </td>
             <td class="td-actions text-right">
               <a href="#" class="btn btn-rose quickEdit" rel="tooltip" class="btn btn-rose"><i class="material-icons">edit</i></a>
-              <a href="<?php echo "http://hopamthanhca.com/bai-hat/{$song["slug"]}" ?>" rel="tooltip" class="btn btn-info"><i class="material-icons">visibility</i></a>
-              <button data-id="<?php echo $song["id_song"] ?>" el="tooltip" class="btn btn-danger btn-remove-song"><i class="material-icons">restore_from_trash</i></button>
+              <a href="<?php echo "http://hopamthanhca.com/bai-hat/{$song["slug"]}" ?>" rel="tooltip" class="btn btn-info">
+                <i class="material-icons">visibility</i>
+              </a>
+              <button data-id="<?php echo $song["id_song"] ?>" el="tooltip" class="btn btn-danger btn-remove-song">
+                <i class="material-icons">restore_from_trash</i>
+              </button>
             </td>
           </tr>
         <?php

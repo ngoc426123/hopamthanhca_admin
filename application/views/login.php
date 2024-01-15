@@ -14,7 +14,11 @@
 
 <body class="page-login">
 	<div class="wrapper wrapper-full-page">
-		<div class="page-header login-page header-filter" filter-color="black" style="background-image: url('<?php echo base_url("assets/img/login.jpg"); ?>'); background-size: cover; background-position: top center;">
+		<div
+			class="page-header login-page header-filter"
+			filter-color="black"
+			style="background-image: url('<?php echo base_url("assets/img/login.jpg"); ?>'); background-size: cover; background-position: top center;"
+		>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">

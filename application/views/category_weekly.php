@@ -45,8 +45,12 @@
               </td>
               <td><?php echo $weekly["note"]; ?></td>
               <td class="td-actions text-right">
-                <a href="<?php echo "http://hopamthanhca.com/thanh-ca-hang-tuan/{$weekly["slug"]}" ?>" rel="tooltip" class="btn btn-info"><i class="material-icons">visibility</i></a>
-                <button data-id="<?php echo $weekly["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-weekly"><i class="material-icons">restore_from_trash</i></button>
+                <a href="<?php echo "http://hopamthanhca.com/thanh-ca-hang-tuan/{$weekly["slug"]}" ?>" rel="tooltip" class="btn btn-info">
+                  <i class="material-icons">visibility</i>
+                </a>
+                <button data-id="<?php echo $weekly["id"] ?>" el="tooltip" class="btn btn-danger btn-remove-weekly">
+                  <i class="material-icons">restore_from_trash</i>
+                </button>
               </td>
             </tr>
           <?php
