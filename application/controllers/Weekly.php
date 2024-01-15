@@ -33,7 +33,7 @@ class Weekly extends CI_Controller {
           $seokeywork = $this->input->post('seokeywork');
           $chuyenmuc = $this->input->post('chuyenmuc');
 
-          foreach($_POST as $key => $item) {
+          foreach($this->input->post() as $key => $item) {
             foreach ($phaseCat as $value) {
               if (array_search($key, $value)) $content[$key] = $item;
             }
@@ -45,8 +45,8 @@ class Weekly extends CI_Controller {
             'slug'    => $url,
             'date'    => $date ?? get_date_now(),
             'content' => serialize($content),
-            'desc'    => $_POST['desc'],
-            'note'    => $_POST['note'],
+            'desc'    => $desc,
+            'note'    => $note,
             'status'  => $status ? 'publish' : 'private',
           ];
           $insert_weekly_id = $this->model_weekly->add($array_insert_weekly);

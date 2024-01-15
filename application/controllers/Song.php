@@ -9,11 +9,11 @@ class Song extends CI_Controller {
 		parent::__construct();
 		$this->userID = $this->session->id;
 		$this->userPermission = $this->session->permission;
-		check_login();
 	}
 
 	public function index(){
 		$data["page_menu_index"] = 2;
+
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'edit') {
 				$this->load->model(["model_song", "model_cat"]);
@@ -198,6 +198,13 @@ class Song extends CI_Controller {
 				$slug = $this->input->post('seourl');
 				$status = $this->input->post('status');
 				$excerpt = $this->input->post('excerpt');
+				$seotitle = $this->input->post('seotitle');
+				$seourl = $slug;
+				$seodes = $this->input->post('seodes');
+				$seokeywork = $this->input->post('seokeywork');
+				$pdffile = $this->input->post('pdffile');
+				$hopamchinh = $this->input->post('hopamchinh');
+				$array_danhmuc = $this->input->post('danhmuc');
 
 				// UPDATE SONG
 				$array_song_update = [
@@ -209,16 +216,15 @@ class Song extends CI_Controller {
 				$this->model_song->update($song_id, $array_song_update);
 
 				// UPDATE CATEGORY
-				$array_danhmuc = $_POST['danhmuc'];
 				$this->model_song->update_songcat($song_id, $array_danhmuc);
 
 				// UPDATE META
-				$this->model_meta->update('song', $song_id, 'seotitle', $_POST['seotitle']);
-				$this->model_meta->update('song', $song_id, 'seourl', $_POST['seourl']);
-				$this->model_meta->update('song', $song_id, 'seodes', $_POST['seodes']);
-				$this->model_meta->update('song', $song_id, 'seokeywork', $_POST['seokeywork']);
-				$this->model_meta->update('song', $song_id, 'pdffile', $_POST['pdffile']);
-				$this->model_meta->update('song', $song_id, 'hopamchinh', $_POST['hopamchinh']);
+				$this->model_meta->update('song', $song_id, 'seotitle', $seotitle );
+				$this->model_meta->update('song', $song_id, 'seourl', $seourl);
+				$this->model_meta->update('song', $song_id, 'seodes', $seodes);
+				$this->model_meta->update('song', $song_id, 'seokeywork', $seokeywork);
+				$this->model_meta->update('song', $song_id, 'pdffile', $pdffile);
+				$this->model_meta->update('song', $song_id, 'hopamchinh', $hopamchinh);
 			}
 
 			$this->load->model("model_song");
@@ -251,7 +257,8 @@ class Song extends CI_Controller {
 	public function get_quick_song(){
 		$this->load->model(['model_song','model_cat', 'model_meta']);
 
-		$song = $this->model_song->get($_GET['id']);
+		$id = $this->input->get('id');
+		$song = $this->model_song->get($id);
 		$danhmuc['chuyenmuc'] = $this->model_cat->getlist("chuyen-muc");
 		$danhmuc['tacgia'] = $this->model_cat->getlist("tac-gia");
 		$danhmuc['bangchucai'] = $this->model_cat->getlist("bang-chu-cai");
@@ -267,7 +274,7 @@ class Song extends CI_Controller {
 	}
 
 	public function del() {
-		$id = $_POST["id"];
+		$id = $this->input->post('id');
 
 		$this->load->model('model_song');
 		$this->model_song->del($id);

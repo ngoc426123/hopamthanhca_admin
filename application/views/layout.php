@@ -114,7 +114,7 @@
 						</div>
 					</li>
 					<?php
-					if (check_admin()) {
+					if ($this->session->permission == 1) {
 					?>
 						<li class="nav-item <?php echo (isset($page_menu_index) && $page_menu_index == 4) ? 'active' : '' ?>">
 							<a class="nav-link" href="<?php echo base_url("user") ?>">
