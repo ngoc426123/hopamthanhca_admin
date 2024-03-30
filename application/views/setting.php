@@ -265,7 +265,7 @@
 										<select name="post_defaultcategory[nam-phung-vu]" class="selectpicker" data-style="btn btn-primary btn-round">
 											<?php
 											foreach ($cat['nam-phung-vu'] as $item) {
-												$checked = $item['id'] == $post_defaultcategory['dieu-bai-hat'] ? "selected" : "";
+												$checked = $item['id'] == $post_defaultcategory['nam-phung-vu'] ? "selected" : "";
 											?>
 												<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
 											<?php
