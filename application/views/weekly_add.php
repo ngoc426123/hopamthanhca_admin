@@ -99,7 +99,7 @@ if (isset($alert)) {
                 Publish <span class="toggle"></span>
               </label>
             </div>
-            <div>Publish on: <b class='font-weight-bold'>15/20/2020</b></div>
+            <div>Publish on: <b class='font-weight-bold'><?= get_date_now() ?></b></div>
           </div>
           <div class="card-footer justify-content-end">
             <button type='submit' class='btn btn-success' name="ok">Đồng ý</button>

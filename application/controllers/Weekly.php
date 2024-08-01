@@ -38,6 +38,7 @@ class Weekly extends CI_Controller {
               if (array_search($key, $value)) $content[$key] = $item;
             }
           }
+
           // INSERT WEEKLY
           $array_insert_weekly = [
             'id'      => '',
