@@ -16,6 +16,11 @@
 		</a>
 	</li>
 	<li class="nav-item">
+		<a class="nav-link <?php echo $tab == "season" ? "active" : "" ?>" data-toggle="tab" href="#season" role="tablist">
+			<i class="material-icons">view_compact_alt</i> <span class='d-none d-lg-block'>Season</span>
+		</a>
+	</li>
+	<li class="nav-item">
 		<a class="nav-link <?php echo $tab == "social" ? "active" : "" ?>" data-toggle="tab" href="#social" role="tablist">
 			<i class="material-icons">share</i> <span class='d-none d-lg-block'>Mạng xã hội</span>
 		</a>
@@ -268,6 +273,90 @@
 												$checked = $item['id'] == $post_defaultcategory['nam-phung-vu'] ? "selected" : "";
 											?>
 												<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
+											<?php
+											}
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer text-right">
+					<div class="mr-auto"></div>
+					<button type='submit' class='btn btn-success' name="update">Đồng ý</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="tab-pane <?php echo $tab == "season" ? "active" : "" ?>" id="season">
+		<form action="<?php echo base_url("/config?action=setting&tab=season") ?>" method="post" class="form-horizontal">
+			<div class="card">
+				<div class="card-body">
+					<div class="row justify-content-center">
+						<div class="col-lg-6">
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Tiêu đề</label>
+								<div class="col-sm-8">
+									<div class="form-group bmd-form-group">
+										<input type="text" name="season_title" class="form-control" value="<?php echo isset($setting["season_title"]) ? $setting["season_title"] : ""?>">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Mô tả</label>
+								<div class="col-sm-8">
+									<div class="form-group bmd-form-group">
+										<input type="text" name="season_desc" class="form-control" value="<?php echo isset($setting["season_desc"]) ? $setting["season_desc"] : "" ?>">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Số lượng (luôn + thêm 1 cho nút xem thêm)</label>
+								<div class="col-sm-8">
+									<div class="form-group bmd-form-group">
+										<input type="text" name="season_number" class="form-control" value="<?php echo isset($setting["season_number"]) ? $setting["season_number"] : "" ?>">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Chuyên mục</label>
+								<div class="col-sm-8">
+									<div class="form-group bmd-form-group">
+										<select name="season_category" class="selectpicker" data-style="btn btn-primary btn-round">
+											<option value="0" <?php echo $checked ?>>Lấy ngẫu nhiên</option>
+											<?php
+											foreach ($cat['chuyen-muc'] as $item) {
+												$checked = ($setting["season_category"] == $item['id']) ? "selected" : "";
+											?>
+												<option value="<?php echo $item['id'] ?>" <?php echo $checked ?>><?php echo $item['cat_name'] ?></option>
+											<?php
+											}
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-sm-4 col-form-label">Style</label>
+								<div class="col-sm-8">
+									<div class="form-group bmd-form-group">
+										<?php 
+										$arr_style_season = [
+											"focus"  => "Focus | Xanh chủ đạo",
+											"spring" => "Spring | Vàng",
+											"lent"   => "Lent | Tím",
+											"wine"   => "Wine | Đỏ",
+											"tea"    => "Tea | Xanh lá cây",
+										]
+										?>
+										<select name="season_style" class="selectpicker" data-style="btn btn-primary btn-round">
+											<?php
+											foreach ($arr_style_season as $key => $item) {
+												$checked = ($setting["season_style"] == $key) ? "selected" : "";
+											?>
+												<option value="<?php echo $key ?>" <?php echo $checked ?>><?php echo $item ?></option>
 											<?php
 											}
 											?>
